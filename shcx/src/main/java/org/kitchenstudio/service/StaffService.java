@@ -8,4 +8,5 @@ public interface StaffService {
 
 	List<Staff> findAll();
 	void add(Staff staff);
+	void delete(Staff staff);
 }

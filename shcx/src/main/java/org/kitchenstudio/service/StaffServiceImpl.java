@@ -27,4 +27,8 @@ public class StaffServiceImpl implements StaffService{
 		staffRepository.save(staff);
 	}
 	
+	@Override
+	public void delete(Staff staff) {
+		staffRepository.delete(staff);
+	}
 }

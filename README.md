@@ -4,7 +4,6 @@
 # 人员信息
 - 司机
 - 管理人员
-- 劳务人员
 
 # 仓库管理
 - 钢管
@@ -23,7 +22,7 @@
 The MIT License (MIT)
 ====================
 
-Copyright (c) 2015 kitchn
+Copyright (c) 2015 kitchen
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

@@ -1,10 +1,14 @@
 package org.kitchenstudio.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 @Entity
 public class StoreItem {
 
+	@Id
+	@GeneratedValue
 	private Long id;
 
 	// 例如钢管、扣件

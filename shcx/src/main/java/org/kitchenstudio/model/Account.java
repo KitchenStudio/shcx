@@ -1,10 +1,12 @@
 package org.kitchenstudio.model;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity
 public class Account{
 	
+	@Id
 	private String username;
 	
 	private String password;

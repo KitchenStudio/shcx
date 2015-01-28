@@ -18,22 +18,23 @@ public class Order {
 	private String date;
 
 	private int isOut;// 0代表进料单，1代表出料单
-	
-	//ManyToOne
-	//private 项目
+
+	// ManyToOne
+	// private 项目
 	private String handler;// 经手人
 
 	private String renter;// 出租方
 
 	private String lessee;// 承租方
 
-	private Set<OrderItem> orderItems;//多个订单项
-//	@OneToMany(targetEntity=org.kitchenstudio.model.OrderItem.class, 
-//            mappedBy="order")
-	@OneToMany(orphanRemoval=true)
-	@JoinColumn(name="ORDER_ID", nullable=false)
-	public Set<OrderItem> getOrderItems() { return orderItems; }
-	
+	@OneToMany(orphanRemoval = true)
+	@JoinColumn(name = "ORDER_ID", nullable = false)
+	private Set<OrderItem> orderItems;// 多个订单项
+
+	public Set<OrderItem> getOrderItems() {
+		return orderItems;
+	}
+
 	public void setOrderItems(Set<OrderItem> orderItems) {
 		this.orderItems = orderItems;
 	}
@@ -85,7 +86,6 @@ public class Order {
 	public void setLessee(String lessee) {
 		this.lessee = lessee;
 	}
-
 
 	// private Driver;
 	// private plateNumber;

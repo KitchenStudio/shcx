@@ -11,14 +11,29 @@ $(function() {
 		return false;
 	});
 	
-	$("#uploadpicture").click(function(){
-		console.log("card");
-		
-	});
+//	$("#uploadpicture").click(function(){
+//		console.log("card");
+//		
+//	});
 
 	$(".has-error").hover(function() {
 		$(this).tooltip('show');
 	}, function() {
 		$(this).tooltip('hide');
+	});
+	
+	var url = "/api/v1/image/temp";
+	$("#fileupload").fileupload({
+		url: url,
+        previewMaxWidth: 100,
+        previewMaxHeight: 100,
+        previewCrop: true,
+		done: function (e, data) {
+			$("#uploadpicture").prop('src', data.result);
+		}, 
+		progressall: function (e, data) {
+			var progress = parseInt(data.loaded / data.total * 100, 10);
+			console.log(progress);
+		}
 	});
 });

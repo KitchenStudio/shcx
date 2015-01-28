@@ -49,8 +49,8 @@
 				<div class="form-group">
 						<label class="col-sm-2 control-label">上传头像</label>
 						<div class="col-sm-3" >
-						<img alt="" th:src="@{/images/faceimage.jpg}" id="uploadpicture">
-							<!-- <input class="form-control" type="file"> -->
+						<img width="128" height="128" alt="" th:src="@{/images/faceimage.jpg}" id="uploadpicture">
+							<input name="file" type="file" id="fileupload"  >
 						</div>
 					</div>
 					<div class="form-group">
@@ -114,6 +114,9 @@
 		</form>
 	</div>
 	<script th:src="@{/js/jquery.min.js}"></script>
+	<script th:src="@{/js/jquery.ui.widget.js}"></script>
+	<script th:src="@{/js/jquery.iframe-transport.js}"></script>
+	<script th:src="@{/js/jquery.fileupload.js}"></script>
 	<script th:src="@{/js/bootstrap.min.js}"></script>
 	<script th:src="@{/js/main.js}"></script>
 </body>

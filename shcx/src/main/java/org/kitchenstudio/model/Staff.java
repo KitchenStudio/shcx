@@ -1,5 +1,7 @@
 package org.kitchenstudio.model;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -22,6 +24,15 @@ public class Staff {
 
 	@Enumerated(EnumType.STRING)
 	private GenderType gender;
+	
+	private String type;//员工的类型
+	private String address;//员工的地址
+	private String phoneNuber;//员工的电话号码
+	private String education;//员工的学历
+	private Date birthday;//出生日期
+	private String bankNumber;//银行卡号
+	private String nation;//民族
+	private String 
 
 	public Long getId() {
 		return id;

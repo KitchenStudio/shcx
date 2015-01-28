@@ -1,8 +1,11 @@
 package org.kitchenstudio.model;
 
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -24,8 +27,16 @@ public class Order {
 
 	private String lessee;// 承租方
 
-	@OneToMany
-	private OrderItem item;
+	private Set<OrderItem> orderItems;//多个订单项
+//	@OneToMany(targetEntity=org.kitchenstudio.model.OrderItem.class, 
+//            mappedBy="order")
+	@OneToMany(orphanRemoval=true)
+	@JoinColumn(name="ORDER_ID", nullable=false)
+	public Set<OrderItem> getOrderItems() { return orderItems; }
+	
+	public void setOrderItems(Set<OrderItem> orderItems) {
+		this.orderItems = orderItems;
+	}
 
 	public Long getId() {
 		return id;
@@ -75,13 +86,6 @@ public class Order {
 		this.lessee = lessee;
 	}
 
-	public OrderItem getItem() {
-		return item;
-	}
-
-	public void setItem(OrderItem item) {
-		this.item = item;
-	}
 
 	// private Driver;
 	// private plateNumber;

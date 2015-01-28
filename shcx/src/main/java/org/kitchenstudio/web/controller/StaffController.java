@@ -29,14 +29,13 @@ public class StaffController {
 	String home(Model model) {
 		List<Staff> staffs = staffService.findAll();
 		model.addAttribute("staffs", staffs);
-
 		return "staff";
 	}
 
 	@RequestMapping("/add")
 	String add(Staff staff) {
-		staffService.add(staff);
-		return "redirect:/staff";
+//		staffService.add(staff);
+		return "staff_new";
 	}
 
 	@RequestMapping(value = "/new", method = RequestMethod.GET)
@@ -50,15 +49,28 @@ public class StaffController {
 
 	@RequestMapping(value = "/new", method = RequestMethod.POST)
 	String create(@Valid Staff staff, BindingResult result) {
+		
 		if (result.hasErrors()) {
+			System.out.println(result.getAllErrors());
+			System.out.println(staff.getAddress());
 			return "staff_new";
 		}
-		return "redirect:/staff/new";
+		System.out.println(staff.getAddress());
+		staffService.add(staff);
+		return "staff";
 	}
-
+	
+	
 	@RequestMapping("/delete/{id}")
 	String delete(@PathVariable("id") Staff staff) {
 		staffService.delete(staff);
 		return "redirect:/staff";
+	}
+	
+	@RequestMapping("/info/{id}")
+	String info(@PathVariable("id") Staff staff, Model model){
+		model.addAttribute(staff);
+		return "staff/detail";
+		
 	}
 }

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title></title>
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+	<div class="container">
+		<h2>员工录入</h2>
+		<form class="form-horizontal" th:action="@{/staff/new}"
+			th:object="${staff}" method="post">
+			<div class="form-group">
+				<label class="col-sm-2 control-label">编号</label>
+				<div class="col-sm-10">
+					<input class="form-control" th:field="*{id}">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">姓名</label>
+				<div class="col-sm-10">
+					<input class="form-control" th:field="*{name}">
+				</div>
+			</div>
+			<!-- 			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<div class="alert alert-danger">
+						<button type="button" class="close" data-dismiss="alert"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<p>啥啥啥</p>
+					</div>
+				</div>
+			</div>
+ -->
+			<div class="form-group" th:classappend="form-group"
+				th:class="${#fields.hasErrors('IDCard')}? has-error" title="what?"
+				th:title="${#fields.errors('IDCard')}"
+				>
+				<label class="col-sm-2 control-label">身份证号码</label>
+				<div class="col-sm-10">
+					<input class="form-control" th:field="*{IDCard}">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button type="submit" class="btn btn-primary">录入</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	<script th:src="@{/js/jquery.min.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/main.js}"></script>
+</body>
+</html>

@@ -6,6 +6,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import org.hibernate.validator.constraints.Length;
+
 @Entity
 public class Staff {
 
@@ -15,6 +17,7 @@ public class Staff {
 
 	private String name;
 
+	@Length(min = 18, max = 18, message = "身份证长度不符合")
 	private String IDCard;
 
 	@Enumerated(EnumType.STRING)

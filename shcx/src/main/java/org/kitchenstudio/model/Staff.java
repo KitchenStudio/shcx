@@ -9,8 +9,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.Valid;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 @Entity
 public class Staff {
@@ -19,6 +25,7 @@ public class Staff {
 	@GeneratedValue
 	private Long id;//员工的id
 
+	@NotBlank(message="不能为空")
 	private String name;//员工的姓名
 
 	@Length(min = 18, max = 18, message = "身份证长度不符合")
@@ -32,11 +39,23 @@ public class Staff {
 
 	private String address;// 员工的地址
 
-	private String phoneNuber;// 员工的电话号码
+
+	private String phoneNumber;// 员工的电话号码
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
 
 	private String education;// 员工的学历
 
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(iso = ISO.DATE)
+	//@Pattern(regexp="[0-9]{4}-[0-9]{2}-[0-9]{2}",message="请输入正确的日期格式")
+	//@Pattern(regex="[0-9]{4}-[0-9]{2}-[0-9]{2}")
 	private Date birthday;// 出生日期
 	
 	@Length(min=19,max=19,message="银行卡号位数不符合")
@@ -48,7 +67,6 @@ public class Staff {
 	public String getType() {
 		return type;
 	}
-
 	public void setType(String type) {
 		this.type = type;
 	}
@@ -61,13 +79,8 @@ public class Staff {
 		this.address = address;
 	}
 
-	public String getPhoneNuber() {
-		return phoneNuber;
-	}
 
-	public void setPhoneNuber(String phoneNuber) {
-		this.phoneNuber = phoneNuber;
-	}
+
 
 	public String getEducation() {
 		return education;

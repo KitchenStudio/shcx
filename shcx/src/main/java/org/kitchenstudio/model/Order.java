@@ -1,18 +1,19 @@
 package org.kitchenstudio.model;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
 
-@Entity
+@Entity(name = "ORD")
 public class Order {
 
 	@Id
-	@GeneratedValue
 	private Long id;
 
 	private String date;
@@ -85,6 +86,13 @@ public class Order {
 
 	public void setLessee(String lessee) {
 		this.lessee = lessee;
+	}
+	
+	@PrePersist
+	void generateId(){
+		SimpleDateFormat format = new SimpleDateFormat("YYYYMMDDhhmm");
+		String s = format.format(new Date());
+		id = Long.parseLong(s);
 	}
 
 	// private Driver;

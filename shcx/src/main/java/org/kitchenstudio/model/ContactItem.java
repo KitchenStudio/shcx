@@ -5,8 +5,6 @@ import java.math.BigDecimal;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 @Entity
 public class ContactItem {
@@ -18,10 +16,6 @@ public class ContactItem {
 	private String kind;
 
 	private BigDecimal price;
-
-	@ManyToOne(optional = false)
-	@JoinColumn(name = "CONTACT_ID", nullable = false, updatable = false)
-	private Contact contact;
 
 	public void setId(Long id) {
 		this.id = id;
@@ -45,13 +39,5 @@ public class ContactItem {
 
 	public void setPrice(BigDecimal price) {
 		this.price = price;
-	}
-
-	public Contact getContact() {
-		return contact;
-	}
-
-	public void setContact(Contact contact) {
-		this.contact = contact;
 	}
 }

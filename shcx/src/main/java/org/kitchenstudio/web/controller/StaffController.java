@@ -29,13 +29,12 @@ public class StaffController {
 	String home(Model model) {
 		List<Staff> staffs = staffService.findAll();
 		model.addAttribute("staffs", staffs);
-		return "staff";
+		return "staff/stafflist";
 	}
 
 	@RequestMapping("/add")
 	String add(Staff staff) {
-//		staffService.add(staff);
-		return "staff_new";
+		return "staff/new";
 	}
 
 	@RequestMapping(value = "/new", method = RequestMethod.GET)
@@ -44,43 +43,46 @@ public class StaffController {
 			Staff staff = new Staff();
 			model.addAttribute(staff);
 		}
-		return "staff_new";
+		return "staff/new";
 	}
 
 	@RequestMapping(value = "/new", method = RequestMethod.POST)
 	String create(@Valid Staff staff, BindingResult result) {
-		
+
 		if (result.hasErrors()) {
 			System.out.println(result.getAllErrors());
 			System.out.println(staff.getAddress());
-			return "staff_new";
+			return "new";
 		}
 		System.out.println(staff.getAddress());
 		staffService.add(staff);
-		return "redirect:/staff";
+		return "redirect:/staff/stafflist";
 	}
-	
-	
+
 	@RequestMapping("/delete/{id}")
 	String delete(@PathVariable("id") Staff staff) {
 		staffService.delete(staff);
-		return "redirect:/staff";
+		return "redirect:/staff/stafflist";
 	}
-	
+
 	@RequestMapping(value = "/info/{id}", method = RequestMethod.GET)
-	String info(@PathVariable("id") Staff staff, Model model){
+	String info(@PathVariable("id") Staff staff, Model model) {
 		model.addAttribute(staff);
-		return "staff_detail";
+		return "staff/detail";
 	}
-	
-	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	String info(@PathVariable("id") Staff staff, BindingResult result){
-		
+
+	@RequestMapping(value = "/info", method = RequestMethod.POST)
+	String info(Staff staff, BindingResult result) {
 		if (result.hasErrors()) {
-			return "staff_detail";
+			return "staff/modify";
 		}
-		
 		staffService.save(staff);
-		return "redirect:/staff";
+		return "/staff/modifysuccess";
+	}
+
+	@RequestMapping(value = "/modify/{id}", method = RequestMethod.GET)
+	String modify(@PathVariable("id") Staff staff, Model model) {
+		model.addAttribute(staff);
+		return "staff/modify";
 	}
 }

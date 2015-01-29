@@ -29,8 +29,8 @@
 					<td th:text="${staff.id}"></td>
 					<td th:text="${staff.name}"></td>
 					<td th:text="${staff.IDCard}"></td>
-					<td><a href="@{/staff/info/{id}(id=${staff.id})}"><span class="glyphicon glyphicon-info-sign"></span></a> <a
-						th:href="@{/staff/delete/{id}(id=${staff.id})}"
+					<td><a th:href="@{/staff/info/{id}(id=${staff.id})}"><span class="glyphicon glyphicon-info-sign"></span></a> 
+					<a	th:href="@{/staff/delete/{id}(id=${staff.id})}"
 						class="delete-link"><span class="glyphicon glyphicon-trash"></span></a></td>
 				</tr>
 			</tbody>

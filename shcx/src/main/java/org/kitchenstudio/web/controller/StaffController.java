@@ -57,7 +57,7 @@ public class StaffController {
 		}
 		System.out.println(staff.getAddress());
 		staffService.add(staff);
-		return "staff";
+		return "redirect:/staff";
 	}
 	
 	
@@ -67,10 +67,20 @@ public class StaffController {
 		return "redirect:/staff";
 	}
 	
-	@RequestMapping("/info/{id}")
+	@RequestMapping(value = "/info/{id}", method = RequestMethod.GET)
 	String info(@PathVariable("id") Staff staff, Model model){
 		model.addAttribute(staff);
-		return "staff/detail";
+		return "staff_detail";
+	}
+	
+	@RequestMapping(value = "/save", method = RequestMethod.POST)
+	String info(@PathVariable("id") Staff staff, BindingResult result){
 		
+		if (result.hasErrors()) {
+			return "staff_detail";
+		}
+		
+		staffService.save(staff);
+		return "redirect:/staff";
 	}
 }

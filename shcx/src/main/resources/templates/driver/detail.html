@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title></title>
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+<link th:href="@{/css/style.css}" rel="stylesheet">
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+	<div class="container">
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed"
+						data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+						aria-controls="navbar">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" th:href="@{/}">钢管租赁管理系统</a>
+				</div>
+				<div id="navbar" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav">
+						<li class="active"><a th:href="@{/}">首页</a></li>
+						<li><a th:href="@{/staff}">员工管理</a></li>
+						<li><a th:href="@{/driver}">司机管理</a></li>
+						<li><a th:href="@{/contact}">合同管理</a></li>
+						<li><a th:href="@{/purchase}">采购管理</a></li>
+						<li><a th:href="@{/store}">仓库信息</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</div>
+
+	<div class="container" style="width: 960px;">
+	
+	<h1 style="text-align: center;">司机详情</h1>
+		<table class="table table-bordered  " style="margin-top: 50px">
+			<tr>
+				<td>编号</td>
+				<td th:text="${driver.id}"></td>
+				<td>姓名</td>
+				<td th:text="${driver.name}"></td>
+				<td>民族</td>
+				<td th:text="${driver.nation}"></td>
+				<td rowspan="3"><img alt="" th:src="@{/images/faceimage.jpg}"></td>
+			</tr>
+			<tr>
+				<td>身份证号</td>
+				<td th:text="${driver.IDcard}"></td>
+				<td>车牌号码</td>
+				<td th:text="${driver.plateNumber}"></td>
+				<td>电话号码</td>
+				<td th:text="${driver.phoneNumber}"></td>
+				
+			</tr>
+			<tr>
+				<td>地址</td>
+				<td colspan="2" th:text="${driver.address}"></td>
+				<td>银行卡号</td>
+				<td colspan="2" th:text="${driver.bankNumber}"></td>
+			</tr>
+		</table>
+		<div>
+			<a class="btn btn-primary btn-lg" id="uploadinfo" th:href="@{/driver}">返回</a>
+
+			<a class="btn btn-primary btn-lg" id="uploadinfo"
+				th:href="@{/driver/modify/{id}(id=${driver.id})}">修改信息</a>
+		</div>
+	</div>
+
+
+	<script th:src="@{/js/jquery.min.js}"></script>
+	<script th:src="@{/js/jquery.ui.widget.js}"></script>
+	<script th:src="@{/js/jquery.iframe-transport.js}"></script>
+	<script th:src="@{/js/jquery.fileupload.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/main.js}"></script>
+</body>
+</html>

@@ -15,15 +15,8 @@
     <![endif]-->
 </head>
 <body>
-<<<<<<< HEAD
-	<h1>Hello, world!</h1>
-	<a th:href="@{/staff}">员工管理</a>
-	<a th:href="@{/driver}">司机管理</a>
-	<a th:href="@{/order}">订单管理</a>
-	<script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-=======
 	<div class="container">
+	
 		<nav class="navbar navbar-default">
 			<div class="container-fluid">
 				<div class="navbar-header">
@@ -39,20 +32,40 @@
 				</div>
 				<div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
-						<li class="active"><a th:href="@{/}">首页</a></li>
+						<li><a th:href="@{/}">首页</a></li>
 						<li><a th:href="@{/staff}">员工管理</a></li>
 						<li><a th:href="@{/driver}">司机管理</a></li>
-						<li><a th:href="@{/contact}">合同管理</a></li>
+						<li class="active"><a th:href="@{/contact}">合同管理</a></li>
 						<li><a th:href="@{/purchase}">采购管理</a></li>
 						<li><a th:href="@{/store}">仓库信息</a></li>
 					</ul>
 				</div>
 			</div>
 		</nav>
+		<h2 class="page-header">合同</h2>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>编号</th>
+					<th>租借方</th>
+					<th>承接方<th>
+					<th>&nbsp;</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="contact : ${contacts}">
+					<td th:text="${contact.id}"></td>
+					<td th:text="${contact.lessor}"></td>
+					<td th:text="${contact.lessee}"></td>
+					<td><a th:href="@{/contact/detail/{id}(id=${contact.id})}"><span
+							class="glyphicon glyphicon-info-sign"></span></a> <a
+						th:href="@{/contact/delete/{id}(id=${contact.id})}"
+						class="delete-link"><span class="glyphicon glyphicon-trash"></span></a></td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
-
 	<script th:src="@{/js/jquery.min.js}"></script>
 	<script th:src="@{/js/bootstrap.min.js}"></script>
->>>>>>> f9de036664d3ca654a78aaf8862bf05f630820c5
 </body>
 </html>

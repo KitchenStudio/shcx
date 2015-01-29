@@ -14,12 +14,39 @@
     <![endif]-->
 </head>
 <body>
+<div class="container">
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed"
+						data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+						aria-controls="navbar">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" th:href="@{/}">钢管租赁管理系统</a>
+				</div>
+				<div id="navbar" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav">
+						<li class="active"><a th:href="@{/}">首页</a></li>
+						<li><a th:href="@{/staff}">员工管理</a></li>
+						<li><a th:href="@{/driver}">司机管理</a></li>
+						<li><a th:href="@{/contact}">合同管理</a></li>
+						<li><a th:href="@{/purchase}">采购管理</a></li>
+						<li><a th:href="@{/store}">仓库信息</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</div>
 	<div class="container">
 		<h2>员工录入</h2>
 		<form th:action="@{/staff/new}" th:object="${staff}" method="post">
 			<div class="row">
 				<div class="col-sm-6 form-horizontal">
-					
+
 					<div class="form-group" th:classappend="form-group"
 						th:class="${#fields.hasErrors('birthday')}? has-error"
 						th:title="${#fields.hasErrors('birthday')}? 编号应该全是数字">
@@ -40,17 +67,48 @@
 						th:class="${#fields.hasErrors('IDCard')}? has-error" title="what?"
 						th:title="${#fields.errors('IDCard')}">
 						<label class="col-sm-2 control-label">身份证号码</label>
-						<div class="col-sm-3">
+						<div class="col-sm-5">
 							<input class="form-control" th:field="*{IDCard}" id="idcard">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">学历</label>
+						<div class="col-sm-5">
+							<input class="form-control" th:field="*{education}">
+						</div>
+					</div>
+
+					<div class="form-group" th:classappend="form-group"
+						th:class="${#fields.hasErrors('bankNumber')}? has-error"
+						title="what?" th:title="${#fields.errors('bankNumber')}">
+						<label class="col-sm-2 control-label">银行卡号</label>
+						<div class="col-sm-5">
+							<input class="form-control" th:field="*{bankNumber}"
+								id="bankNumber">
+						</div>
+					</div>
+					<div class="form-group" th:classappend="form-group"
+						th:class="${#fields.hasErrors('birthday')}? has-error"
+						th:title="${#fields.hasErrors('birthday')}? 格式有问题，应该使用2012-10-12">
+						<label class="col-sm-2 control-label">出生日期</label>
+						<div class="col-sm-3">
+							<input class="form-control" th:field="*{birthday}" type="text">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">地址</label>
+						<div class="col-sm-5">
+							<input class="form-control" th:field="*{address}">
 						</div>
 					</div>
 				</div>
 				<div class="col-sm-6 form-horizontal">
-				<div class="form-group">
+					<div class="form-group">
 						<label class="col-sm-2 control-label">上传头像</label>
-						<div class="col-sm-3" >
-						<img width="128" height="128" alt="" th:src="@{/images/faceimage.jpg}" id="uploadpicture">
-							<input name="file" type="file" id="fileupload"  >
+						<div class="col-sm-3">
+							<img width="128" height="128" alt=""
+								th:src="@{/images/faceimage.jpg}" id="uploadpicture"> <input
+								name="file" type="file" id="fileupload">
 						</div>
 					</div>
 					<div class="form-group">
@@ -72,44 +130,13 @@
 							<input class="form-control" th:field="*{type}">
 						</div>
 					</div>
-					<div class="form-group" th:classappend="form-group"
-						th:class="${#fields.hasErrors('birthday')}? has-error"
-						th:title="${#fields.hasErrors('birthday')}? 格式有问题，应该使用2012-10-12">
-						<label class="col-sm-2 control-label">出生日期</label>
-						<div class="col-sm-3">
-							<input class="form-control" th:field="*{birthday}" type="text">
-						</div>
-					</div>
 					<div class="form-group">
-						<label class="col-sm-2 control-label">地址</label>
-						<div class="col-sm-3">
-							<input class="form-control" th:field="*{address}">
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">学历</label>
-						<div class="col-sm-3">
-							<input class="form-control" th:field="*{education}">
-						</div>
-					</div>
-					<div class="form-group"
-						th:class="${#fields.hasErrors('bankNumber')}? has-error"
-						title="what?" th:title="${#fields.errors('bankNumber')}">
-						<label class="col-sm-2 control-label">银行卡号</label>
-						<div class="col-sm-3">
-							<input class="form-control" th:field="*{bankNumber}">
-						</div>
-					</div>
-				</div>
-
-
-
-				<div class="form-group">
-					<div class="col-sm-offset-2 col-sm-10">
+					<div class="col-sm-offset-2 col-sm-12">
 						<button type="submit" class="btn btn-primary" id="uploadinfo">录入</button>
 					</div>
 				</div>
 
+				</div>
 			</div>
 		</form>
 	</div>

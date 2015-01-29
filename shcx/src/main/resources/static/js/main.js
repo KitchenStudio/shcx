@@ -11,10 +11,6 @@ $(function() {
 		return false;
 	});
 	
-//	$("#uploadpicture").click(function(){
-//		console.log("card");
-//		
-//	});
 
 	$(".has-error").hover(function() {
 		$(this).tooltip('show');

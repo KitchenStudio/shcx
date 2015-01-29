@@ -40,11 +40,8 @@ public class StaffController {
 	String create(@Valid Staff staff, BindingResult result) {
 
 		if (result.hasErrors()) {
-			System.out.println(result.getAllErrors());
-			System.out.println(staff.getAddress());
 			return "staff/new";
 		}
-		System.out.println(staff.getAddress());
 		staffService.add(staff);
 		return "redirect:/staff";
 	}

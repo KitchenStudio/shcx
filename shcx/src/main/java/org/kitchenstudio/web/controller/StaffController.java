@@ -29,7 +29,7 @@ public class StaffController {
 	String home(Model model) {
 		List<Staff> staffs = staffService.findAll();
 		model.addAttribute("staffs", staffs);
-		return "staff/stafflist";
+		return "staff/list";
 	}
 
 	@RequestMapping("/add")

@@ -55,13 +55,13 @@ public class OrderController {
 		if (result.hasErrors()) {
 			return "order_new";
 		}
-		return "redirect:/driver/new";
+		return "redirect:/order/new";
 	}
 
 	@RequestMapping("/delete/{id}")
-	String delete(@PathVariable("id") Order driver) {
-		orderService.delete(driver);
-		return "redirect:/driver";
+	String delete(@PathVariable("id") Order order) {
+		orderService.delete(order);
+		return "redirect:/order";
 	}
 
 }

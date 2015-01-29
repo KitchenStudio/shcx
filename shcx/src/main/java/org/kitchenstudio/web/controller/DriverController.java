@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.kitchenstudio.model.Driver;
+import org.kitchenstudio.model.Staff;
 import org.kitchenstudio.service.DriverService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,13 +31,13 @@ public class DriverController {
 		List<Driver> drivers = driverService.findAll();
 		model.addAttribute("drivers", drivers);
 
-		return "driver";
+		return "driver/driverlist";
 	}
 
-	@RequestMapping("/add")
-	String add(Driver driver) {
-		driverService.add(driver);
-		return "redirect:/driver";
+	@RequestMapping(value = "/add", method = RequestMethod.GET)
+	String add(Model model) {
+		model.addAttribute("driver",new Driver());
+		return "/driver/new";
 	}
 
 	@RequestMapping(value = "/new", method = RequestMethod.GET)
@@ -45,15 +46,18 @@ public class DriverController {
 			Driver driver = new Driver();
 			model.addAttribute(driver);
 		}
-		return "driver_new";
+		return "/driver/new";
 	}
 
 	@RequestMapping(value = "/new", method = RequestMethod.POST)
-	String create(@Valid Driver dirver, BindingResult result) {
+	String create(@Valid Driver driver, BindingResult result) {
+		
 		if (result.hasErrors()) {
-			return "diver_new";
+			System.out.println(result.getAllErrors());
+			return "/driver/new";
 		}
-		return "redirect:/driver/new";
+		driverService.add(driver);
+		return "redirect:/driver";
 	}
 
 	@RequestMapping("/delete/{id}")

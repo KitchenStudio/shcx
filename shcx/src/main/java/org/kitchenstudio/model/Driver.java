@@ -6,6 +6,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
 import org.kitchenstudio.model.Staff.GenderType;
 
 
@@ -14,13 +16,23 @@ public class Driver {
 
 	@Id
 	@GeneratedValue
-	private Long id;
+	private Long id;//司机id
 	
-	private String name;
+	@NotBlank(message="姓名不能为空！")
+	private String name;//司机姓名
 	
-	private String plate_number;
+	@Length(min = 7, max = 7, message = "车牌号=省的简称+城市代号+5位号码,共7位")
+	private String plateNumber;//司机车牌号
 	
-	private String phone_number;
+	@NotBlank(message="联系电话不能为空！")
+	private String phoneNumber;//司机联系电话
+	
+	@Length(min = 18, max = 18, message = "身份证长度不符合")
+	private String IDcard;//司机身份证号
+	
+	private String address;// 司机的地址
+	
+	private String nation;// 民族
 	
 	@Enumerated(EnumType.STRING)
 	private GenderType gender;
@@ -55,19 +67,44 @@ public class Driver {
 		this.gender = gender;
 	}
 
-	public String getPhone_number() {
-		return phone_number;
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+	
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+	
+	public String getPlateNumber() {
+		return plateNumber;
+	}
+	
+	public void setPlateNumber(String plateNumber) {
+		this.plateNumber = plateNumber;
 	}
 
-	public void setPhone_number(String phone_number) {
-		this.phone_number = phone_number;
+	public String getIDcard() {
+		return IDcard;
 	}
 
-	public String getPlate_number() {
-		return plate_number;
+	public void setIDcard(String iDcard) {
+		IDcard = iDcard;
 	}
 
-	public void setPlate_number(String plate_number) {
-		this.plate_number = plate_number;
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getNation() {
+		return nation;
+	}
+
+	public void setNation(String nation) {
+		this.nation = nation;
 	}
 }

@@ -30,14 +30,7 @@ public class ContactServiceImpl implements ContactService {
 	}
 
 	@Override
-	public Contact findById() {
-		return null;
-	}
-
-	@Override
 	public void save(Contact contact, List<ContactItem> contactItems) {
-		contact = contactRepository.save(contact);
-		
 		Set<ContactItem> savedItems = new HashSet<>();
 		for (ContactItem contactItem : contactItems) {
 			savedItems.add(contactItemRepository.save(contactItem));

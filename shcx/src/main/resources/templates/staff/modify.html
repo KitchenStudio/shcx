@@ -43,7 +43,7 @@
 		</nav>
 	</div>
 	<div class="container">
-		<form th:action="@{/staff/info}" th:object="${staff}" method="post">
+		<form th:action="@{/staff/{id}/modify(id=${staff.id})}" th:object="${staff}" method="post">
 			<h1 style="margin-bottom: 50px;text-align: center;">修改员工信息</h1>
 			<div class="row">
 				<div class="col-sm-6 form-horizontal">

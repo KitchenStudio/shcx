@@ -16,7 +16,6 @@
 </head>
 <body>
 	<div class="container">
-	
 		<nav class="navbar navbar-default">
 			<div class="container-fluid">
 				<div class="navbar-header">
@@ -43,25 +42,18 @@
 			</div>
 		</nav>
 		<h2 class="page-header">合同</h2>
-		<a class="btn btn-primary" th:href="@{/contact/new}">新增</a>
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th>编号</th>
-					<th>租借方</th>
-					<th>承接方<th>
+					<th>类型</th>
+					<th>单价</th>
 					<th>&nbsp;</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="contact : ${contacts}">
-					<td th:text="${contact.id}"></td>
-					<td th:text="${contact.lessor}"></td>
-					<td th:text="${contact.lessee}"></td>
-					<td><a th:href="@{/contact/{id}(id=${contact.id})}"><span
-							class="glyphicon glyphicon-info-sign"></span></a> <a
-						th:href="@{/contact/{id}/delete(id=${contact.id})}"
-						class="delete-link"><span class="glyphicon glyphicon-trash"></span></a></td>
+				<tr th:each="item : ${contact.contactItems}">
+					<td th:text="${item.kind}"></td>
+					<td th:text="${item.price}"></td>
 				</tr>
 			</tbody>
 		</table>

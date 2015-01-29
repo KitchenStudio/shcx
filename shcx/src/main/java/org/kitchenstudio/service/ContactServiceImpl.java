@@ -1,6 +1,7 @@
 package org.kitchenstudio.service;
 
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -31,7 +32,7 @@ public class ContactServiceImpl implements ContactService {
 
 	@Override
 	public void save(Contact contact, List<ContactItem> contactItems) {
-		Set<ContactItem> savedItems = new HashSet<>();
+		List<ContactItem> savedItems = new LinkedList<>();
 		for (ContactItem contactItem : contactItems) {
 			savedItems.add(contactItemRepository.save(contactItem));
 		}

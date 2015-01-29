@@ -1,6 +1,7 @@
 package org.kitchenstudio.model;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -33,7 +34,7 @@ public class Contact {
 	
     @OneToMany(orphanRemoval=true)
     @JoinColumn(name="CONTACT_ID") 
-	private Set<ContactItem> contactItems;
+	private List<ContactItem> contactItems;
 
 	public Long getId() {
 		return id;
@@ -75,11 +76,11 @@ public class Contact {
 		this.createdTime = createdTime;
 	}
 	
-	public Set<ContactItem> getContactItems() {
+	public List<ContactItem> getContactItems() {
 		return contactItems;
 	}
 	
-	public void setContactItems(Set<ContactItem> contactItems) {
+	public void setContactItems(List<ContactItem> contactItems) {
 		this.contactItems = contactItems;
 	}
 

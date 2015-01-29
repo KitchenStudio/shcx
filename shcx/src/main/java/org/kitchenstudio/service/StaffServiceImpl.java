@@ -37,4 +37,9 @@ public class StaffServiceImpl implements StaffService {
 		staffRepository.save(staff);
 	}
 
+	@Override
+	public Staff findOne(Long id) {
+		return staffRepository.findOne(id);
+	}
+
 }

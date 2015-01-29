@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title></title>
-<link href="css/bootstrap.min.css" rel="stylesheet">
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
 <link th:href="@{/css/style.css}" rel="stylesheet">
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -16,6 +16,7 @@
 </head>
 <body>
 	<div class="container">
+	
 		<nav class="navbar navbar-default">
 			<div class="container-fluid">
 				<div class="navbar-header">
@@ -42,9 +43,27 @@
 			</div>
 		</nav>
 		<h2 class="page-header">采购</h2>
-		<a th:href="@{/purchase/new}">新建采购清单</a>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>编号</th>
+					<th>采购员</th>
+					<th>&nbsp;</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="purchase : ${purchases}">
+					<td th:text="${purchase.id}"></td>
+					<td th:text="${purchase.buyer.name}"></td>
+					<td><a th:href="@{/purchase/detail/{id}(id=${purchase.id})}"><span
+							class="glyphicon glyphicon-info-sign"></span></a> <a
+						th:href="@{/purchase/delete/{id}(id=${purchase.id})}"
+						class="delete-link"><span class="glyphicon glyphicon-trash"></span></a></td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
-	<script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
+	<script th:src="@{/js/jquery.min.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
 </body>
 </html>

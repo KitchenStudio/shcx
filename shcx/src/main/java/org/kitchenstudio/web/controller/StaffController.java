@@ -29,7 +29,7 @@ public class StaffController {
 	String home(Model model) {
 		List<Staff> staffs = staffService.findAll();
 		model.addAttribute("staffs", staffs);
-		return "staff/stafflist";
+		return "staff/list";
 	}
 
 	@RequestMapping("/add")
@@ -52,17 +52,17 @@ public class StaffController {
 		if (result.hasErrors()) {
 			System.out.println(result.getAllErrors());
 			System.out.println(staff.getAddress());
-			return "new";
+			return "staff/new";
 		}
 		System.out.println(staff.getAddress());
 		staffService.add(staff);
-		return "redirect:/staff/stafflist";
+		return "redirect:/staff";
 	}
-
+	
 	@RequestMapping("/delete/{id}")
 	String delete(@PathVariable("id") Staff staff) {
 		staffService.delete(staff);
-		return "redirect:/staff/stafflist";
+		return "redirect:/staff";
 	}
 
 	@RequestMapping(value = "/info/{id}", method = RequestMethod.GET)

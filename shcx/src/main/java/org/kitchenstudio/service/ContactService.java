@@ -9,8 +9,6 @@ public interface ContactService {
 
 	List<Contact> findAll();
 
-	Contact findById();
-	
 	void save(Contact contact, List<ContactItem> contactItems);
 
 }

@@ -10,4 +10,5 @@ public interface StaffService {
 	void add(Staff staff);
 	void delete(Staff staff);
 	void save(Staff staff);
+	Staff findOne(Long id);
 }

@@ -31,7 +31,7 @@ public class DriverController {
 		List<Driver> drivers = driverService.findAll();
 		model.addAttribute("drivers", drivers);
 
-		return "driver/driverlist";
+		return "driver/list";
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
@@ -65,4 +65,26 @@ public class DriverController {
 		driverService.delete(driver);
 		return "redirect:/driver";
 	}
+	
+	@RequestMapping(value = "/info/{id}", method = RequestMethod.GET)
+	String info(@PathVariable("id") Driver driver, Model model) {
+		model.addAttribute(driver);
+		return "driver/detail";
+	}
+
+	@RequestMapping(value = "/info", method = RequestMethod.POST)
+	String info(Driver driver, BindingResult result) {
+		if (result.hasErrors()) {
+			return "driver/modify";
+		}
+		driverService.add(driver);
+		return "/driver/modifysuccess";
+	}
+
+	@RequestMapping(value = "/modify/{id}", method = RequestMethod.GET)
+	String modify(@PathVariable("id") Driver driver, Model model) {
+		model.addAttribute(driver);
+		return "driver/modify";
+	}
+
 }

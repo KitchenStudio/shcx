@@ -9,12 +9,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.Valid;
-import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
@@ -41,6 +38,16 @@ public class Staff {
 
 
 	private String phoneNumber;// 员工的电话号码
+	
+	private String pathFaceimage;
+
+	public String getPathFaceimage() {
+		return pathFaceimage;
+	}
+
+	public void setPathFaceimage(String pathFaceimage) {
+		this.pathFaceimage = pathFaceimage;
+	}
 
 	public String getPhoneNumber() {
 		return phoneNumber;

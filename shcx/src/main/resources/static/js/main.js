@@ -32,8 +32,17 @@ $(function() {
 //			console.log(progress);
 //		}
 //	});
+	$("#fileupload").change(function(e){
+		loadImage(
+				e.target.files[0],
+				function (img) {
+					$("#upload-area").html(img);
+//					$("#uploadpicture").prop("src", $(img).prop("src"));
+				},
+				{maxWidth: 120}
+		);
+	});
 //	$("#fileupload").onchange = function (e) {
-//		function (e) {
 //            e.preventDefault();
 //            e = e.originalEvent;
 //            var target = e.dataTransfer || e.target,

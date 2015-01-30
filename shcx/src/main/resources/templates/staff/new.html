@@ -43,7 +43,7 @@
 	</div>
 	<div class="container">
 		<h2>员工录入</h2>
-		<form th:action="@{/staff/new}" th:object="${staff}" method="post">
+		<form th:action="@{/staff/new}" th:object="${staff}" method="post" enctype="multipart/form-data" >
 			<div class="row">
 				<div class="col-sm-6 form-horizontal">
 
@@ -106,9 +106,11 @@
 					<div class="form-group">
 						<label class="col-sm-2 control-label">上传头像</label>
 						<div class="col-sm-3">
+							<div id="upload-area">
 							<img width="128" height="128" alt=""
-								th:src="@{/images/faceimage.jpg}" id="uploadpicture"> <input
-								name="file" type="file" id="fileupload" >
+								th:src="@{/images/faceimage.jpg}" id="uploadpicture">
+							</div>
+								 <input	name="file" type="file" id="fileupload" >
 						</div>
 					</div>
 					<div class="form-group">
@@ -145,8 +147,9 @@
 	<script th:src="@{/js/jquery.iframe-transport.js}"></script>
 	<script th:src="@{/js/jquery.fileupload.js}"></script>
 	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/load-image.all.min.js}"></script>
 	<script th:src="@{/js/main.js}"></script>
 	
-	<script src="js/load-image.all.min.js"></script>
+
 </body>
 </html>

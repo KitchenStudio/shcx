@@ -1,18 +1,25 @@
 package org.kitchenstudio.web.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.kitchenstudio.model.Staff;
 import org.kitchenstudio.service.StaffService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.parser.Part;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping("/staff")
@@ -37,10 +44,32 @@ public class StaffController {
 	}
 
 	@RequestMapping(value = "/new", method = RequestMethod.POST)
-	String create(@Valid Staff staff, BindingResult result) {
-
+	String create(@RequestParam("file") MultipartFile file, @Valid Staff staff,
+			BindingResult result, HttpServletRequest request) {
 		if (result.hasErrors()) {
 			return "staff/new";
+		}
+		String sysPath = request.getServletContext().getRealPath("/");
+		try {
+
+			File fileUpload = new File(sysPath + "/upload");
+			if (!fileUpload.isDirectory()) {
+				fileUpload.mkdir();
+			} else {
+				fileUpload.delete();
+				fileUpload.mkdir();
+			}
+			System.out.println(fileUpload.exists() + "esist");
+			String[] name = file.getOriginalFilename().split("\\.");
+			String suffix = name[name.length - 1];
+			File tempFile = File
+					.createTempFile("img", "." + suffix, fileUpload);
+			file.transferTo(tempFile);
+			String conPath = request.getContextPath() + "/upload/"
+					+ tempFile.getName();
+			staff.setPathFaceimage(conPath);
+		} catch (IllegalStateException | IOException e) {
+			e.printStackTrace();
 		}
 		staffService.add(staff);
 		return "redirect:/staff";
@@ -59,7 +88,7 @@ public class StaffController {
 	}
 
 	@RequestMapping(value = "/{id}/modify", method = RequestMethod.POST)
-	String info(Staff staff, BindingResult result) {
+	String info(@Valid Staff staff, BindingResult result) {
 		if (result.hasErrors()) {
 			return "staff/modify";
 		}

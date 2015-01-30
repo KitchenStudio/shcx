@@ -38,6 +38,16 @@ public class Staff {
 
 
 	private String phoneNumber;// 员工的电话号码
+	
+	private String pathFaceimage;
+
+	public String getPathFaceimage() {
+		return pathFaceimage;
+	}
+
+	public void setPathFaceimage(String pathFaceimage) {
+		this.pathFaceimage = pathFaceimage;
+	}
 
 	public String getPhoneNumber() {
 		return phoneNumber;

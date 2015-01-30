@@ -54,7 +54,7 @@
 				<td th:text="${driver.name}"></td>
 				<td>民族</td>
 				<td th:text="${driver.nation}"></td>
-				<td rowspan="3"><img alt="" th:src="@{/images/faceimage.jpg}"></td>
+				<td rowspan="3"><img alt="" th:src="${driver.pathFaceimage}" style="width: 100px;height: 100px;"></td>
 			</tr>
 			<tr>
 				<td>身份证号</td>
@@ -76,7 +76,7 @@
 			<a class="btn btn-primary btn-lg" id="uploadinfo" th:href="@{/driver}">返回</a>
 
 			<a class="btn btn-primary btn-lg" id="uploadinfo"
-				th:href="@{/driver/modify/{id}(id=${driver.id})}">修改信息</a>
+				th:href="@{/driver/{id}/modify(id=${driver.id})}">修改信息</a>
 		</div>
 	</div>
 

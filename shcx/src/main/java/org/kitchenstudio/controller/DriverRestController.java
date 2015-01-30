@@ -15,7 +15,7 @@ public class DriverRestController {
 	@Autowired
 	private DriverService driverService;
 
-	@RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
+	@RequestMapping(value = "/{id}/delete", method = RequestMethod.POST)
 	void delete(@PathVariable("id") Driver driver) {
 		driverService.delete(driver);
 	}

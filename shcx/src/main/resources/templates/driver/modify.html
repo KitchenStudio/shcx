@@ -43,8 +43,8 @@
 		</nav>
 	</div>
 	<div class="container">
-		<form th:action="@{/driver/info}" th:object="${driver}" method="post">
-			<h1 style="margin-bottom: 50px;text-align: center;">修改司机信息</h1>
+		<form th:action="@{/driver/{id}/modify(id=${driver.id})}" th:object="${driver}" method="post" enctype="multipart/form-data">
+			<h1 style="margin-bottom: 50px;text-align: center;">修改员工信息</h1>
 			<div class="row">
 				<div class="col-sm-6 form-horizontal">
 
@@ -70,7 +70,7 @@
 							<input class="form-control" th:field="*{IDcard}" id="IDcard">
 						</div>
 					</div>
-					<div class="form-group"
+					<div class="form-group" th:classappend="form-group"
 					th:class="${#fields.hasErrors('plateNumber')}? has-error" title="what?"
 						th:title="${#fields.errors('plateNumber')}">
 						<label class="col-sm-2 control-label">车牌号码</label>
@@ -78,7 +78,7 @@
 							<input class="form-control" th:field="*{plateNumber}" id="plateNumber">
 						</div>
 					</div>
-					<div class="form-group"
+					<div class="form-group" th:classappend="form-group"
 					th:class="${#fields.hasErrors('address')}? has-error" title="what?"
 						th:title="${#fields.errors('address')}">
 						<label class="col-sm-2 control-label">地址</label>
@@ -87,26 +87,29 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-6 form-horizontal">
+				<div class="col-sm-6 form-horizontal" th:classappend="form-group">
 					<div class="form-group">
 						<label class="col-sm-2 control-label">上传头像</label>
-						<div class="col-sm-3">
+						<div class="col-sm-3" >
+						
+						<div id="upload-area">
 							<img width="128" height="128" alt=""
-								th:src="@{/images/faceimage.jpg}" id="uploadpicture"> <input
-								name="file" type="file" id="fileupload">
+								th:src="*{pathFaceimage}" id="uploadpicture">
+						</div> 
+								<input	name="file" type="file" id="fileupload">
 						</div>
 					</div>
-					<div class="form-group">
+					<div class="form-group" th:classappend="form-group">
 						<label class="col-sm-2 control-label">民族</label>
-						<div class="col-sm-3">
+						<div class="col-sm-2">
 							<input class="form-control" th:field="*{nation}" id="nation">
 						</div>
 					</div>
-					<div class="form-group"
+					<div class="form-group" th:classappend="form-group"
 					th:class="${#fields.hasErrors('phoneNumber')}? has-error" title="what?"
 						th:title="${#fields.errors('phoneNumber')}">
 						<label class="col-sm-2 control-label">电话号码</label>
-						<div class="col-sm-3">
+						<div class="col-sm-5">
 							<input class="form-control" th:field="*{phoneNumber}"
 								id="phoneNumber">
 						</div>
@@ -129,8 +132,13 @@
 			</div>
 		</form>
 	</div>
-
+	
 	<script th:src="@{/js/jquery.min.js}"></script>
 	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/jquery.ui.widget.js}"></script>
+	<script th:src="@{/js/jquery.iframe-transport.js}"></script>
+	<script th:src="@{/js/jquery.fileupload.js}"></script>
+	<script th:src="@{/js/load-image.all.min.js}"></script>
+	<script th:src="@{/js/main.js}"></script>
 </body>
 </html>

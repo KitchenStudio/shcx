@@ -1,7 +1,10 @@
 package org.kitchenstudio.web.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.kitchenstudio.model.Driver;
@@ -16,6 +19,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping("/driver")
@@ -48,43 +53,70 @@ public class DriverController {
 		}
 		return "driver/new";
 	}
+	
 
 	@RequestMapping(value = "/new", method = RequestMethod.POST)
-	String create(@Valid Driver driver, BindingResult result) {
-		
+	String create(@RequestParam("file") MultipartFile file,@Valid Driver driver, BindingResult result,
+			HttpServletRequest request) {
 		if (result.hasErrors()) {
-			System.out.println(result.getAllErrors());
+			//System.out.println(result.getAllErrors());
 			return "/driver/new";
 		}
+		driver.setPathFaceimage(getFaceimagePath(request, file));
 		driverService.add(driver);
 		return "redirect:/driver";
 	}
 
-	@RequestMapping("/delete/{id}")
+	@RequestMapping("/{id}/delete")
 	String delete(@PathVariable("id") Driver driver) {
 		driverService.delete(driver);
 		return "redirect:/driver";
 	}
 	
-	@RequestMapping(value = "/info/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{id}/info", method = RequestMethod.GET)
 	String info(@PathVariable("id") Driver driver, Model model) {
 		model.addAttribute(driver);
 		return "driver/detail";
 	}
 
-	@RequestMapping(value = "/info", method = RequestMethod.POST)
-	String info(@Valid Driver driver, BindingResult result) {
+	@RequestMapping(value = "/{id}/modify", method = RequestMethod.POST)
+	String info(@RequestParam("file") MultipartFile file, @Valid Driver driver,
+			BindingResult result,HttpServletRequest request) {
 		if (result.hasErrors()) {
 			return "driver/modify";
 		}
+		driver.setPathFaceimage(getFaceimagePath(request, file));
 		driverService.add(driver);
 		return "driver/modifysuccess";
 	}
 
-	@RequestMapping(value = "/modify/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{id}/modify", method = RequestMethod.GET)
 	String modify(@PathVariable("id") Driver driver, Model model) {
 		model.addAttribute(driver);
 		return "driver/modify";
 	}
+	String getFaceimagePath(HttpServletRequest request, MultipartFile file) {
+		String conPath = null;
+		String sysPath = request.getServletContext().getRealPath("/");
+		try {
 
+			File fileUpload = new File(sysPath + "/upload");
+			if (!fileUpload.isDirectory()) {
+				fileUpload.mkdir();
+			} else {
+				fileUpload.delete();
+				fileUpload.mkdir();
+			}
+			String[] name = file.getOriginalFilename().split("\\.");
+			String suffix = name[name.length - 1];
+			File tempFile = File
+					.createTempFile("img", "." + suffix, fileUpload);
+			file.transferTo(tempFile);
+			conPath = request.getContextPath() + "/upload/"
+					+ tempFile.getName();
+		} catch (IllegalStateException | IOException e) {
+			e.printStackTrace();
+		}
+		return conPath;
+	}
 }

@@ -42,44 +42,88 @@
 	</div>
 	<div class="container">
 		<h2>司机录入</h2>
-		<form th:action="@{/driver/new}" th:object="${driver}" method="post">
+		<form th:action="@{/driver/new}" th:object="${driver}" method="post" enctype="multipart/form-data">
 			<div class="row">
 				<div class="col-sm-6 form-horizontal">
+
 					<div class="form-group" th:classappend="form-group">
 						<label class="col-sm-2 control-label">编号</label>
-						<div>
+						<div class="col-sm-3">
 							<input class="form-control" th:field="*{id}">
 						</div>
 					</div>
 					<div class="form-group" th:classappend="form-group"
 						th:class="${#fields.hasErrors('name')}? has-error" title="what?"
-						th:title="${#fields.hasErrors('name')}">
+						th:title="${#fields.errors('name')}">
 						<label class="col-sm-2 control-label">姓名</label>
-						<div>
+						<div class="col-sm-3">
 							<input class="form-control" th:field="*{name}">
+						</div>
+					</div>
+					<div class="form-group" th:classappend="form-group"
+						th:class="${#fields.hasErrors('IDcard')}? has-error" title="what?"
+						th:title="${#fields.errors('IDcard')}">
+						<label class="col-sm-2 control-label">身份证号码</label>
+						<div class="col-sm-5">
+							<input class="form-control" th:field="*{IDcard}" id="IDcard">
 						</div>
 					</div>
 					<div class="form-group" th:classappend="form-group"
 					th:class="${#fields.hasErrors('plateNumber')}? has-error" title="what?"
 						th:title="${#fields.errors('plateNumber')}">
 						<label class="col-sm-2 control-label">车牌号码</label>
-						<div>
-							<input class="form-control" th:field="*{plateNumber}">
+						<div class="col-sm-5">
+							<input class="form-control" th:field="*{plateNumber}" id="plateNumber">
 						</div>
 					</div>
 					<div class="form-group" th:classappend="form-group"
-						th:class="${#fields.hasErrors('phoneNumber')}? has-error" title="what?"
-						th:title="${#fields.errors('phoneNumber')}">
-						<label class="col-sm-2 control-label">电话号码</label>
-						<div>
-							<input class="form-control" th:field="*{phoneNumber}">
+					th:class="${#fields.hasErrors('address')}? has-error" title="what?"
+						th:title="${#fields.errors('address')}">
+						<label class="col-sm-2 control-label">地址</label>
+						<div class="col-sm-5">
+							<input class="form-control" th:field="*{address}">
 						</div>
 					</div>
 				</div>
-
-				<div class="form-group">
-					<div class="col-sm-offset-2 col-sm-10">
-						<button type="submit" class="btn btn-primary" id="uploadinfo">录入</button>
+				<div class="col-sm-6 form-horizontal" th:classappend="form-group">
+					<div class="form-group">
+						<label class="col-sm-2 control-label">上传头像</label>
+						<div class="col-sm-3">
+							<div id="upload-area">
+							<img width="128" height="128" alt=""
+								th:src="@{/images/faceimage.jpg}" id="uploadpicture">
+							</div>
+								 <input	name="file" type="file" id="fileupload" >
+						</div>
+					</div>
+					<div class="form-group" th:classappend="form-group">
+						<label class="col-sm-2 control-label">民族</label>
+						<div class="col-sm-2">
+							<input class="form-control" th:field="*{nation}" id="nation">
+						</div>
+					</div>
+					<div class="form-group" th:classappend="form-group"
+					th:class="${#fields.hasErrors('phoneNumber')}? has-error" title="what?"
+						th:title="${#fields.errors('phoneNumber')}">
+						<label class="col-sm-2 control-label">电话号码</label>
+						<div class="col-sm-5">
+							<input class="form-control" th:field="*{phoneNumber}"
+								id="phoneNumber">
+						</div>
+					</div>
+					<div class="form-group" th:classappend="form-group"
+						th:class="${#fields.hasErrors('bankNumber')}? has-error"
+						title="what?" th:title="${#fields.errors('bankNumber')}">
+						<label class="col-sm-2 control-label">银行卡号</label>
+						<div class="col-sm-5">
+							<input class="form-control" th:field="*{bankNumber}"
+								id="bankNumber">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-12">
+							<button type="submit" class="btn btn-primary" id="uploadinfo">录入</button>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -90,6 +134,7 @@
 	<script th:src="@{/js/jquery.iframe-transport.js}"></script>
 	<script th:src="@{/js/jquery.fileupload.js}"></script>
 	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/load-image.all.min.js}"></script>
 	<script th:src="@{/js/main.js}"></script>
 </body>
 </html>

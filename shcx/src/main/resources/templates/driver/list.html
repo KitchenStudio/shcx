@@ -62,9 +62,9 @@
 					<td th:text="${driver.name}"></td>
 					<td th:text="${driver.plateNumber}"></td>
 					<td>
-						<a th:href="@{/driver/info/{id}(id=${driver.id})}">
+						<a th:href="@{/driver/{id}/info(id=${driver.id})}">
 						<span class="glyphicon glyphicon-info-sign"></span></a> 
-						<a th:href="@{/driver/delete/{id}(id=${driver.id})}" class="delete-link">
+						<a th:href="@{/driver/{id}/delete(id=${driver.id})}" class="delete-link">
 						<span class="glyphicon glyphicon-trash"></span></a>
 					</td>
 				</tr>

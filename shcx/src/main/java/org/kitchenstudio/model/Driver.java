@@ -37,6 +37,8 @@ public class Driver {
 	
 	private String bankNumber;
 	
+	private String pathFaceimage;
+	
 //	@Enumerated(EnumType.STRING)
 //	private GenderType gender;
 //	
@@ -117,5 +119,13 @@ public class Driver {
 
 	public void setBankNumber(String bankNumber) {
 		this.bankNumber = bankNumber;
+	}
+
+	public String getPathFaceimage() {
+		return pathFaceimage;
+	}
+
+	public void setPathFaceimage(String pathFaceimage) {
+		this.pathFaceimage = pathFaceimage;
 	}
 }

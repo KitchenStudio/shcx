@@ -59,13 +59,17 @@
 							<input class="form-control" th:field="*{name}">
 						</div>
 					</div>
-					<div class="form-group" th:classappend="form-group">
+					<div class="form-group" th:classappend="form-group"
+					th:class="${#fields.hasErrors('plateNumber')}? has-error" title="what?"
+						th:title="${#fields.errors('plateNumber')}">
 						<label class="col-sm-2 control-label">车牌号码</label>
 						<div>
 							<input class="form-control" th:field="*{plateNumber}">
 						</div>
 					</div>
-					<div class="form-group" th:classappend="form-group">
+					<div class="form-group" th:classappend="form-group"
+						th:class="${#fields.hasErrors('phoneNumber')}? has-error" title="what?"
+						th:title="${#fields.errors('phoneNumber')}">
 						<label class="col-sm-2 control-label">电话号码</label>
 						<div>
 							<input class="form-control" th:field="*{phoneNumber}">

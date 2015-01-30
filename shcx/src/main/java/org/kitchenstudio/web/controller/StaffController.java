@@ -49,28 +49,9 @@ public class StaffController {
 		if (result.hasErrors()) {
 			return "staff/new";
 		}
-		String sysPath = request.getServletContext().getRealPath("/");
-		try {
 
-			File fileUpload = new File(sysPath + "/upload");
-			if (!fileUpload.isDirectory()) {
-				fileUpload.mkdir();
-			} else {
-				fileUpload.delete();
-				fileUpload.mkdir();
-			}
-			System.out.println(fileUpload.exists() + "esist");
-			String[] name = file.getOriginalFilename().split("\\.");
-			String suffix = name[name.length - 1];
-			File tempFile = File
-					.createTempFile("img", "." + suffix, fileUpload);
-			file.transferTo(tempFile);
-			String conPath = request.getContextPath() + "/upload/"
-					+ tempFile.getName();
-			staff.setPathFaceimage(conPath);
-		} catch (IllegalStateException | IOException e) {
-			e.printStackTrace();
-		}
+		staff.setPathFaceimage(getFaceimagePath(request, file));
+
 		staffService.add(staff);
 		return "redirect:/staff";
 	}
@@ -88,10 +69,12 @@ public class StaffController {
 	}
 
 	@RequestMapping(value = "/{id}/modify", method = RequestMethod.POST)
-	String info(@Valid Staff staff, BindingResult result) {
+	String info(@RequestParam("file") MultipartFile file, @Valid Staff staff,
+			BindingResult result,HttpServletRequest request) {
 		if (result.hasErrors()) {
 			return "staff/modify";
 		}
+		staff.setPathFaceimage(getFaceimagePath(request, file));
 		staffService.save(staff);
 		return "/staff/modifysuccess";
 	}
@@ -100,5 +83,30 @@ public class StaffController {
 	String modify(@PathVariable("id") Staff staff, Model model) {
 		model.addAttribute(staff);
 		return "staff/modify";
+	}
+
+	String getFaceimagePath(HttpServletRequest request, MultipartFile file) {
+		String conPath = null;
+		String sysPath = request.getServletContext().getRealPath("/");
+		try {
+
+			File fileUpload = new File(sysPath + "/upload");
+			if (!fileUpload.isDirectory()) {
+				fileUpload.mkdir();
+			} else {
+				fileUpload.delete();
+				fileUpload.mkdir();
+			}
+			String[] name = file.getOriginalFilename().split("\\.");
+			String suffix = name[name.length - 1];
+			File tempFile = File
+					.createTempFile("img", "." + suffix, fileUpload);
+			file.transferTo(tempFile);
+			conPath = request.getContextPath() + "/upload/"
+					+ tempFile.getName();
+		} catch (IllegalStateException | IOException e) {
+			e.printStackTrace();
+		}
+		return conPath;
 	}
 }

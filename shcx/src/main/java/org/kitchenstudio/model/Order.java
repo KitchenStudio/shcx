@@ -5,10 +5,12 @@ import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity(name = "ORD")
 public class Order {
@@ -28,8 +30,8 @@ public class Order {
 
 	private String lessee;// 承租方
 
-	@OneToMany(orphanRemoval = true)
-	@JoinColumn(name = "ORDER_ID", nullable = false)
+	@OneToMany
+	@JoinColumn(name = "ORDER_ID")
 	private Set<OrderItem> orderItems;// 多个订单项
 
 	public Set<OrderItem> getOrderItems() {

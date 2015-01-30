@@ -73,7 +73,7 @@ public class DriverController {
 	}
 
 	@RequestMapping(value = "/info", method = RequestMethod.POST)
-	String info(Driver driver, BindingResult result) {
+	String info(@Valid Driver driver, BindingResult result) {
 		if (result.hasErrors()) {
 			return "driver/modify";
 		}

@@ -56,7 +56,7 @@
 				<td th:text="${staff.nation}"></td>
 				<td>出生日期</td>
 				<td th:text="${staff.birthday}"></td>
-				<td rowspan="3"><img alt="" th:src="@{/images/faceimage.jpg}"></td>
+				<td rowspan="3"><img alt="" th:src="${staff.pathFaceimage}" style="width: 100px;height: 100px;"></td>
 			</tr>
 			<tr>
 				<td>身份证号</td>

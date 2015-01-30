@@ -30,6 +30,7 @@ public class Driver {
 	@Length(min = 18, max = 18, message = "身份证长度不符合")
 	private String IDcard;//司机身份证号
 	
+	//@NotBlank(message="地址不能为空")
 	private String address;// 司机的地址
 	
 	private String nation;// 民族

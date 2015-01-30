@@ -37,7 +37,7 @@ public class DriverController {
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	String add(Model model) {
 		model.addAttribute("driver",new Driver());
-		return "/driver/new";
+		return "driver/new";
 	}
 
 	@RequestMapping(value = "/new", method = RequestMethod.GET)
@@ -46,7 +46,7 @@ public class DriverController {
 			Driver driver = new Driver();
 			model.addAttribute(driver);
 		}
-		return "/driver/new";
+		return "driver/new";
 	}
 
 	@RequestMapping(value = "/new", method = RequestMethod.POST)
@@ -78,7 +78,7 @@ public class DriverController {
 			return "driver/modify";
 		}
 		driverService.add(driver);
-		return "/driver/modifysuccess";
+		return "driver/modifysuccess";
 	}
 
 	@RequestMapping(value = "/modify/{id}", method = RequestMethod.GET)

@@ -31,10 +31,10 @@ public class OrderController {
 		List<Order> orders = orderService.findAll();
 		model.addAttribute("orders", orders);
 
-		return "order";
+		return "order/order";
 	}
 
-	@RequestMapping({ "/add" })
+	@RequestMapping({ "/new" })
 	String add(Order order) {
 		orderService.add(order);
 		return "redirect:/order";
@@ -47,15 +47,15 @@ public class OrderController {
 			model.addAttribute(order);
 		}
 
-		return "order_new";
+		return "order/new";
 	}
 
 	@RequestMapping(value = "/new", method = RequestMethod.POST)
 	String create(@Valid Order orver, BindingResult result) {
 		if (result.hasErrors()) {
-			return "order_new";
+			return "order/new";
 		}
-		return "redirect:/order/new";
+		return "redirect:/order";
 	}
 
 	@RequestMapping("/delete/{id}")

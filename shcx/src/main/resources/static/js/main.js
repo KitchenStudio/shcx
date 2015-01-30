@@ -18,51 +18,14 @@ $(function() {
 		$(this).tooltip('hide');
 	});
 	
-//	var url = "/api/v1/image/temp";
-//	$("#fileupload").fileupload({
-//		url: url,
-//        previewMaxWidth: 100,
-//        previewMaxHeight: 100,
-//        previewCrop: true,
-//		done: function (e, data) {
-//			$("#uploadpicture").prop('src', data.result);
-//		}, 
-//		progressall: function (e, data) {
-//			var progress = parseInt(data.loaded / data.total * 100, 10);
-//			console.log(progress);
-//		}
-//	});
 	$("#fileupload").change(function(e){
 		loadImage(
 				e.target.files[0],
 				function (img) {
 					$("#upload-area").html(img);
-//					$("#uploadpicture").prop("src", $(img).prop("src"));
 				},
 				{maxWidth: 120}
 		);
 	});
-//	$("#fileupload").onchange = function (e) {
-//            e.preventDefault();
-//            e = e.originalEvent;
-//            var target = e.dataTransfer || e.target,
-//                file = target && target.files && target.files[0],
-//                options = {
-//                    maxWidth: result.width(),
-//                    canvas: true
-//                };
-//            if (!file) {
-//                return;
-//            }
-//            exifNode.hide();
-//            thumbNode.hide();
-//            loadImage.parseMetaData(file, function (data) {
-//                if (data.exif) {
-//                    options.orientation = data.exif.get('Orientation');
-//                    displayExifData(data.exif);
-//                }
-//                displayImage(file, options);
-//            });
-//        }
 });
 

@@ -46,7 +46,6 @@
 		<form th:action="@{/staff/new}" th:object="${staff}" method="post" enctype="multipart/form-data" >
 			<div class="row">
 				<div class="col-sm-6 form-horizontal">
-
 					<div class="form-group" th:classappend="form-group"
 						th:class="${#fields.hasErrors('birthday')}? has-error"
 						th:title="${#fields.hasErrors('birthday')}? 编号应该全是数字">
@@ -133,10 +132,10 @@
 						</div>
 					</div>
 					<div class="form-group">
-					<div class="col-sm-offset-2 col-sm-12">
-						<button type="submit" class="btn btn-primary" id="uploadinfo">录入</button>
+						<div class="col-sm-offset-2 col-sm-12">
+							<button type="submit" class="btn btn-primary" id="uploadinfo">录入</button>
+						</div>
 					</div>
-				</div>
 
 				</div>
 			</div>

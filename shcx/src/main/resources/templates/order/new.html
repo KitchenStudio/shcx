@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title></title>
 <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
-<link th:href="@{/css/style.css}" rel="stylesheet">
+
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -14,7 +14,6 @@
     <![endif]-->
 </head>
 <body>
-
 	<div class="container">
 		<nav class="navbar navbar-default">
 			<div class="container-fluid">
@@ -22,10 +21,9 @@
 					<button type="button" class="navbar-toggle collapsed"
 						data-toggle="collapse" data-target="#navbar" aria-expanded="false"
 						aria-controls="navbar">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
+						<span class="sr-only">Toggle navigation</span> <span
+							class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
 					</button>
 					<a class="navbar-brand" th:href="@{/}">钢管租赁管理系统</a>
 				</div>
@@ -34,7 +32,7 @@
 						<li class="active"><a th:href="@{/}">首页</a></li>
 						<li><a th:href="@{/staff}">员工管理</a></li>
 						<li><a th:href="@{/driver}">司机管理</a></li>
-						<li><a th:href="@{/order}">订单管理</a></li>
+						<li><a th:href="@{/staff}">订单管理</a></li>
 						<li><a th:href="@{/contact}">合同管理</a></li>
 						<li><a th:href="@{/purchase}">采购管理</a></li>
 						<li><a th:href="@{/store}">仓库信息</a></li>
@@ -43,45 +41,43 @@
 			</div>
 		</nav>
 	</div>
-
-	<div class="container" style="width: 960px;">
-	
-	<h1 style="text-align: center;">员工详情</h1>
-		<table class="table table-bordered  " style="margin-top: 50px">
-			<tr>
-				<td>编号</td>
-				<td th:text="${staff.id}"></td>
-				<td>姓名</td>
-				<td th:text="${staff.name}"></td>
-				<td>民族</td>
-				<td th:text="${staff.nation}"></td>
-				<td>出生日期</td>
-				<td th:text="${staff.birthday}"></td>
-				<td rowspan="3"><img alt="" th:src="${staff.pathFaceimage}" style="width: 100px;height: 100px;"></td>
-			</tr>
-			<tr>
-				<td>身份证号</td>
-				<td th:text="${staff.IDCard}"></td>
-				<td>银行卡号</td>
-				<td th:text="${staff.bankNumber}"></td>
-				<td>类型</td>
-				<td th:text="${staff.type}"></td>
-				<td>学历</td>
-				<td th:text="${staff.education}"></td>
-			</tr>
-			<tr>
-				<td>地址</td>
-				<td colspan="3" th:text="${staff.address}"></td>
-				<td colspan="2">电话号码</td>
-				<td colspan="2" th:text="${staff.phoneNumber}"></td>
-			</tr>
-		</table>
-		<div>
-			<a class="btn btn-primary btn-lg" id="uploadinfo" th:href="@{/staff}">返回</a>
-
-			<a class="btn btn-primary btn-lg" id="uploadinfo"
-				th:href="@{/staff/{id}/modify(id=${staff.id})}">修改信息</a>
-		</div>
+	<div class="container">
+		<h2>创建订单</h2>
+		<form th:action="@{/order/new}" th:object="${order}" method="post">
+			<div class="row">
+				<div class="col-sm-6 form-horizontal">
+					<div class="form-group" th:classappend="form-group">
+						<label class="col-sm-2 control-label">日期</label>
+						<div class="col-sm-3">
+							<input class="form-control" th:field="*{date}">
+						</div>
+					</div>
+					<div class="form-group" th:classappend="form-group">
+						<label class="col-sm-2 control-label">经手人</label>
+						<div class="col-sm-3">
+							<input class="form-control" th:field="*{handler}">
+						</div>
+					</div>
+					<div class="form-group" th:classappend="form-group">
+						<label class="col-sm-2 control-label">出租方</label>
+						<div class="col-sm-5">
+							<input class="form-control" th:field="*{renter}" id="idcard">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">承租方</label>
+						<div class="col-sm-5">
+							<input class="form-control" th:field="*{lessee}">
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-12">
+						<button type="submit" class="btn btn-primary" id="uploadinfo">录入</button>
+					</div>
+				</div>
+			</div>
+		</form>
 	</div>
 
 
@@ -91,5 +87,6 @@
 	<script th:src="@{/js/jquery.fileupload.js}"></script>
 	<script th:src="@{/js/bootstrap.min.js}"></script>
 	<script th:src="@{/js/main.js}"></script>
+	<script src="js/load-image.all.min.js"></script>
 </body>
 </html>

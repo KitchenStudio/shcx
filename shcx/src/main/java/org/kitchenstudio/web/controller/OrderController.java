@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.kitchenstudio.model.Driver;
 import org.kitchenstudio.model.Order;
 import org.kitchenstudio.service.OrderService;
 import org.slf4j.Logger;
@@ -31,13 +32,13 @@ public class OrderController {
 		List<Order> orders = orderService.findAll();
 		model.addAttribute("orders", orders);
 
-		return "order";
+		return "order/order";
 	}
 
-	@RequestMapping({ "/add" })
-	String add(Order order) {
-		orderService.add(order);
-		return "redirect:/order";
+	@RequestMapping(value = "/add", method = RequestMethod.GET)
+	String add(Model model) {
+		model.addAttribute("order", new Order());
+		return "/order/new";
 	}
 
 	@RequestMapping(value = "/new", method = RequestMethod.GET)
@@ -46,16 +47,41 @@ public class OrderController {
 			Order order = new Order();
 			model.addAttribute(order);
 		}
-
-		return "order_new";
+		return "order/new";
 	}
 
 	@RequestMapping(value = "/new", method = RequestMethod.POST)
-	String create(@Valid Order orver, BindingResult result) {
+	String create(@Valid Order order, BindingResult result) {
 		if (result.hasErrors()) {
-			return "order_new";
+			return "order/new";
 		}
-		return "redirect:/order/new";
+		orderService.add(order);
+		return "redirect:/order";
+	}
+
+	@RequestMapping(value = "/info/{id}", method = RequestMethod.GET)
+	String info(@PathVariable("id") Order order, Model model) {
+		model.addAttribute(order);
+		return "order/detail";
+	}
+
+	@RequestMapping(value = "/info", method = RequestMethod.POST)
+	String info(@Valid Order order, BindingResult result) {
+		if (result.hasErrors()) {
+			return "order/modify";
+		}
+		System.out.println("1");
+		System.out.println(order.getId());
+		orderService.add(order);
+		System.out.println(order.getId());
+		System.out.println("2");
+		return "/order/modifysuccess";
+	}
+
+	@RequestMapping(value = "/modify/{id}", method = RequestMethod.GET)
+	String modify(@PathVariable("id") Order order, Model model) {
+		model.addAttribute(order);
+		return "order/modify";
 	}
 
 	@RequestMapping("/delete/{id}")
@@ -63,5 +89,4 @@ public class OrderController {
 		orderService.delete(order);
 		return "redirect:/order";
 	}
-
 }

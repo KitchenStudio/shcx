@@ -56,34 +56,34 @@
 						</div>
 					</div>
 					<div class="form-group" th:classappend="form-group"
-						th:class="${#fields.hasErrors('name')}? has-error" title="what?"
-						th:title="${#fields.errors('name')}">
+						th:class="${#fields.hasErrors('name')}? has-error"
+						>
 						<label class="col-sm-2 control-label">姓名</label>
 						<div class="col-sm-3">
-							<input class="form-control" th:field="*{name}">
+							<input class="form-control" th:field="*{name}" th:title="${#fields.errors('name')}">
 						</div>
 					</div>
 					<div class="form-group" th:classappend="form-group"
-						th:class="${#fields.hasErrors('IDCard')}? has-error" title="what?"
-						th:title="${#fields.errors('IDCard')}">
+						th:class="${#fields.hasErrors('IDCard')}? has-error"
+						>
 						<label class="col-sm-2 control-label">身份证号码</label>
 						<div class="col-sm-5">
-							<input class="form-control" th:field="*{IDCard}" id="idcard">
+							<input th:title="${#fields.errors('IDCard')}" class="form-control" th:field="*{IDCard}" id="idcard">
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-2 control-label">学历</label>
-						<div class="col-sm-5">
+						<div class="col-sm-3">
 							<input class="form-control" th:field="*{education}">
 						</div>
 					</div>
 
 					<div class="form-group" th:classappend="form-group"
 						th:class="${#fields.hasErrors('bankNumber')}? has-error"
-						title="what?" th:title="${#fields.errors('bankNumber')}">
+						>
 						<label class="col-sm-2 control-label">银行卡号</label>
 						<div class="col-sm-5">
-							<input class="form-control" th:field="*{bankNumber}"
+							<input th:title="${#fields.errors('bankNumber')}" class="form-control" th:field="*{bankNumber}"
 								id="bankNumber">
 						</div>
 					</div>

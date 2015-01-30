@@ -12,7 +12,7 @@ $(function() {
 	});
 	
 
-	$(".has-error").hover(function() {
+	$(".has-error input").hover(function() {
 		$(this).tooltip('show');
 	}, function() {
 		$(this).tooltip('hide');

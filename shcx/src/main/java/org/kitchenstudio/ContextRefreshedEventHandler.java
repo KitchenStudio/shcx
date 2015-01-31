@@ -1,6 +1,8 @@
 package org.kitchenstudio;
 
+import org.kitchenstudio.model.Driver;
 import org.kitchenstudio.model.Staff;
+import org.kitchenstudio.repository.DriverRepository;
 import org.kitchenstudio.repository.StaffRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,10 +17,13 @@ public class ContextRefreshedEventHandler implements
 
 	private static final Logger logger = LoggerFactory
 			.getLogger(ContextRefreshedEventHandler.class);
-	
+
 	@Autowired
 	private StaffRepository staffRepository;
-
+	
+	@Autowired
+	private DriverRepository driverRepository;
+	
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
 		logger.info("Context Refreshed!");
@@ -30,7 +35,14 @@ public class ContextRefreshedEventHandler implements
 		staff.setBankNumber("1234123412341234123");
 		
 		staffRepository.save(staff);
-
+		
+		
+		Driver driver = new Driver();
+		driver.setId(2L);
+		driver.setName("Airkid");
+		driver.setIDcard("1234567890987654321");
+		driver.setPlateNumber("沪B12345");
+		
+		driverRepository.save(driver);
 	}
-
 }

@@ -39,20 +39,10 @@ public class OrderController {
 		return "order/order";
 	}
 
-	@RequestMapping(value = "/add", method = RequestMethod.GET)
-	String add(Model model) {
-		model.addAttribute("order", new Order());
-		return "/order/new";
+	@RequestMapping(value = "/new", method = RequestMethod.GET)
+	String create(Order order) {
+		return "order/new";
 	}
-
-	// @RequestMapping(value = "/new", method = RequestMethod.GET)
-	// String create(Model model) {
-	// if (!model.containsAttribute("order")) {
-	// Order order = new Order();
-	// model.addAttribute(order);
-	// }
-	// return "order/new";
-	// }
 
 	@RequestMapping(value = "/new", params = { "save" }, method = RequestMethod.POST)
 	String create(@Valid Order order, BindingResult result) {
@@ -63,7 +53,7 @@ public class OrderController {
 		return "redirect:/order";
 	}
 
-	@RequestMapping(value = "/new", params = { "addItems" }, method = RequestMethod.POST)
+	@RequestMapping(value = "/new", params = { "addItem" }, method = RequestMethod.POST)
 	String addItems(@Valid Order order, BindingResult result) {
 		order.getOrderItems().add(new OrderItem());
 		return "order/new";

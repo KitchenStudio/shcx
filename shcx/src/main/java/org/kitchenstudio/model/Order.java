@@ -13,6 +13,7 @@ import javax.persistence.PrePersist;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.Valid;
 import javax.validation.constraints.Null;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -44,6 +45,7 @@ public class Order {
 
 	@OneToMany
 	@JoinColumn(name = "ORDER_ID")
+	@Valid
 	private List<OrderItem> orderItems = new ArrayList<OrderItem>();// 多个订单项
 
 	public List<OrderItem> getOrderItems() {

@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title></title>
 <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+<link th:href="@{/css/style.css}" rel="stylesheet">
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
@@ -29,10 +30,10 @@
 				</div>
 				<div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
-						<li class="active"><a th:href="@{/}">首页</a></li>
+						<li><a th:href="@{/}">首页</a></li>
 						<li><a th:href="@{/staff}">员工管理</a></li>
 						<li><a th:href="@{/driver}">司机管理</a></li>
-						<li><a th:href="@{/staff}">订单管理</a></li>
+						<li class="active"><a th:href="@{/staff}">订单管理</a></li>
 						<li><a th:href="@{/contact}">合同管理</a></li>
 						<li><a th:href="@{/purchase}">采购管理</a></li>
 						<li><a th:href="@{/store}">仓库信息</a></li>
@@ -46,84 +47,95 @@
 		<hr>
 		<form th:action="@{/order/new}" th:object="${order}" method="post">
 			<div class="row">
-				<div class="col-sm-6 form-group" 
-				th:classappend="'col-sm-6 form-group'"
-					th:class="${#fields.hasErrors('date')}? has-error"
-					>
+				<div class="col-sm-6 form-group"
+					th:classappend="'col-sm-6 form-group'"
+					th:class="${#fields.hasErrors('date')}? has-error">
 					<label class="col-sm-3 control-label">日期</label>
 					<div class="col-sm-6">
 						<input class="form-control" th:field="*{date}"
-						th:title="${#fields.hasErrors('date')}? 格式有问题，应该使用2012-10-12的格式">
+							th:title="${#fields.hasErrors('date')}? 格式有问题，应该使用2012-10-12的格式">
 					</div>
 				</div>
-				<div class="col-sm-6 form-group" th:classappend="'col-sm-6 form-group'" th:class="${#fields.hasErrors('handler')}? has-error">
+				<div class="col-sm-6 form-group"
+					th:classappend="'col-sm-6 form-group'"
+					th:class="${#fields.hasErrors('handler')}? has-error">
 					<label class="col-sm-3 control-label">经手人</label>
 					<div class="col-sm-6">
-						<input class="form-control" th:field="*{handler}" th:title="${#fields.errors('handler')}">
+						<input class="form-control" th:field="*{handler}"
+							th:title="${#fields.errors('handler')}">
 					</div>
 				</div>
-				<div class="col-sm-6 form-group" th:classappend="'col-sm-6 form-group'" th:class="${#fields.hasErrors('renter')}? has-error">
+				<div class="col-sm-6 form-group"
+					th:classappend="'col-sm-6 form-group'"
+					th:class="${#fields.hasErrors('renter')}? has-error">
 					<label class="col-sm-3 control-label">出租方</label>
 					<div class="col-sm-6">
-						<input class="form-control" th:field="*{renter}" id="idcard" th:title="${#fields.errors('renter')}">
+						<input class="form-control" th:field="*{renter}" id="idcard"
+							th:title="${#fields.errors('renter')}">
 					</div>
 				</div>
-				<div class="col-sm-6 form-group" th:classappend="'col-sm-6 form-group'" th:class="${#fields.hasErrors('lessee')}? has-error">
+				<div class="col-sm-6 form-group"
+					th:classappend="'col-sm-6 form-group'"
+					th:class="${#fields.hasErrors('lessee')}? has-error">
 					<label class="col-sm-3 control-label">承租方</label>
 					<div class="col-sm-6">
-						<input class="form-control" th:field="*{lessee}" th:title="${#fields.errors('lessee')}">
+						<input class="form-control" th:field="*{lessee}"
+							th:title="${#fields.errors('lessee')}">
 					</div>
 				</div>
-					<div class="form-group">
-				<div class="col-sm-offset-2 col-sm-12">
-					<button type="submit" class="btn btn-primary" name="addItems">增加</button>
-				
-				</div>
-			</div>
 			</div>
 			<hr>
 			<div class="row">
 				<div class=" form-horizontal" th:each="row,rowStat : *{orderItems}">
 					<div class="col-sm-4 form-horizontal">
-						<div class="form-group" th:classappend="form-group" th:class="${#fields.hasErrors('orderItems[__${rowStat.index}__].type')}? has-error">
+						<div class="form-group" th:classappend="form-group"
+							th:class="${#fields.hasErrors('orderItems[__${rowStat.index}__].type')}? has-error">
 							<label class="col-sm-2 control-label">类型</label>
 							<div class="col-sm-6">
 								<input class="form-control" type="text"
-									th:field="*{orderItems[__${rowStat.index}__].type}" th:title="${#fields.errors('orderItems[__${rowStat.index}__].type')}">
+									th:field="*{orderItems[__${rowStat.index}__].type}"
+									th:title="${#fields.errors('orderItems[__${rowStat.index}__].type')}">
 							</div>
 						</div>
 					</div>
 					<div class="col-sm-4 form-horizontal">
-						<div class="form-group" th:classappend="form-group" th:class="${#fields.hasErrors('orderItems[__${rowStat.index}__].kind')}? has-error">
+						<div class="form-group" th:classappend="form-group"
+							th:class="${#fields.hasErrors('orderItems[__${rowStat.index}__].kind')}? has-error">
 							<label class="col-sm-2 control-label">规格</label>
 							<div class="col-sm-6">
 								<input class="form-control" type="text"
-									th:field="*{orderItems[__${rowStat.index}__].kind}" th:title="${#fields.errors('orderItems[__${rowStat.index}__].kind')}">
+									th:field="*{orderItems[__${rowStat.index}__].kind}"
+									th:title="${#fields.errors('orderItems[__${rowStat.index}__].kind')}">
 							</div>
 						</div>
 					</div>
-					<!-- <div class="col-sm-4 form-horizontal">
-						<div class="form-group" th:classappend="form-group" th:class="${#fields.hasErrors('orderItems[__${rowStat.index}__].quantity')}? has-error">
+					<div class="col-sm-4 form-horizontal">
+						<div class="form-group" th:classappend="form-group"
+							th:class="${#fields.hasErrors('orderItems[__${rowStat.index}__].quantity')}? has-error">
 							<label class="col-sm-2 control-label">数量</label>
 							<div class="col-sm-6">
 								<input class="form-control" type="text"
 									th:field="*{orderItems[__${rowStat.index}__].quantity}"
-									id="quantity" th:title="${#fields.errors('orderItems[__${rowStat.index}__].quantity')}">
-							</div>
+									th:title="${#fields.errors('orderItems[__${rowStat.index}__].quantity')}">
+					
+司机管理
+合同管理
+订单管理
+采购管理
+仓库信息
+增加		</div>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-sm-6 form-horizontal">
-					<button type="submit" class="btn btn-primary" name="addItems">添加项目</button>
+					<button type="submit" class="btn btn-primary" name="addItem">添加项目</button>
 				</div>
 				<div class="col-sm-6 form-horizontal">
-					<button type="submit" class="btn btn-primary" name="save"
-						id="uploadinfo">提交订单</button>
+					<button type="submit" class="btn btn-primary" name="save">提交订单</button>
 				</div>
 			</div>
-
 		</form>
 	</div>
 	<script th:src="@{/js/jquery.min.js}"></script>

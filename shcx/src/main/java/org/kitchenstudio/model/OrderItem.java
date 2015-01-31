@@ -3,6 +3,7 @@ package org.kitchenstudio.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.Min;
 
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -26,8 +27,8 @@ public class OrderItem {
 	@NotBlank(message="不能为空")
 	private String kind;// 钢管的类型和扣件
 	
-//	@NotBlank(message="不能为空")
-//	private int quantity;// 钢管的总长度或者是扣件的总数量
+	@Min(value = 0, message ="数量不能为负")
+	private int quantity;// 钢管的总长度或者是扣件的总数量
 
 	public String getType() {
 		return type;
@@ -45,12 +46,12 @@ public class OrderItem {
 		this.kind = kind;
 	}
 
-//	public int getQuantity() {
-//		return quantity;
-//	}
-//
-//	public void setQuantity(int quantity) {
-//		this.quantity = quantity;
-//	}
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
 
 }

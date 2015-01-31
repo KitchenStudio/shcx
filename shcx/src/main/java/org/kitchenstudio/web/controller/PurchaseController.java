@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.util.Collections;
 
 import javax.swing.JButton;
+import javax.validation.Valid;
 
 import org.kitchenstudio.model.Purchase;
 import org.kitchenstudio.model.PurchaseItem;
@@ -14,6 +15,7 @@ import org.kitchenstudio.service.StaffService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -41,16 +43,35 @@ public class PurchaseController {
 		item.setQuantity(10);
 		item.setRemark("很少");
 		
-		purchaseService.save(purchase, Collections.singletonList(item));
+//		purchaseService.save(purchase, Collections.singletonList(item));
 		
 		model.addAttribute("purchases", purchaseService.findAll());
 		
 		return "purchase/home";
 	}
 	
-	@RequestMapping(value = "/new", method = RequestMethod.GET)
-	String create(){
+	@RequestMapping(value = "/new",params = { "save" }, method = RequestMethod.POST)
+	String save(@Valid Purchase purchase,BindingResult result){
+		if(result.hasErrors()){
+			return "purchase/new";
+		}
+		purchaseService.save(purchase, purchase.getPurchaseItems());
+		return "redirect:purchase";
+		
+	}
+	
+	@RequestMapping(value = "/new",params = { "addItems" }, method = RequestMethod.POST)
+	String createItems(@Valid Purchase purchase,BindingResult result){
+		purchase.getPurchaseItems().add(new PurchaseItem());
 		return "purchase/new";
+		
+	}
+	
+	@RequestMapping(value = "/new", method = RequestMethod.GET)
+	String create(@Valid Purchase purchase,BindingResult result){
+		
+		return "purchase/new";
+		
 	}
 	
 	String create(Model model) {

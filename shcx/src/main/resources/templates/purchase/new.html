@@ -23,10 +23,9 @@
 					<button type="button" class="navbar-toggle collapsed"
 						data-toggle="collapse" data-target="#navbar" aria-expanded="false"
 						aria-controls="navbar">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
+						<span class="sr-only">Toggle navigation</span> <span
+							class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
 					</button>
 					<a class="navbar-brand" th:href="@{/}">钢管租赁管理系统</a>
 				</div>
@@ -43,18 +42,84 @@
 				</div>
 			</div>
 		</nav>
-		<h2 class="page-header">采购</h2>
-		<form class="form-horizontal">
-			<div class="form-group">
-				<label class="col-sm-2 control-label">采购单号</label>
-				<div class="col-sm-3">
-					<input type="text" class="form-control">
+	</div>
+	<div class="container">
+		<h2 align="center">创建采购单</h2>
+		<hr>
+		<form th:action="@{/purchase/new}" th:object="${purchase}" method="post">
+			<div class="row">
+				<div class="col-sm-6 form-group"
+					th:classappend="'col-sm-6 form-group'">
+					<label class="col-sm-3 control-label">采购单号</label>
+					<div class="col-sm-6">
+						<input class="form-control" th:field="*{id}">
+					</div>
+				</div> 
+				<div class="col-sm-6 form-group"
+					th:classappend="'col-sm-6 form-group'">
+					<label class="col-sm-3 control-label">采购日期</label>
+					<div class="col-sm-6">
+						<input class="form-control" th:field="*{createdTime}">
+					</div>
+				</div>
+				<div class="col-sm-6 form-group"
+					th:classappend="'col-sm-6 form-group'"
+					>
+					<label class="col-sm-3 control-label">采购人</label>
+					<div class="col-sm-6">
+						<input class="form-control" id="idcard"	th:field="*{buyer}">
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-12">
+						<button type="submit" class="btn btn-primary" name="addItems">增加</button>
+					</div>
+				</div>
+			</div>
+			<hr>
+			<div class="row">
+				<div class=" form-horizontal" th:each="row,rowStat : *{purchaseItems}">
+					<div class="col-sm-4 form-horizontal">
+						<div class="form-group" th:classappend="form-group"
+							>
+							<label class="col-sm-2 control-label">类型</label>
+							<div class="col-sm-6">
+								<input class="form-control" type="text"
+									th:field="*{purchaseItems[__${rowStat.index}__].remark}"
+									>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-4 form-horizontal">
+						<div class="form-group" th:classappend="form-group"
+							>
+							<label class="col-sm-2 control-label">规格</label>
+							<div class="col-sm-6">
+								<input class="form-control" type="text"
+									th:field="*{purchaseItems[__${rowStat.index}__].kind}"
+									>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-4 form-horizontal">
+						<div class="form-group" th:classappend="form-group"
+							>
+							<label class="col-sm-2 control-label">数量</label>
+							<div class="col-sm-6">
+								<input class="form-control" type="text"
+									th:field="*{purchaseItems[__${rowStat.index}__].quantity}"
+									id="quantity"
+									>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-2 control-label">采购人</label>
-				<div class="col-sm-3">
-					<input type="text" class="form-control">
+				<div class="col-sm-offset-2 col-sm-12">
+					<button type="submit" class="btn btn-primary" name="save"
+						id="uploadinfo">录入</button>
 				</div>
 			</div>
 		</form>

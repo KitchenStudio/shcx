@@ -1,5 +1,6 @@
 package org.kitchenstudio.service;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -32,7 +33,7 @@ public class PurchaseServiceImpl implements PurchaseService {
 	@Override
 	public void save(Purchase purchase, List<PurchaseItem> purchaseItems) {
 		purchase = purchaseRepository.save(purchase);
-		Set<PurchaseItem> items = new HashSet<>();
+		List<PurchaseItem> items = new ArrayList<>();
 		for (PurchaseItem item : purchaseItems) {
 			items.add(purchaseItemRepository.save(item));
 		}

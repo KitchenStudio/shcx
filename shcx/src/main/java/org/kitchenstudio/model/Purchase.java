@@ -1,6 +1,8 @@
 package org.kitchenstudio.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -11,6 +13,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.Valid;
+
+import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 @Entity
 public class Purchase {
@@ -21,14 +28,18 @@ public class Purchase {
 
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "STAFF_ID", nullable = true, updatable = false)
+	
 	private Staff buyer;
 
 	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(iso = ISO.DATE)
+	
 	private Date createdTime;
+	
 
 	@OneToMany(orphanRemoval = true)
 	@JoinColumn(name = "PURCHASE_ID")
-	private Set<PurchaseItem> purchaseItems;
+	private List<PurchaseItem> purchaseItems = new ArrayList<>();
 
 	public Long getId() {
 		return id;
@@ -54,12 +65,14 @@ public class Purchase {
 		this.createdTime = createdTime;
 	}
 
-	public Set<PurchaseItem> getPurchaseItems() {
+	public List<PurchaseItem> getPurchaseItems() {
 		return purchaseItems;
 	}
 
-	public void setPurchaseItems(Set<PurchaseItem> purchaseItems) {
-		this.purchaseItems = purchaseItems;
+	public void setPurchaseItems(List<PurchaseItem> items) {
+		this.purchaseItems = items;
 	}
+
+	
 
 }

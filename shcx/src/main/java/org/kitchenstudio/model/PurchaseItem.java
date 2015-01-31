@@ -3,6 +3,9 @@ package org.kitchenstudio.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.Min;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 public class PurchaseItem {
@@ -11,9 +14,12 @@ public class PurchaseItem {
 	@GeneratedValue
 	private Long id;
 	
+	
 	private String kind;
 	
+
 	private int quantity;
+	
 	
 	private String remark;
 	

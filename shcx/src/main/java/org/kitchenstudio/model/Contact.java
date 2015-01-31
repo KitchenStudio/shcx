@@ -1,8 +1,8 @@
 package org.kitchenstudio.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,16 +25,16 @@ public class Contact {
 
 	private String lessee;
 
-//    @ManyToOne(optional=false)
-//    @JoinColumn(name="STAFF_ID", nullable=true, updatable=false)
-//	private Staff handler;
-	
+	// @ManyToOne(optional=false)
+	// @JoinColumn(name="STAFF_ID", nullable=true, updatable=false)
+	// private Staff handler;
+
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createdTime;
-	
-    @OneToMany(orphanRemoval=true)
-    @JoinColumn(name="CONTACT_ID") 
-	private List<ContactItem> contactItems;
+
+	@OneToMany(orphanRemoval = true)
+	@JoinColumn(name = "CONTACT_ID")
+	private List<ContactItem> contactItems = new ArrayList<ContactItem>();
 
 	public Long getId() {
 		return id;
@@ -47,39 +47,39 @@ public class Contact {
 	public String getLessor() {
 		return lessor;
 	}
-	
+
 	public void setLessor(String lessor) {
 		this.lessor = lessor;
 	}
-	
+
 	public String getLessee() {
 		return lessee;
 	}
-	
+
 	public void setLessee(String lessee) {
 		this.lessee = lessee;
 	}
 
-//	public Staff getHandler() {
-//		return handler;
-//	}
-//
-//	public void setHandler(Staff handler) {
-//		this.handler = handler;
-//	}
-	
+	// public Staff getHandler() {
+	// return handler;
+	// }
+	//
+	// public void setHandler(Staff handler) {
+	// this.handler = handler;
+	// }
+
 	public Date getCreatedTime() {
 		return createdTime;
 	}
-	
+
 	public void setCreatedTime(Date createdTime) {
 		this.createdTime = createdTime;
 	}
-	
+
 	public List<ContactItem> getContactItems() {
 		return contactItems;
 	}
-	
+
 	public void setContactItems(List<ContactItem> contactItems) {
 		this.contactItems = contactItems;
 	}

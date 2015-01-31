@@ -22,10 +22,9 @@
 					<button type="button" class="navbar-toggle collapsed"
 						data-toggle="collapse" data-target="#navbar" aria-expanded="false"
 						aria-controls="navbar">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
+						<span class="sr-only">Toggle navigation</span> <span
+							class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
 					</button>
 					<a class="navbar-brand" th:href="@{/}">钢管租赁管理系统</a>
 				</div>
@@ -34,6 +33,7 @@
 						<li><a th:href="@{/}">首页</a></li>
 						<li><a th:href="@{/staff}">员工管理</a></li>
 						<li><a th:href="@{/driver}">司机管理</a></li>
+						<li><a th:href="@{/order}">订单管理</a></li>
 						<li class="active"><a th:href="@{/contact}">合同管理</a></li>
 						<li><a th:href="@{/purchase}">采购管理</a></li>
 						<li><a th:href="@{/store}">仓库信息</a></li>
@@ -41,22 +41,58 @@
 				</div>
 			</div>
 		</nav>
-		<h2 class="page-header">合同</h2>
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th>类型</th>
-					<th>单价</th>
-					<th>&nbsp;</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="item : ${contact.contactItems}">
-					<td th:text="${item.kind}"></td>
-					<td th:text="${item.price}"></td>
-				</tr>
-			</tbody>
-		</table>
+		<h2 align="center" class="page-header">合同</h2>
+		<form th:action="@{/contact/new}" th:object="${contact}" method="post">
+			<div class="row">
+				<div class="col-sm-6 form-group" th:classappend="form-group">
+					<label class="col-sm-3 control-label">租借方</label>
+					<div class="col-sm-6">
+						<input class="form-control" th:field="*{lessor}">
+					</div>
+				</div>
+				<div class="col-sm-6 form-group" th:classappend="form-group">
+					<label class="col-sm-3 control-label">承租方</label>
+					<div class="col-sm-6">
+						<input class="form-control" th:field="*{lessee}">
+					</div>
+				</div>
+			</div>
+			<hr>
+			<div class="row">
+				<div class=" form-horizontal"
+					th:each="row,rowStat : *{contactItems}">
+					<div class="col-sm-4 form-horizontal">
+						<div class="form-group" th:classappend="form-group">
+							<label class="col-sm-2 control-label">类型</label>
+							<div class="col-sm-6">
+								<input class="form-control" type="text"
+									th:field="*{contactItems[__${rowStat.index}__].kind}">
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-4 form-horizontal">
+						<div class="form-group" th:classappend="form-group">
+							<label class="col-sm-2 control-label">价格</label>
+							<div class="col-sm-6">
+								<input class="form-control" type="text"
+									th:field="*{contactItems[__${rowStat.index}__].price}">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-12">
+					<button type="submit" class="btn btn-primary" name="addItems">add</button>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-12">
+					<button type="submit" class="btn btn-primary" name="save"
+						id="uploadinfo">录入</button>
+				</div>
+			</div>
+		</form>
 	</div>
 	<script th:src="@{/js/jquery.min.js}"></script>
 	<script th:src="@{/js/bootstrap.min.js}"></script>

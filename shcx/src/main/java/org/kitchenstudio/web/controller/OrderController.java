@@ -2,6 +2,8 @@ package org.kitchenstudio.web.controller;
 
 import java.util.List;
 
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.kitchenstudio.model.Driver;
@@ -11,6 +13,7 @@ import org.kitchenstudio.service.OrderService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -42,14 +45,14 @@ public class OrderController {
 		return "/order/new";
 	}
 
-	@RequestMapping(value = "/new", method = RequestMethod.GET)
-	String create(Model model) {
-		if (!model.containsAttribute("order")) {
-			Order order = new Order();
-			model.addAttribute(order);
-		}
-		return "order/new";
-	}
+	// @RequestMapping(value = "/new", method = RequestMethod.GET)
+	// String create(Model model) {
+	// if (!model.containsAttribute("order")) {
+	// Order order = new Order();
+	// model.addAttribute(order);
+	// }
+	// return "order/new";
+	// }
 
 	@RequestMapping(value = "/new", params = { "save" }, method = RequestMethod.POST)
 	String create(@Valid Order order, BindingResult result) {
@@ -62,16 +65,8 @@ public class OrderController {
 
 	@RequestMapping(value = "/new", params = { "addItems" }, method = RequestMethod.POST)
 	String addItems(@Valid Order order, BindingResult result) {
-
 		order.getOrderItems().add(new OrderItem());
 		return "order/new";
-	}
-
-	@RequestMapping(value = "/new", params = { "removeItems" }, method = RequestMethod.POST)
-	String removeItems(@Valid Order order, BindingResult result) {
-
-		// order.getOrderItems().remove(new OrderItem());
-		return "redirect:/order";
 	}
 
 	@RequestMapping(value = "/info/{id}", method = RequestMethod.GET)
@@ -85,11 +80,24 @@ public class OrderController {
 		if (result.hasErrors()) {
 			return "order/modify";
 		}
-		//order.getOrderItems().add(new OrderItem());
-		//orderService.add(order);
-		System.out.println(order.getOrderItems().get(0).getId());
-		orderService.save(order,order.getOrderItems());
+		// order.getOrderItems().add(new OrderItem());
+		// orderService.add(order);
+		orderService.save(order, order.getOrderItems());
 		return "/order/modifysuccess";
+	}
+
+	@RequestMapping(value = "/info", params = { "removeItem" }, method = RequestMethod.POST)
+	String modifyRemoveItems(@Valid Order order, BindingResult result,
+			HttpServletRequest req) {
+		Integer rowId = Integer.valueOf(req.getParameter("removeItem"));
+		order.getOrderItems().remove(rowId.intValue());
+		return "order/modify";
+	}
+
+	@RequestMapping(value = "/info", params = { "modifyAddItem" }, method = RequestMethod.POST)
+	String modifyAddItems(@Valid Order order, BindingResult result) {
+		order.getOrderItems().add(new OrderItem());
+		return "order/modify";
 	}
 
 	@RequestMapping(value = "/modify/{id}", method = RequestMethod.GET)

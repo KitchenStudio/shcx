@@ -1,9 +1,7 @@
 package org.kitchenstudio.service;
 
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 import org.kitchenstudio.model.Contact;
 import org.kitchenstudio.model.ContactItem;

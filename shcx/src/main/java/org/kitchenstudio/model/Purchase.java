@@ -26,10 +26,10 @@ public class Purchase {
 	@GeneratedValue
 	private Long id;
 
-	@ManyToOne(optional = false)
-	@JoinColumn(name = "STAFF_ID", nullable = true, updatable = false)
+//	@ManyToOne(optional = false)
+//	@JoinColumn(name = "STAFF_ID", nullable = true, updatable = false)
 	
-	private Staff buyer;
+	private String buyer;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(iso = ISO.DATE)
@@ -49,11 +49,13 @@ public class Purchase {
 		this.id = id;
 	}
 
-	public Staff getBuyer() {
+
+
+	public String getBuyer() {
 		return buyer;
 	}
 
-	public void setBuyer(Staff buyer) {
+	public void setBuyer(String buyer) {
 		this.buyer = buyer;
 	}
 

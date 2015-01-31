@@ -61,8 +61,6 @@ public class Staff {
 
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(iso = ISO.DATE)
-	//@Pattern(regexp="[0-9]{4}-[0-9]{2}-[0-9]{2}",message="请输入正确的日期格式")
-	//@Pattern(regex="[0-9]{4}-[0-9]{2}-[0-9]{2}")
 	private Date birthday;// 出生日期
 	
 	@Length(min=19,max=19,message="银行卡号位数不符合")

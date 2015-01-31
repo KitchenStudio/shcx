@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="refresh" content="4;url=http://127.0.0.1:8080/order/">
 <title></title>
 <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
 <link th:href="@{/css/style.css}" rel="stylesheet">
@@ -34,8 +35,9 @@
 						<li class="active"><a th:href="@{/}">首页</a></li>
 						<li><a th:href="@{/staff}">员工管理</a></li>
 						<li><a th:href="@{/driver}">司机管理</a></li>
-						<li><a th:href="@{/order}">订单管理</a></li>
+						
 						<li><a th:href="@{/contact}">合同管理</a></li>
+						<li><a th:href="@{/order}">订单管理</a></li>
 						<li><a th:href="@{/purchase}">采购管理</a></li>
 						<li><a th:href="@{/store}">仓库信息</a></li>
 					</ul>
@@ -43,8 +45,11 @@
 			</div>
 		</nav>
 	</div>
-	<h1>修改成功！</h1>
-	<a th:href="@{/order}">返回</a>
+	<div class="container">
+		<h1>修改成功！</h1>
+		<a th:href="@{/order}">返回</a>
+	</div>
+
 
 	<script th:src="@{/js/jquery.min.js}"></script>
 	<script th:src="@{/js/bootstrap.min.js}"></script>

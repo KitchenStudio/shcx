@@ -63,7 +63,7 @@ public class DriverController {
 			return "/driver/new";
 		}
 		driver.setPathFaceimage(getFaceimagePath(request, file));
-		driverService.add(driver);
+		driverService.save(driver);
 		return "redirect:/driver";
 	}
 
@@ -86,7 +86,7 @@ public class DriverController {
 			return "driver/modify";
 		}
 		driver.setPathFaceimage(getFaceimagePath(request, file));
-		driverService.add(driver);
+		driverService.save(driver);
 		return "driver/modifysuccess";
 	}
 

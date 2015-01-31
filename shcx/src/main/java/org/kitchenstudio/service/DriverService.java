@@ -7,6 +7,6 @@ import org.kitchenstudio.model.Driver;
 public interface DriverService {
 	
 	List<Driver> findAll();
-	void add(Driver driver);
+	void save(Driver driver);
 	void delete(Driver driver);
 }

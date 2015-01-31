@@ -13,6 +13,7 @@ import javax.persistence.PrePersist;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.Valid;
 import javax.validation.constraints.Null;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -24,26 +25,28 @@ public class Order {
 
 	@Id
 	private Long id;
-	
+
 	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(iso=ISO.DATE)
+	@DateTimeFormat(iso = ISO.DATE)
+	@NotBlank(message = "不能为空")
 	private Date date;
 
 	private int isOut;// 0代表进料单，1代表出料单
 
 	// ManyToOne
 	// private 项目
-	@NotBlank(message="不能为空")
+	@NotBlank(message = "不能为空")
 	private String handler;// 经手人
-	
-	@NotBlank(message="不能为空")
+
+	@NotBlank(message = "不能为空")
 	private String renter;// 出租方
-	
-	@NotBlank(message="不能为空")
+
+	@NotBlank(message = "不能为空")
 	private String lessee;// 承租方
 
 	@OneToMany
 	@JoinColumn(name = "ORDER_ID")
+	@Valid
 	private List<OrderItem> orderItems = new ArrayList<OrderItem>();// 多个订单项
 
 	public List<OrderItem> getOrderItems() {
@@ -101,9 +104,9 @@ public class Order {
 	public void setLessee(String lessee) {
 		this.lessee = lessee;
 	}
-	
+
 	@PrePersist
-	void generateId(){
+	void generateId() {
 		SimpleDateFormat format = new SimpleDateFormat("YYYYMMDDhhmm");
 		String s = format.format(new Date());
 		id = Long.parseLong(s);

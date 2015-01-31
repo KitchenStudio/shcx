@@ -32,7 +32,6 @@ public class PurchaseServiceImpl implements PurchaseService {
 
 	@Override
 	public void save(Purchase purchase, List<PurchaseItem> purchaseItems) {
-		purchase = purchaseRepository.save(purchase);
 		List<PurchaseItem> items = new ArrayList<>();
 		for (PurchaseItem item : purchaseItems) {
 			items.add(purchaseItemRepository.save(item));

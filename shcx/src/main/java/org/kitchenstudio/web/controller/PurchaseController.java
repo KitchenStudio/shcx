@@ -32,16 +32,16 @@ public class PurchaseController {
 	@RequestMapping({"", "/"})
 	String home(Model model){
 		
-		Purchase purchase = new Purchase();
-		Staff buyer = staffService.findAll().get(0);
-		System.out.println(buyer.getName());
-		System.out.println(buyer.getId());
-		purchase.setBuyer(buyer);
-		
-		PurchaseItem item = new PurchaseItem();
-		item.setKind("钢管");
-		item.setQuantity(10);
-		item.setRemark("很少");
+//		Purchase purchase = new Purchase();
+//		Staff buyer = staffService.findAll().get(0);
+//		System.out.println(buyer.getName());
+//		System.out.println(buyer.getId());
+//		purchase.setBuyer(buyer.getName());
+//		
+//		PurchaseItem item = new PurchaseItem();
+//		item.setKind("钢管");
+//		item.setQuantity(10);
+//		item.setRemark("很少");
 		
 //		purchaseService.save(purchase, Collections.singletonList(item));
 		
@@ -53,10 +53,14 @@ public class PurchaseController {
 	@RequestMapping(value = "/new",params = { "save" }, method = RequestMethod.POST)
 	String save(@Valid Purchase purchase,BindingResult result){
 		if(result.hasErrors()){
+			for(int i=0;i<result.getAllErrors().size();i++){
+				System.out.println("有错误"+result.getAllErrors().get(i));
+			}
+			
 			return "purchase/new";
 		}
 		purchaseService.save(purchase, purchase.getPurchaseItems());
-		return "redirect:purchase";
+		return "redirect:/purchase";
 		
 	}
 	

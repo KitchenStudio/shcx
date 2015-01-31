@@ -59,7 +59,7 @@
 			<tbody>
 				<tr th:each="purchase : ${purchases}">
 					<td th:text="${purchase.id}"></td>
-					<td th:text="${purchase.buyer.name}"></td>
+					<td th:text="${purchase.buyer}"></td>
 					<td><a th:href="@{/purchase/detail/{id}(id=${purchase.id})}"><span
 							class="glyphicon glyphicon-info-sign"></span></a> <a
 						th:href="@{/purchase/delete/{id}(id=${purchase.id})}"

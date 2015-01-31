@@ -44,28 +44,6 @@
 	</div>
 
 	<div class="container">
-		<!--  <form class="form-inline" th:action="@{/order/add}" method="post">
-			<div class="form-group">
-				<label class="sr-only" for="date">日期</label> <input type="text"
-					class="form-control" name="date" id="date" placeholder="日期">
-			</div>
-			<div class="form-group">
-				<label class="sr-only" for="handler">经手人</label> <input
-					type="text" size="18" maxlength="10" class="form-control"
-					name="handler" id="handler" placeholder="经手人">
-			</div>
-			<div class="form-group">
-				<label class="sr-only" for="phone_number">出租方</label> <input
-					type="text" size="18" maxlength="18" class="form-control"
-					name="renter" id="renter" placeholder="出租方">
-			</div>
-			<div class="form-group">
-				<label class="sr-only" for="phone_number">承租方</label> <input
-					type="text" size="18" maxlength="18" class="form-control"
-					name="lessee" id="lessee" placeholder="承租方">
-			</div>
-			<button type="submit" class="btn btn-default">增加</button>
-		</form>-->
 		<a class="btn btn-default" th:href="@{/order/add}">增加</a>
 		<table class="table table-striped">
 			<thead>
@@ -85,6 +63,7 @@
 					<td th:text="${order.handler}"></td>
 					<td th:text="${order.renter}"></td>
 					<td th:text="${order.lessee}"></td>
+					<!--  <td th:each="item : ${order.orderItems}" th:text="${item.kind}"></td>-->
 					<td><a th:href="@{/order/info/{id}(id=${order.id})}"> <span
 							class="glyphicon glyphicon-info-sign"></span>
 					</a> <a th:href="@{/order/delete/{id}(id=${order.id})}"

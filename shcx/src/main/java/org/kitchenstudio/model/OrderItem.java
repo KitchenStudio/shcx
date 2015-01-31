@@ -9,35 +9,43 @@ public class OrderItem {
 	@Id
 	@GeneratedValue
 	private Long id;
+
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
-	private String type;//钢管还是扣件
-	
-	private int kind;//钢管的类型和扣件
-	
-	private int quantity;//钢管的总长度或者是扣件的总数量
-	
+
+	private String type;// 钢管还是扣件
+
+	private String kind;// 钢管的类型和扣件
+
+	private int quantity;// 钢管的总长度或者是扣件的总数量
+
 	public String getType() {
 		return type;
 	}
+
 	public void setType(String type) {
 		this.type = type;
 	}
-	public int getKind() {
+
+	public String getKind() {
 		return kind;
 	}
-	public void setKind(int kind) {
+
+	public void setKind(String kind) {
 		this.kind = kind;
 	}
+
 	public int getQuantity() {
 		return quantity;
 	}
+
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	
+
 }

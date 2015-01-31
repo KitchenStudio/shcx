@@ -1,11 +1,11 @@
 package org.kitchenstudio.model;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -32,13 +32,13 @@ public class Order {
 
 	@OneToMany
 	@JoinColumn(name = "ORDER_ID")
-	private Set<OrderItem> orderItems;// 多个订单项
+	private List<OrderItem> orderItems = new ArrayList<OrderItem>();// 多个订单项
 
-	public Set<OrderItem> getOrderItems() {
+	public List<OrderItem> getOrderItems() {
 		return orderItems;
 	}
 
-	public void setOrderItems(Set<OrderItem> orderItems) {
+	public void setOrderItems(List<OrderItem> orderItems) {
 		this.orderItems = orderItems;
 	}
 

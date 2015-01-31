@@ -46,47 +46,79 @@
 		<form th:action="@{/order/info}" th:object="${order}" method="post">
 			<h1 style="margin-bottom: 50px; text-align: center;">修改订单信息</h1>
 			<div class="row">
-				<div class="col-sm-6 form-horizontal">
-
-					<div class="form-group" th:classappend="form-group">
-						<label class="col-sm-2 control-label">编号</label>
-						<div class="col-sm-5">
-							<input hidden="hidden" "form-control" th:field="*{id}">
+				<div class="clo-sm-12 form-group" th:classappend="form-group">
+					<div class="col-sm-5">
+						<input type="hidden" class="form-control" th:field="*{id}">
+					</div>
+				</div>
+				<div class="col-sm-6 form-group" th:classappend="form-group">
+					<label class="col-sm-3 control-label">日期</label>
+					<div class="col-sm-6">
+						<input class="form-control" th:field="*{date}">
+					</div>
+				</div>
+				<div class="col-sm-6 form-group" th:classappend="form-group">
+					<label class="col-sm-3 control-label">经手人</label>
+					<div class="col-sm-6">
+						<input class="form-control" th:field="*{handler}">
+					</div>
+				</div>
+				<div class="col-sm-6 form-group" th:classappend="form-group">
+					<label class="col-sm-3 control-label">出租方</label>
+					<div class="col-sm-6">
+						<input class="form-control" th:field="*{renter}" id="idcard">
+					</div>
+				</div>
+				<div class="col-sm-6 form-group">
+					<label class="col-sm-3 control-label">承租方</label>
+					<div class="col-sm-6">
+						<input class="form-control" th:field="*{lessee}">
+					</div>
+				</div>
+			</div>
+			<hr>
+			<!-- 修改OrderItem项 -->
+			<div class="row">
+				<div class=" form-horizontal" th:each="row,rowStat : *{orderItems}">
+					<div class="col-sm-4 form-horizontal">
+						<div class="form-group" th:classappend="form-group">
+							<input class="form-control" type="hidden"
+								th:field="*{orderItems[__${rowStat.index}__].id}"> <label
+								class="col-sm-2 control-label">类型</label>
+							<div class="col-sm-6">
+								<input class="form-control" type="text"
+									th:field="*{orderItems[__${rowStat.index}__].type}">
+							</div>
 						</div>
 					</div>
-					<div class="form-group" th:classappend="form-group">
-						<label class="col-sm-2 control-label">日期</label>
-						<div class="col-sm-5">
-							<input  class="form-control" th:field="*{date}">
+					<div class="col-sm-4 form-horizontal">
+						<div class="form-group" th:classappend="form-group">
+							<label class="col-sm-2 control-label">规格</label>
+							<div class="col-sm-6">
+								<input class="form-control" type="text"
+									th:field="*{orderItems[__${rowStat.index}__].kind}">
+							</div>
 						</div>
 					</div>
-					<div class="form-group" th:classappend="form-group">
-						<label class="col-sm-2 control-label">经手人</label>
-						<div class="col-sm-5">
-							<input class="form-control" th:field="*{handler}" id="handler">
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">出租方</label>
-						<div class="col-sm-5">
-							<input class="form-control" th:field="*{renter}" id="renter">
-						</div>
-					</div>
-
-					<div class="form-group" th:classappend="form-group">
-						<label class="col-sm-2 control-label">承租方</label>
-						<div class="col-sm-5">
-							<input class="form-control" th:field="*{lessee}" id="lessee">
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-sm-offset-2 col-sm-12">
-							<button type="submit" class="btn btn-primary" id="uploadinfo">修改</button>
+					<div class="col-sm-4 form-horizontal">
+						<div class="form-group" th:classappend="form-group">
+							<label class="col-sm-2 control-label">数量</label>
+							<div class="col-sm-6">
+								<input class="form-control" type="text"
+									th:field="*{orderItems[__${rowStat.index}__].quantity}"
+									id="quantity">
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-12">
+					<button type="submit" class="btn btn-primary" id="uploadinfo">修改</button>
+				</div>
+			</div>
 		</form>
+
 	</div>
 
 	<script th:src="@{/js/jquery.min.js}"></script>

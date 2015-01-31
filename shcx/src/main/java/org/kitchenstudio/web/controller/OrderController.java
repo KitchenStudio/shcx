@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.kitchenstudio.model.Driver;
 import org.kitchenstudio.model.Order;
+import org.kitchenstudio.model.OrderItem;
 import org.kitchenstudio.service.OrderService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,12 +51,26 @@ public class OrderController {
 		return "order/new";
 	}
 
-	@RequestMapping(value = "/new", method = RequestMethod.POST)
+	@RequestMapping(value = "/new", params = { "save" }, method = RequestMethod.POST)
 	String create(@Valid Order order, BindingResult result) {
 		if (result.hasErrors()) {
 			return "order/new";
 		}
-		orderService.add(order);
+		orderService.save(order, order.getOrderItems());
+		return "redirect:/order";
+	}
+
+	@RequestMapping(value = "/new", params = { "addItems" }, method = RequestMethod.POST)
+	String addItems(@Valid Order order, BindingResult result) {
+
+		order.getOrderItems().add(new OrderItem());
+		return "order/new";
+	}
+
+	@RequestMapping(value = "/new", params = { "removeItems" }, method = RequestMethod.POST)
+	String removeItems(@Valid Order order, BindingResult result) {
+
+		// order.getOrderItems().remove(new OrderItem());
 		return "redirect:/order";
 	}
 
@@ -70,11 +85,10 @@ public class OrderController {
 		if (result.hasErrors()) {
 			return "order/modify";
 		}
-		System.out.println("1");
-		System.out.println(order.getId());
-		orderService.add(order);
-		System.out.println(order.getId());
-		System.out.println("2");
+		//order.getOrderItems().add(new OrderItem());
+		//orderService.add(order);
+		System.out.println(order.getOrderItems().get(0).getId());
+		orderService.save(order,order.getOrderItems());
 		return "/order/modifysuccess";
 	}
 

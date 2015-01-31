@@ -34,6 +34,7 @@
 						<li><a th:href="@{/staff}">员工管理</a></li>
 						<li><a th:href="@{/driver}">司机管理</a></li>
 						<li><a th:href="@{/contact}">合同管理</a></li>
+						<li><a th:href="@{/order}">订单管理</a></li>
 						<li><a th:href="@{/purchase}">采购管理</a></li>
 						<li><a th:href="@{/store}">仓库信息</a></li>
 					</ul>
@@ -47,8 +48,8 @@
 			<div class="row">
 				<div class="col-sm-6 form-horizontal">
 					<div class="form-group" th:classappend="form-group"
-						th:class="${#fields.hasErrors('birthday')}? has-error"
-						th:title="${#fields.hasErrors('birthday')}? 编号应该全是数字">
+						th:class="${#fields.hasErrors('id')}? has-error"
+						th:title="${#fields.hasErrors('id')}? 编号应该全是数字">
 						<label class="col-sm-2 control-label">编号</label>
 						<div class="col-sm-3">
 							<input class="form-control" th:field="*{id}">

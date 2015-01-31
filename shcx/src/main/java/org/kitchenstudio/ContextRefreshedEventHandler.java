@@ -40,9 +40,9 @@ public class ContextRefreshedEventHandler implements
 		Driver driver = new Driver();
 		driver.setId(2L);
 		driver.setName("Airkid");
-		driver.setIDcard("1234567890987654321");
+		driver.setIDcard("370104199405281111");
 		driver.setPlateNumber("沪B12345");
-		
+		driver.setPhoneNumber("111");
 		driverRepository.save(driver);
 	}
 }

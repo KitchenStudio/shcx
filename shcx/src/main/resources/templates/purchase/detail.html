@@ -4,10 +4,9 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title></title>
+<title>订单详情</title>
 <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
 <link th:href="@{/css/style.css}" rel="stylesheet">
-
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -16,59 +15,84 @@
 </head>
 <body>
 	<div class="container">
-	
 		<nav class="navbar navbar-default">
 			<div class="container-fluid">
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle collapsed"
 						data-toggle="collapse" data-target="#navbar" aria-expanded="false"
 						aria-controls="navbar">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
+						<span class="sr-only">Toggle navigation</span> <span
+							class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
 					</button>
 					<a class="navbar-brand" th:href="@{/}">钢管租赁管理系统</a>
 				</div>
 				<div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
-						<li><a th:href="@{/}">首页</a></li>
+						<li class="active"><a th:href="@{/}">首页</a></li>
 						<li><a th:href="@{/staff}">员工管理</a></li>
-						<li><a th:href="@{/driver}">司机管理</a></li>
+						<li><a th:href="@{/driver}">司机管理</a></li>			
 						<li><a th:href="@{/contact}">合同管理</a></li>
 						<li><a th:href="@{/order}">订单管理</a></li>
-						<li class="active"><a th:href="@{/purchase}">采购管理</a></li>
+						<li><a th:href="@{/purchase}">采购管理</a></li>
 						<li><a th:href="@{/store}">仓库信息</a></li>
 					</ul>
 				</div>
 			</div>
 		</nav>
-		<h2 class="page-header">采购</h2>
-		<div class="container">
-			<a class="btn btn-default" th:href="@{/purchase/new}">增加</a>
-		
-		</div>
+	</div>
+
+	<div class="container" style="width: 960px;">
+		<h1 style="text-align: center;">采购详情</h1>
+		<table class="table table-bordered  " style="margin-top: 50px">
+			<tr>
+				<td>采购编号</td>
+				<td th:text="${purchase.id}"></td>
+			</tr>
+			<tr>
+				<td>采购日期</td>
+				<td th:text="${purchase.createdTime}"></td>
+			</tr>
+			<tr>
+				<td>采购者</td>
+				<td th:text="${purchase.buyer}"></td>
+			</tr>
+			
+		</table>
+		<h3 style="text-align: center;">采购单详情</h3>
 		<table class="table table-striped">
 			<thead>
 				<tr>
 					<th>编号</th>
-					<th>采购员</th>
+					<th>种类</th>
+					<th>规格</th>
+					<th>数量</th>
 					<th>&nbsp;</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="purchase : ${purchases}">
-					<td th:text="${purchase.id}"></td>
-					<td th:text="${purchase.buyer}"></td>
-					<td><a th:href="@{/purchase/{id}/detail(id=${purchase.id})}"><span
-							class="glyphicon glyphicon-info-sign"></span></a> <a
-						th:href="@{/purchase/delete/{id}(id=${purchase.id})}"
-						class="delete-link"><span class="glyphicon glyphicon-trash"></span></a></td>
+				<tr th:each="item : ${purchase.purchaseItems}">
+					<td th:text="${item.id}"></td>
+					<td th:text="${item.kind}"></td>
+					<td th:text="${item.remark}"></td>
+					<td th:text="${item.quantity}"></td>
 				</tr>
 			</tbody>
 		</table>
+		<div>
+			<a class="btn btn-primary btn-lg" id="uploadinfo" th:href="@{/purchase}">返回</a>
+
+			<a class="btn btn-primary btn-lg" id="uploadinfo"
+				th:href="@{/purchase/modify/{id}(id=${purchase.id})}">修改信息</a>
+		</div>   
 	</div>
+
+
 	<script th:src="@{/js/jquery.min.js}"></script>
+	<script th:src="@{/js/jquery.ui.widget.js}"></script>
+	<script th:src="@{/js/jquery.iframe-transport.js}"></script>
+	<script th:src="@{/js/jquery.fileupload.js}"></script>
 	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/main.js}"></script>
 </body>
 </html>

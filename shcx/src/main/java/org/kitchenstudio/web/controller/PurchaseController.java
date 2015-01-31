@@ -7,6 +7,7 @@ import java.util.Collections;
 import javax.swing.JButton;
 import javax.validation.Valid;
 
+import org.junit.runners.Parameterized.Parameters;
 import org.kitchenstudio.model.Purchase;
 import org.kitchenstudio.model.PurchaseItem;
 import org.kitchenstudio.model.Staff;
@@ -16,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -75,6 +77,13 @@ public class PurchaseController {
 	String create(@Valid Purchase purchase,BindingResult result){
 		
 		return "purchase/new";
+		
+	}
+	
+	@RequestMapping(value="/{id}/detail",method=RequestMethod.GET)
+	String info(@PathVariable("id")Purchase purchase,Model model){
+		model.addAttribute(purchase);
+		return "purchase/detail";
 		
 	}
 	

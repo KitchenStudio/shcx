@@ -19,16 +19,16 @@
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th>编号</th>
 					<th>姓名</th>
+					<th>手机号码</th>
 					<th>身份证号码</th>
 					<th>&nbsp;</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="staff : ${staffs}">
-					<td th:text="${staff.id}"></td>
 					<td th:text="${staff.name}"></td>
+					<td th:text="${staff.phoneNumber}"></td>
 					<td th:text="${staff.IDCard}"></td>
 					<td><a th:href="@{/staff/{id}/info(id=${staff.id})}"><span class="glyphicon glyphicon-info-sign"></span></a> 
 					<a	th:href="@{/staff/{id}/delete(id=${staff.id})}"

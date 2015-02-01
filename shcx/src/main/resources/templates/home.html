@@ -15,7 +15,7 @@
     <![endif]-->
 </head>
 <body>
-	<div class="container">
+	<div class="container" th:fragment="nav (page)">
 		<nav class="navbar navbar-default">
 			<div class="container-fluid">
 				<div class="navbar-header">
@@ -31,17 +31,20 @@
 				</div>
 				<div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
-						<li class="active"><a th:href="@{/}">首页</a></li>
-						<li><a th:href="@{/staff}">员工管理</a></li>
-						<li><a th:href="@{/driver}">司机管理</a></li>
-						<li><a th:href="@{/order}">订单管理</a></li>
-						<li><a th:href="@{/contact}">合同管理</a></li>
-						<li><a th:href="@{/purchase}">采购管理</a></li>
-						<li><a th:href="@{/store}">仓库信息</a></li>
+						<li th:class="${page eq 'home'} ? active"><a th:href="@{/}">首页</a></li>
+						<li th:class="${page eq 'staff'} ? active"><a th:href="@{/staff}">员工管理</a></li>
+						<li th:class="${page eq 'driver'} ? active"><a th:href="@{/driver}">司机管理</a></li>
+						<li th:class="${page eq 'contact'} ? active"><a th:href="@{/contact}">合同管理</a></li>
+						<li th:class="${page eq 'order'} ? active"><a th:href="@{/order}">订单管理</a></li>
+						<li th:class="${page eq 'purchase'} ? active"><a th:href="@{/purchase}">采购管理</a></li>
+						<li th:class="${page eq 'store'} ? active"><a th:href="@{/store}">仓库信息</a></li>
 					</ul>
 				</div>
 			</div>
 		</nav>
+	</div>
+	<div class="container">
+		<h2 class="page-header">仓库信息</h2>
 	</div>
 	<script th:src="@{/js/jquery.min.js}"></script>
 	<script th:src="@{/js/bootstrap.min.js}"></script>

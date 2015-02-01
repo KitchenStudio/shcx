@@ -4,7 +4,6 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="refresh" content="4;url=/staff">
 <title></title>
 <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
 <link th:href="@{/css/style.css}" rel="stylesheet">
@@ -16,11 +15,10 @@
     <![endif]-->
 </head>
 <body>
-	<div th:replace="home :: nav ('staff')"></div>
+	<div th:replace="home :: nav ('store')"></div>
 
 	<div class="container">
-		<h1>修改成功！网页将自动跳转</h1>
-		<a th:href="@{/staff}">返回</a>
+		<h2 class="page-header">仓库信息</h2>
 	</div>
 
 	<script th:src="@{/js/jquery.min.js}"></script>

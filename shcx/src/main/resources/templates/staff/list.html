@@ -27,7 +27,7 @@
 		</form>
 		
 		
-		<table class="table table-striped">
+		<table class="table table-striped table-hover">
 			<thead>
 				<tr>
 					<th>姓名</th>
@@ -41,9 +41,14 @@
 					<td th:text="${staff.name}"></td>
 					<td th:text="${staff.phoneNumber}"></td>
 					<td th:text="${staff.IDCard}"></td>
-					<td><a th:href="@{/staff/{id}/info(id=${staff.id})}"><span class="glyphicon glyphicon-info-sign"></span></a> 
-					<a	th:href="@{/staff/{id}/delete(id=${staff.id})}"
-						class="delete-link"><span class="glyphicon glyphicon-trash"></span></a></td>
+					<td>
+						<a th:href="@{/staff/{id}/info(id=${staff.id})}">
+							<span class="glyphicon glyphicon-info-sign"></span>
+						</a> 
+						<a th:href="@{/staff/{id}/delete(id=${staff.id})}" class="delete-link">
+							<span class="glyphicon glyphicon-trash"></span>
+						</a>
+					</td>
 				</tr>
 			</tbody>
 		</table>

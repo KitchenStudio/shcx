@@ -14,6 +14,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -28,7 +29,7 @@ public class Order {
 
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(iso = ISO.DATE)
-	@NotBlank(message = "不能为空")
+	@NotNull
 	private Date date;
 
 	private int isOut;// 0代表进料单，1代表出料单

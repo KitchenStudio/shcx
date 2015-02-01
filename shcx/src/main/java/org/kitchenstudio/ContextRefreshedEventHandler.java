@@ -31,6 +31,7 @@ public class ContextRefreshedEventHandler implements
 		Staff staff = new Staff();
 		staff.setId(3L);
 		staff.setName("张琳");
+		staff.setPhoneNumber("18366116016");
 		staff.setIDCard("350322199203140552");
 		staff.setBankNumber("1234123412341234123");
 		

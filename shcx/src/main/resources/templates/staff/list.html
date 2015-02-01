@@ -15,7 +15,18 @@
 	<div class="container">
 		<h2 class="page-header">员工列表</h2>
 	
-		<a class="btn btn-default" th:href="@{/staff/new}">增加</a>
+		
+		<form class="form-inline" role="search" th:action="@{/}" method="post">
+
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="搜索">
+			</div>
+			<button type="submit" class="btn btn-default">搜索</button>
+
+			<a class="btn btn-primary pull-right" th:href="@{/staff/new}">增加</a>
+		</form>
+		
+		
 		<table class="table table-striped">
 			<thead>
 				<tr>
@@ -36,6 +47,15 @@
 				</tr>
 			</tbody>
 		</table>
+		
+		<nav>
+			<ul class="pagination">
+				<li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+ 				<li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+ 				<li><a href="#">2</a></li>
+				<li class="disabled"><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+			</ul>
+		</nav>
 	</div>
 	<script th:src="@{/js/jquery.min.js}"></script>
 	<script th:src="@{/js/bootstrap.min.js}"></script>

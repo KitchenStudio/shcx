@@ -66,21 +66,23 @@ public class StaffController {
 		return "staff/detail";
 	}
 
+	@RequestMapping(value = "/{id}/modify", method = RequestMethod.GET)
+	String modify(@PathVariable("id") Staff staff, Model model) {
+		model.addAttribute(staff);
+		return "staff/modify";
+	}
+
 	@RequestMapping(value = "/{id}/modify", method = RequestMethod.POST)
 	String info(@RequestParam("file") MultipartFile file, @Valid Staff staff,
 			BindingResult result,HttpServletRequest request) {
 		if (result.hasErrors()) {
 			return "staff/modify";
 		}
-		staff.setPathFaceimage(getFaceimagePath(request, file));
+		// 只有当照片大小大于0时才上传
+		if (file.getSize() > 0)
+			staff.setPathFaceimage(getFaceimagePath(request, file));
 		staffService.save(staff);
 		return "/staff/modifysuccess";
-	}
-
-	@RequestMapping(value = "/{id}/modify", method = RequestMethod.GET)
-	String modify(@PathVariable("id") Staff staff, Model model) {
-		model.addAttribute(staff);
-		return "staff/modify";
 	}
 
 	String getFaceimagePath(HttpServletRequest request, MultipartFile file) {

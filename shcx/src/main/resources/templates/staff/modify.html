@@ -21,7 +21,8 @@
 		<h2 class="page-header">员工信息修改</h2>
 
 		<form th:action="@{/staff/{id}/modify(id=${staff.id})}" th:object="${staff}" method="post" enctype="multipart/form-data">
-			<h1 style="margin-bottom: 50px;text-align: center;">修改员工信息</h1>
+			<input type="hidden" th:field="*{pathFaceimage}">
+
 			<div class="row">
 				<div class="col-sm-6 form-horizontal">
 

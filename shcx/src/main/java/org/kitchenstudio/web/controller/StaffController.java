@@ -74,7 +74,7 @@ public class StaffController {
 
 	@RequestMapping(value = "/{id}/modify", method = RequestMethod.POST)
 	String info(@RequestParam("file") MultipartFile file, @Valid Staff staff,
-			BindingResult result,HttpServletRequest request) {
+			BindingResult result,HttpServletRequest request, Model model) {
 		if (result.hasErrors()) {
 			return "staff/modify";
 		}
@@ -82,7 +82,7 @@ public class StaffController {
 		if (file.getSize() > 0)
 			staff.setPathFaceimage(getFaceimagePath(request, file));
 		staffService.save(staff);
-		return "/staff/modifysuccess";
+		return "redirect:/staff/{id}/info?success";
 	}
 
 	String getFaceimagePath(HttpServletRequest request, MultipartFile file) {

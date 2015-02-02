@@ -1,6 +1,8 @@
 package org.kitchenstudio.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
@@ -11,12 +13,12 @@ public class PurchaseItem {
 	@GeneratedValue
 	private Long id;
 
-	private String kind;
 
 	private int quantity;
 
 	private String remark;
-
+	
+	@Enumerated(EnumType.STRING)
 	private Type type;
 
 	public Type getType() {
@@ -35,13 +37,6 @@ public class PurchaseItem {
 		this.id = id;
 	}
 
-	public String getKind() {
-		return kind;
-	}
-
-	public void setKind(String kind) {
-		this.kind = kind;
-	}
 
 	public int getQuantity() {
 		return quantity;

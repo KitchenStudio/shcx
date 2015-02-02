@@ -58,14 +58,11 @@
 						<div class="form-group" th:classappend="form-group">
 							<label class="col-sm-2 control-label">类型</label>
 							<div class="col-sm-6">
-
-								<select class="form-control"
-									th:field="*{purchaseItems[__${rowStat.index}__].kind}"
-									th:title="${#fields.errors('purchaseItems[__${rowStat.index}__].kind')}">
+								<select class="form-control" th:field="*{purchaseItems[__${rowStat.index}__].type}">
 									<option th:each="type : ${types}" th:value="${type}"
 										th:text="#{'type.' + ${type}}"></option>
 								</select>
-
+								
 							</div>
 						</div>
 					</div>

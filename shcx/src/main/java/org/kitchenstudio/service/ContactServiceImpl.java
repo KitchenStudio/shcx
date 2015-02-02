@@ -3,8 +3,8 @@ package org.kitchenstudio.service;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.kitchenstudio.model.Contact;
-import org.kitchenstudio.model.ContactItem;
+import org.kitchenstudio.entity.Contact;
+import org.kitchenstudio.entity.ContactItem;
 import org.kitchenstudio.repository.ContactItemRepository;
 import org.kitchenstudio.repository.ContactRepository;
 import org.springframework.beans.factory.annotation.Autowired;

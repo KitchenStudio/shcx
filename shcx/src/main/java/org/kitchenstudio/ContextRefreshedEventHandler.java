@@ -1,7 +1,7 @@
 package org.kitchenstudio;
 
-import org.kitchenstudio.model.Driver;
-import org.kitchenstudio.model.Staff;
+import org.kitchenstudio.entity.Driver;
+import org.kitchenstudio.entity.Staff;
 import org.kitchenstudio.repository.DriverRepository;
 import org.kitchenstudio.repository.StaffRepository;
 import org.slf4j.Logger;

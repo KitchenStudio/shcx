@@ -2,7 +2,7 @@ package org.kitchenstudio.service;
 
 import java.util.List;
 
-import org.kitchenstudio.model.Staff;
+import org.kitchenstudio.entity.Staff;
 
 public interface StaffService {
 

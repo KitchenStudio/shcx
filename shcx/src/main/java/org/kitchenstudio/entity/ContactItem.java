@@ -1,4 +1,4 @@
-package org.kitchenstudio.model;
+package org.kitchenstudio.entity;
 
 import java.math.BigDecimal;
 

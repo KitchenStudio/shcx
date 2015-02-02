@@ -2,7 +2,7 @@ package org.kitchenstudio.service;
 
 import java.util.List;
 
-import org.kitchenstudio.model.Staff;
+import org.kitchenstudio.entity.Staff;
 import org.kitchenstudio.repository.StaffRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

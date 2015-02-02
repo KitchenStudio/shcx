@@ -2,8 +2,8 @@ package org.kitchenstudio.service;
 
 import java.util.List;
 
-import org.kitchenstudio.model.Purchase;
-import org.kitchenstudio.model.PurchaseItem;
+import org.kitchenstudio.entity.Purchase;
+import org.kitchenstudio.entity.PurchaseItem;
 
 public interface PurchaseService {
 

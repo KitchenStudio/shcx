@@ -1,23 +1,17 @@
-package org.kitchenstudio.model;
+package org.kitchenstudio.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.Min;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
-public class StoreItem {
-
+public class OrderItem {
 	@Id
 	@GeneratedValue
 	private Long id;
-
-	// 例如钢管、扣件
-	private String type;
-	
-	// 例如 1米 1.1米 或者 直角 十字
-	private String kind;
-
-	private int quantity;
 
 	public Long getId() {
 		return id;
@@ -26,19 +20,27 @@ public class StoreItem {
 	public void setId(Long id) {
 		this.id = id;
 	}
+	
+	private Type type;// 钢管还是扣件
+	
+	@NotBlank(message="不能为空")
+	private String kind;// 钢管的类型和扣件
+	
+	@Min(value = 0, message ="数量不能为负")
+	private int quantity;// 钢管的总长度或者是扣件的总数量
 
-	public String getType() {
+	public Type getType() {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(Type type) {
 		this.type = type;
 	}
-	
+
 	public String getKind() {
 		return kind;
 	}
-	
+
 	public void setKind(String kind) {
 		this.kind = kind;
 	}
@@ -50,4 +52,5 @@ public class StoreItem {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
+
 }

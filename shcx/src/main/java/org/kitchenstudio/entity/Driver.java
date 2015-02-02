@@ -1,4 +1,4 @@
-package org.kitchenstudio.model;
+package org.kitchenstudio.entity;
 
 import javax.persistence.Entity;
 //import javax.persistence.EnumType;

@@ -1,6 +1,6 @@
 package org.kitchenstudio.controller;
 
-import org.kitchenstudio.model.Staff;
+import org.kitchenstudio.entity.Staff;
 import org.kitchenstudio.service.StaffService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;

@@ -27,6 +27,7 @@
 			<thead>
 				<tr>
 					<th>编号</th>
+					<th>采购日期</th>
 					<th>采购员</th>
 					<th>&nbsp;</th>
 				</tr>
@@ -34,6 +35,7 @@
 			<tbody>
 				<tr th:each="purchase : ${purchases}">
 					<td th:text="${purchase.id}"></td>
+					<td th:text="${purchase.createdTime}"></td>
 					<td th:text="${purchase.buyer}"></td>
 					<td><a th:href="@{/purchase/{id}/detail(id=${purchase.id})}"><span
 							class="glyphicon glyphicon-info-sign"></span></a> <a

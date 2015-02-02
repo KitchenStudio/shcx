@@ -4,10 +4,9 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title></title>
+<title>修改采购</title>
 <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
 <link th:href="@{/css/style.css}" rel="stylesheet">
-
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
@@ -16,12 +15,12 @@
     <![endif]-->
 </head>
 <body>
+	<div th:replace="home :: nav ('purchase')"></div>
 
-<div th:replace="home :: nav ('purchase')"></div>
 	<div class="container">
-		<h2 align="center">创建采购单</h2>
-		<hr>
-		<form th:action="@{/purchase/new}" th:object="${purchase}" method="post">
+	
+		<h2 class="page-header">采购详情修改</h2>
+		<form th:action="@{/purchase/{id}/modify(id=${purchase.id})}" th:object="${purchase}" method="post">
 			<div class="row">
 				<div class="col-sm-6 form-group"
 					th:classappend="'col-sm-6 form-group'">
@@ -92,7 +91,9 @@
 			</div>
 		</form>
 	</div>
+
 	<script th:src="@{/js/jquery.min.js}"></script>
 	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/main.js}"></script>
 </body>
 </html>

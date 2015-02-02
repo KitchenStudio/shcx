@@ -80,8 +80,24 @@ public class PurchaseController {
 		
 	}
 	
-	String create(Model model) {
-		return "";
+	@RequestMapping(value="/{id}/modify",method=RequestMethod.GET)
+	String modify(@PathVariable("id")Purchase purchase,Model model){
+		System.out.println("modefy");
+		model.addAttribute(purchase);
+		return "purchase/modify";
+	}
+	
+	
+	@RequestMapping(value="/{id}/modify",method=RequestMethod.POST)
+	String modify(@Valid Purchase purchase,BindingResult result){
+		
+		if(result.hasErrors()){
+			return "purchase/modify";
+		}
+		
+		purchaseService.save(purchase, purchase.getPurchaseItems());
+		return "redirect:/purchase";
+		
 	}
 
 	

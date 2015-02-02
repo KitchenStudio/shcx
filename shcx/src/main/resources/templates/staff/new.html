@@ -21,7 +21,11 @@
 
 		<h2 class="page-header">员工录入</h2>
 
-		<form th:action="@{/staff/new}" th:object="${staff}" method="post" enctype="multipart/form-data" >
+		<div th:replace="::new ('/staff/new', '录入')">
+		<form th:fragment="new (action, actionName)" th:action="@{${action}}" th:object="${staff}" method="post" enctype="multipart/form-data" >
+			<input type="hidden" th:field="*{id}">
+			<input type="hidden" th:field="*{pathFaceimage}">
+
 			<div class="row">
 				<div class="col-sm-6 form-horizontal">
 					<div class="form-group" th:classappend="form-group"
@@ -102,14 +106,21 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<div class="col-sm-offset-2 col-sm-12">
-							<button type="submit" class="btn btn-primary" id="uploadinfo">录入</button>
+						<div class="col-sm-offset-2 col-sm-1">
+							<button type="submit" class="btn btn-primary" th:text="${actionName}">修改</button>
+						</div>
+						<div class="col-sm-offset-1 col-sm-1" th:if="${actionName eq '修改'}">
+							<a th:href="@{/staff/{id}/info(id=${staff.id})}" class="btn btn-default">返回</a>
+						</div>
+						<div class="col-sm-offset-1 col-sm-1" th:unless="${actionName eq '修改'}">
+							<a th:href="@{/staff}" class="btn btn-default">返回</a>
 						</div>
 					</div>
 
 				</div>
 			</div>
 		</form>
+		</div>
 	</div>
 	<script th:src="@{/js/jquery.min.js}"></script>
 	<script th:src="@{/js/bootstrap.min.js}"></script>

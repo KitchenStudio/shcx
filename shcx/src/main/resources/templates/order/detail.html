@@ -81,7 +81,7 @@
 			<tbody>
 				<tr th:each="item : ${order.orderItems}">
 					<td th:text="${item.id}"></td>
-					<td th:text="${item.type}"></td>
+					<td th:text="#{'type.' + ${item.type}}"></td>
 					<td th:text="${item.kind}"></td>
 					<td th:text="${item.quantity}"></td>
 				</tr>

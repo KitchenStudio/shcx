@@ -10,6 +10,7 @@ import org.kitchenstudio.model.Driver;
 import org.kitchenstudio.model.Order;
 import org.kitchenstudio.model.OrderItem;
 import org.kitchenstudio.model.Staff;
+import org.kitchenstudio.model.Type;
 import org.kitchenstudio.service.OrderService;
 import org.kitchenstudio.service.StaffService;
 import org.slf4j.Logger;
@@ -40,6 +41,11 @@ public class OrderController {
 	@ModelAttribute("staffs")
 	List<Staff> populateStaffs(){
 		return staffService.findAll();
+	}
+	
+	@ModelAttribute("types")
+	Type[] populateTypes(){
+		return Type.values();
 	}
 
 	@RequestMapping({ "", "/" })

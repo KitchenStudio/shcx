@@ -9,8 +9,6 @@ import javax.validation.Valid;
 
 import org.kitchenstudio.entity.Driver;
 import org.kitchenstudio.service.DriverService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,9 +22,6 @@ import org.springframework.web.multipart.MultipartFile;
 @Controller
 @RequestMapping("/driver")
 public class DriverController {
-	private final static Logger log = LoggerFactory
-			.getLogger(DriverController.class);
-
 	@Autowired
 	private DriverService driverService;
 
@@ -58,10 +53,12 @@ public class DriverController {
 			@Valid Driver driver, BindingResult result,
 			HttpServletRequest request) {
 		if (result.hasErrors()) {
-			// System.out.println(result.getAllErrors());
 			return "/driver/new";
 		}
-		driver.setPathFaceimage(getFaceimagePath(request, file));
+		String PathFaceimage = getFaceimagePath(request, file);
+		if (PathFaceimage != null) {
+			driver.setPathFaceimage(PathFaceimage);
+		}
 		driverService.save(driver);
 		return "redirect:/driver";
 	}
@@ -78,24 +75,31 @@ public class DriverController {
 		return "driver/detail";
 	}
 
-	@RequestMapping(value = "/{id}/modify", method = RequestMethod.POST)
-	String info(@RequestParam("file") MultipartFile file, @Valid Driver driver,
-			BindingResult result, HttpServletRequest request) {
-		if (result.hasErrors()) {
-			return "driver/modify";
-		}
-		driver.setPathFaceimage(getFaceimagePath(request, file));
-		driverService.save(driver);
-		return "driver/modifysuccess";
-	}
-
 	@RequestMapping(value = "/{id}/modify", method = RequestMethod.GET)
 	String modify(@PathVariable("id") Driver driver, Model model) {
 		model.addAttribute(driver);
 		return "driver/modify";
 	}
 
-	String getFaceimagePath(HttpServletRequest request, MultipartFile file) {
+	@RequestMapping(value = "/{id}/modify", method = RequestMethod.POST)
+	String info(@RequestParam("file") MultipartFile file, @Valid Driver driver,
+			BindingResult result, HttpServletRequest request) {
+		if (result.hasErrors()) {
+			return "driver/modify";
+		}
+		String PathFaceimage = getFaceimagePath(request, file);
+		if (PathFaceimage != null) {
+			driver.setPathFaceimage(PathFaceimage);
+		}
+		driverService.save(driver);
+		return "redirect:/driver/{id}/info?success";
+	}
+
+	private String getFaceimagePath(HttpServletRequest request,
+			MultipartFile file) {
+		if (file.getSize() <= 0)
+			return null;
+
 		String conPath = null;
 		String sysPath = request.getServletContext().getRealPath("/");
 		try {

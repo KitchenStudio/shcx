@@ -14,12 +14,18 @@
     <![endif]-->
 </head>
 <body>
-<div th:replace="home :: nav ('driver')"></div>
+	<div th:replace="home :: nav ('driver')"></div>
 
-	<div class="container" style="width: 960px;">
-	
-	<h1 style="text-align: center;">司机详情</h1>
-		<table class="table table-bordered  " style="margin-top: 50px">
+	<div class="container">
+		<h2 class="page-header">司机详情</h2>
+		<div th:if="${param.success}" class="alert alert-info">
+			<button type="button" class="close" data-dismiss="alert"
+				aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			<p>修改成功</p>
+		</div>
+		<table class="table table-bordered">
 			<tr>
 				<td>编号</td>
 				<td th:text="${driver.id}"></td>
@@ -27,7 +33,9 @@
 				<td th:text="${driver.name}"></td>
 				<td>民族</td>
 				<td th:text="${driver.nation}"></td>
-				<td rowspan="3"><img alt="" th:src="${driver.pathFaceimage}" style="width: 100px;height: 100px;"></td>
+				<td rowspan="3"><img alt=""
+					th:src="@{${!#strings.isEmpty(driver.pathFaceimage)} ? ${driver.pathFaceimage} : '/images/faceimage.jpg'}"
+					style="width: 100px; height: 100px;"></td>
 			</tr>
 			<tr>
 				<td>身份证号</td>
@@ -36,7 +44,7 @@
 				<td th:text="${driver.plateNumber}"></td>
 				<td>电话号码</td>
 				<td th:text="${driver.phoneNumber}"></td>
-				
+
 			</tr>
 			<tr>
 				<td>地址</td>
@@ -46,18 +54,14 @@
 			</tr>
 		</table>
 		<div>
-			<a class="btn btn-primary btn-lg" id="uploadinfo" th:href="@{/driver}">返回</a>
-
 			<a class="btn btn-primary btn-lg" id="uploadinfo"
-				th:href="@{/driver/{id}/modify(id=${driver.id})}">修改信息</a>
+				th:href="@{/driver}">返回</a> <a class="btn btn-primary btn-lg"
+				id="uploadinfo" th:href="@{/driver/{id}/modify(id=${driver.id})}">修改信息</a>
 		</div>
 	</div>
 
 
 	<script th:src="@{/js/jquery.min.js}"></script>
-	<script th:src="@{/js/jquery.ui.widget.js}"></script>
-	<script th:src="@{/js/jquery.iframe-transport.js}"></script>
-	<script th:src="@{/js/jquery.fileupload.js}"></script>
 	<script th:src="@{/js/bootstrap.min.js}"></script>
 	<script th:src="@{/js/main.js}"></script>
 </body>

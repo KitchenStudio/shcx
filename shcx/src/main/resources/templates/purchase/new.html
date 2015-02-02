@@ -37,7 +37,7 @@
 					th:classappend="'col-sm-6 form-group'">
 					<label class="col-sm-3 control-label">采购人</label>
 					<div class="col-sm-6">
-						<select class="form-control">
+						<select class="form-control" th:field="*{buyer}">
 							<option th:each="staff : ${staffs}" th:text="${staff.name}"
 								th:value="${staff.id}"></option>
 						</select>

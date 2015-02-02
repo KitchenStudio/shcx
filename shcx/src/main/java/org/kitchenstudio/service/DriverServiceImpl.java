@@ -8,15 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class DriverServiceImpl implements DriverService{
+public class DriverServiceImpl implements DriverService {
 
 	private final DriverRepository driverRepository;
-	
+
 	@Autowired
-	public DriverServiceImpl(DriverRepository driverRespository){
+	public DriverServiceImpl(DriverRepository driverRespository) {
 		this.driverRepository = driverRespository;
 	}
-	
+
 	@Override
 	public List<Driver> findAll() {
 		return driverRepository.findAll();

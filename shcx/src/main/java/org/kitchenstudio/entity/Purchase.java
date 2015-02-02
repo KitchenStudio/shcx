@@ -3,19 +3,15 @@ package org.kitchenstudio.entity;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.Valid;
 
-import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
@@ -26,16 +22,14 @@ public class Purchase {
 	@GeneratedValue
 	private Long id;
 
-//	@ManyToOne(optional = false)
-//	@JoinColumn(name = "STAFF_ID", nullable = true, updatable = false)
-	
+	// @ManyToOne(optional = false)
+	// @JoinColumn(name = "STAFF_ID", nullable = true, updatable = false)
+
 	private String buyer;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(iso = ISO.DATE)
-	
 	private Date createdTime;
-	
 
 	@OneToMany(orphanRemoval = true)
 	@JoinColumn(name = "PURCHASE_ID")
@@ -48,8 +42,6 @@ public class Purchase {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-
 
 	public String getBuyer() {
 		return buyer;
@@ -74,7 +66,5 @@ public class Purchase {
 	public void setPurchaseItems(List<PurchaseItem> items) {
 		this.purchaseItems = items;
 	}
-
-	
 
 }

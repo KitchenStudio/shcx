@@ -11,12 +11,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -37,8 +35,8 @@ public class Order {
 
 	// ManyToOne
 	// private 项目
-	@ManyToOne(optional=false)
-	@JoinColumn(name="CUST_ID", nullable=false, updatable=false)
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "CUST_ID", nullable = false, updatable = false)
 	private Staff handler;// 经手人
 
 	@NotBlank(message = "不能为空")

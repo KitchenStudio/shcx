@@ -20,25 +20,23 @@ public class Staff {
 
 	@Id
 	@GeneratedValue
-	private Long id;//员工的id
+	private Long id;// 员工的id
 
-	@NotBlank(message="不能为空")
-	private String name;//员工的姓名
+	@NotBlank(message = "不能为空")
+	private String name;// 员工的姓名
 
 	@Length(min = 18, max = 18, message = "身份证长度不符合")
-	private String IDCard;//员工的身份证号
+	private String IDCard;// 员工的身份证号
 
 	@Enumerated(EnumType.STRING)
-	private GenderType gender;//员工的性别
+	private GenderType gender;// 员工的性别
 
 	private String type;// 员工的类型
-	
 
 	private String address;// 员工的地址
 
-
 	private String phoneNumber;// 员工的电话号码
-	
+
 	private String pathFaceimage;
 
 	public String getPathFaceimage() {
@@ -62,16 +60,18 @@ public class Staff {
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(iso = ISO.DATE)
 	private Date birthday;// 出生日期
-	
-	@Length(min=19,max=19,message="银行卡号位数不符合")
+
+	@Length(min = 19, max = 19, message = "银行卡号位数不符合")
 	private String bankNumber;// 银行卡号
-	
+
 	private String nation;// 民族
+
 	// private String
 
 	public String getType() {
 		return type;
 	}
+
 	public void setType(String type) {
 		this.type = type;
 	}
@@ -83,9 +83,6 @@ public class Staff {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-
-
-
 
 	public String getEducation() {
 		return education;
@@ -118,7 +115,6 @@ public class Staff {
 	public void setNation(String nation) {
 		this.nation = nation;
 	}
-
 
 	public Long getId() {
 		return id;

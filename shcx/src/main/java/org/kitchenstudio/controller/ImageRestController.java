@@ -5,7 +5,6 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -21,11 +20,10 @@ public class ImageRestController {
 			String syspath = request.getServletContext().getRealPath("/");
 			File upload = new File(syspath + "/upload");
 
-			
 			if (!upload.isDirectory()) {
 				upload.mkdir();
 			}
-			
+
 			System.out.println(upload.getPath());
 			String[] name = file.getOriginalFilename().split("\\.");
 			String suffix = name[name.length - 1];

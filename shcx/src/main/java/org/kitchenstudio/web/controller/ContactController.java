@@ -6,7 +6,6 @@ import javax.validation.Valid;
 
 import org.kitchenstudio.entity.Contact;
 import org.kitchenstudio.entity.ContactItem;
-import org.kitchenstudio.entity.Order;
 import org.kitchenstudio.service.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,7 +40,7 @@ public class ContactController {
 		model.addAttribute("contact", new Contact());
 		return "/contact/new";
 	}
-	
+
 	@RequestMapping(value = "/new", params = { "save" }, method = RequestMethod.POST)
 	String create(@Valid Contact contact, BindingResult result) {
 		if (result.hasErrors()) {

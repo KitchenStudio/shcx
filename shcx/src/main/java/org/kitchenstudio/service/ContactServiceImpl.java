@@ -34,7 +34,7 @@ public class ContactServiceImpl implements ContactService {
 		for (ContactItem contactItem : contactItems) {
 			savedItems.add(contactItemRepository.save(contactItem));
 		}
-		
+
 		contact.setContactItems(savedItems);
 		contactRepository.save(contact);
 	}

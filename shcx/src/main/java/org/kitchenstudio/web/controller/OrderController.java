@@ -10,6 +10,7 @@ import org.kitchenstudio.model.Driver;
 import org.kitchenstudio.model.Order;
 import org.kitchenstudio.model.OrderItem;
 import org.kitchenstudio.model.Staff;
+import org.kitchenstudio.model.Type;
 import org.kitchenstudio.service.OrderService;
 import org.kitchenstudio.service.StaffService;
 import org.slf4j.Logger;
@@ -41,6 +42,11 @@ public class OrderController {
 	List<Staff> populateStaffs(){
 		return staffService.findAll();
 	}
+	
+	@ModelAttribute("types")
+	Type[] populateTypes(){
+		return Type.values();
+	}
 
 	@RequestMapping({ "", "/" })
 	String home(Model model) {
@@ -70,7 +76,7 @@ public class OrderController {
 		return "order/new";
 	}
 
-	@RequestMapping(value = "/info/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{id}/info", method = RequestMethod.GET)
 	String info(@PathVariable("id") Order order, Model model) {
 		model.addAttribute(order);
 		return "order/detail";
@@ -82,13 +88,13 @@ public class OrderController {
 		return "order/modify";
 	}
 
-	@RequestMapping(value = "/info", method = RequestMethod.POST)
+	@RequestMapping(value = "/{id}/info", method = RequestMethod.POST)
 	String info(@Valid Order order, BindingResult result) {
 		if (result.hasErrors()) {
 			return "order/modify";
 		}
 		orderService.save(order, order.getOrderItems());
-		return "/order/modifysuccess";
+		return "redirect:/order/{id}/info?success";
 	}
 
 	@RequestMapping(value = "/info", params = { "removeItem" }, method = RequestMethod.POST)

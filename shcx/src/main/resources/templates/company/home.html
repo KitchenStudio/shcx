@@ -15,29 +15,13 @@
     <![endif]-->
 </head>
 <body>
-	<div th:replace="home :: nav ('contact')"></div>
+	<div th:replace="home :: nav ('company')"></div>
 
 	<div class="container">
-		<h2 class="page-header">合同</h2>
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th>类型</th>
-					<th>单价</th>
-					<th>&nbsp;</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="item : ${contact.contactItems}">
-					<td th:text="${item.kind}"></td>
-					<td th:text="${item.price}"></td>
-				</tr>
-			</tbody>
-		</table>
+		<h2 class="page-header">公司信息</h2>
 	</div>
 
 	<script th:src="@{/js/jquery.min.js}"></script>
 	<script th:src="@{/js/bootstrap.min.js}"></script>
-	<script th:src="@{/js/main.min.js}"></script>
 </body>
 </html>

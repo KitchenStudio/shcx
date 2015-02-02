@@ -15,39 +15,18 @@
     <![endif]-->
 </head>
 <body>
-	<div class="container">
-		<nav class="navbar navbar-default">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed"
-						data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-						aria-controls="navbar">
-						<span class="sr-only">Toggle navigation</span> <span
-							class="icon-bar"></span> <span class="icon-bar"></span> <span
-							class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" th:href="@{/}">钢管租赁管理系统</a>
-				</div>
-				<div id="navbar" class="navbar-collapse collapse">
-					<ul class="nav navbar-nav">
-						<li class="active"><a th:href="@{/}">首页</a></li>
-						<li><a th:href="@{/staff}">员工管理</a></li>
-						<li><a th:href="@{/driver}">司机管理</a></li>
+	<div th:replace="home :: nav ('order')"></div>
 
-						<li><a th:href="@{/contact}">合同管理</a></li>
-						<li><a th:href="@{/order}">订单管理</a></li>
-						<li><a th:href="@{/purchase}">采购管理</a></li>
-						<li><a th:href="@{/store}">仓库信息</a></li>
-					</ul>
-				</div>
-			</div>
-		</nav>
-	</div>
 	<div class="container">
-		<form th:action="@{/order/info}" th:object="${order}" method="post">
-			<input type="hidden" th:field="*{id}">
-			<h1 style="margin-bottom: 50px; text-align: center;">修改订单信息</h1>
+	
+		<h2 class="page-header">订单修改</h2>
+		<form th:action="@{/order/{id}/info(id=${order.id})}" th:object="${order}" method="post">
 			<div class="row">
+				<div class="clo-sm-12 form-group" th:classappend="form-group">
+					<div class="col-sm-5">
+						<input type="hidden" class="form-control" th:field="*{id}">
+					</div>
+				</div>
 				<div class="col-sm-6 form-group" th:classappend="form-group">
 					<label class="col-sm-3 control-label">日期</label>
 					<div class="col-sm-6">
@@ -86,8 +65,11 @@
 								th:field="*{orderItems[__${rowStat.index}__].id}"> <label
 								class="col-sm-2 control-label">类型</label>
 							<div class="col-sm-6">
-								<input class="form-control" type="text"
-									th:field="*{orderItems[__${rowStat.index}__].type}">
+								<select class="form-control"
+									th:field="*{orderItems[__${rowStat.index}__].type}"
+									th:title="${#fields.errors('orderItems[__${rowStat.index}__].type')}">
+									<option th:each="type : ${types}" th:value="${type}" th:text="#{'type.' + ${type}}"></option>
+								</select>
 							</div>
 						</div>
 					</div>
@@ -130,5 +112,6 @@
 
 	<script th:src="@{/js/jquery.min.js}"></script>
 	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/main.js}"></script>
 </body>
 </html>

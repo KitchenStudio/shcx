@@ -18,8 +18,9 @@
 	<div th:replace="home :: nav ('order')"></div>
 
 	<div class="container">
-		<h2 align="center">创建订单</h2>
-		<hr>
+ 
+		<h2 class="page-header">创建订单</h2>
+
 		<form th:action="@{/order/new}" th:object="${order}" method="post">
 			<div class="row">
 				<div class="col-sm-6 form-group"

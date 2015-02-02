@@ -16,7 +16,7 @@
 <body>
 	<div th:replace="home :: nav ('order')"></div>
 
-	<div class="container" style="width: 960px;">
+	<div class="container">
 		<h2 class="page-header">订单详情</h2>
 		
 		<div th:if="${param.success}" class="alert alert-info">
@@ -26,8 +26,7 @@
 			<p>修改成功</p>
 		</div>
 
-		<h1 style="text-align: center;">订单详情</h1>
-		<table class="table table-bordered  " style="margin-top: 50px">
+		<table class="table table-bordered">
 			<tr>
 				<td>编号</td>
 				<td th:text="${order.id}"></td>

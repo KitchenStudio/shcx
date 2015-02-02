@@ -38,12 +38,16 @@ public class ContextRefreshedEventHandler implements
 			staffRepository.save(staff);
 		}
 
-		Driver driver = new Driver();
-		driver.setId(2L);
-		driver.setName("Airkid");
-		driver.setIDcard("370104199405281111");
-		driver.setPlateNumber("沪B12345");
-		driver.setPhoneNumber("111");
-		driverRepository.save(driver);
+		for(int i=0;i<10;i++){
+			Driver driver = new Driver();
+			driver.setName("老司机"+i);
+			driver.setBankNumber("123456789098765432"+i);
+			driver.setIDcard("12345678901234567"+i);
+			driver.setNation(""+i);
+			driver.setPlateNumber("沪A1234"+i);
+			driver.setPhoneNumber(""+i+i+i+i);
+			
+			driverRepository.save(driver);
+		}
 	}
 }

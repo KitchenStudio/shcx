@@ -16,18 +16,17 @@
 </head>
 <body>
 <div th:replace="home :: nav ('driver')"></div>
+
 	<div class="container">
+		<h2 class="page-header">司机信息修改</h2>
+		
 		<form th:action="@{/driver/{id}/modify(id=${driver.id})}" th:object="${driver}" method="post" enctype="multipart/form-data">
-			<h1 style="margin-bottom: 50px;text-align: center;">修改员工信息</h1>
+			<input type="hidden" th:field="*{id}">
+			<input type="hidden" th:field="*{pathFaceimage}">
+			
 			<div class="row">
 				<div class="col-sm-6 form-horizontal">
-
-					<div class="form-group" th:classappend="form-group">
-						<label class="col-sm-2 control-label">编号</label>
-						<div class="col-sm-3">
-							<input class="form-control" th:field="*{id}">
-						</div>
-					</div>
+				
 					<div class="form-group" th:classappend="form-group"
 						th:class="${#fields.hasErrors('name')}? has-error" title="what?"
 						th:title="${#fields.errors('name')}">
@@ -60,25 +59,6 @@
 							<input class="form-control" th:field="*{address}">
 						</div>
 					</div>
-				</div>
-				<div class="col-sm-6 form-horizontal" th:classappend="form-group">
-					<div class="form-group">
-						<label class="col-sm-2 control-label">上传头像</label>
-						<div class="col-sm-3" >
-						
-						<div id="upload-area">
-							<img width="128" height="128" alt=""
-								th:src="*{pathFaceimage}" id="uploadpicture">
-						</div> 
-								<input	name="file" type="file" id="fileupload">
-						</div>
-					</div>
-					<div class="form-group" th:classappend="form-group">
-						<label class="col-sm-2 control-label">民族</label>
-						<div class="col-sm-2">
-							<input class="form-control" th:field="*{nation}" id="nation">
-						</div>
-					</div>
 					<div class="form-group" th:classappend="form-group"
 					th:class="${#fields.hasErrors('phoneNumber')}? has-error" title="what?"
 						th:title="${#fields.errors('phoneNumber')}">
@@ -86,6 +66,26 @@
 						<div class="col-sm-5">
 							<input class="form-control" th:field="*{phoneNumber}"
 								id="phoneNumber">
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-6 form-horizontal">
+					<div class="form-group">
+						<label class="col-sm-2 control-label">头像</label>
+						<div class="col-sm-3" >
+						
+						<div id="upload-area">
+							<img width="128" height="128" alt=""
+								th:src="*{pathFaceimage}" id="uploadpicture">
+						</div> 
+							<input	name="file" type="file" id="fileupload">
+						</div>
+					</div>
+					<div class="form-group" th:classappend="form-group">
+						<label class="col-sm-2 control-label">民族</label>
+						<div class="col-sm-2">
+							<input class="form-control" th:field="*{nation}" id="nation">
 						</div>
 					</div>
 					<div class="form-group" th:classappend="form-group"
@@ -98,8 +98,11 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<div class="col-sm-offset-2 col-sm-12">
-							<button type="submit" class="btn btn-primary" id="uploadinfo">修改</button>
+						<div class="col-sm-offset-2 col-sm-1">
+							<button type="submit" class="btn btn-primary">修改</button>
+						</div>
+						<div class="col-sm-offset-1 col-sm-1">
+							<a th:href="@{/driver/{id}/info(id=${driver.id})}" class="btn btn-default">返回</a>
 						</div>
 					</div>
 				</div>
@@ -109,9 +112,6 @@
 	
 	<script th:src="@{/js/jquery.min.js}"></script>
 	<script th:src="@{/js/bootstrap.min.js}"></script>
-	<script th:src="@{/js/jquery.ui.widget.js}"></script>
-	<script th:src="@{/js/jquery.iframe-transport.js}"></script>
-	<script th:src="@{/js/jquery.fileupload.js}"></script>
 	<script th:src="@{/js/load-image.all.min.js}"></script>
 	<script th:src="@{/js/main.js}"></script>
 </body>

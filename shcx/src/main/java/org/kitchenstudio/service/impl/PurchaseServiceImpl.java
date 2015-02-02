@@ -1,4 +1,4 @@
-package org.kitchenstudio.service;
+package org.kitchenstudio.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +7,7 @@ import org.kitchenstudio.entity.Purchase;
 import org.kitchenstudio.entity.PurchaseItem;
 import org.kitchenstudio.repository.PurchaseItemRepository;
 import org.kitchenstudio.repository.PurchaseRepository;
+import org.kitchenstudio.service.PurchaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

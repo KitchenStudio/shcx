@@ -1,4 +1,4 @@
-package org.kitchenstudio.service;
+package org.kitchenstudio.service.impl;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -7,6 +7,7 @@ import org.kitchenstudio.entity.Order;
 import org.kitchenstudio.entity.OrderItem;
 import org.kitchenstudio.repository.OrderItemRepository;
 import org.kitchenstudio.repository.OrderRepository;
+import org.kitchenstudio.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

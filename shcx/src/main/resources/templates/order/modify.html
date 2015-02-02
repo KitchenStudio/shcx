@@ -21,12 +21,8 @@
 	
 		<h2 class="page-header">订单修改</h2>
 		<form th:action="@{/order/{id}/info(id=${order.id})}" th:object="${order}" method="post">
+			<input th:field="*{id}" type="hidden">
 			<div class="row">
-				<div class="clo-sm-12 form-group" th:classappend="form-group">
-					<div class="col-sm-5">
-						<input type="hidden" class="form-control" th:field="*{id}">
-					</div>
-				</div>
 				<div class="col-sm-6 form-group" th:classappend="form-group">
 					<label class="col-sm-3 control-label">日期</label>
 					<div class="col-sm-6">

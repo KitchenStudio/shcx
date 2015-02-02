@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -36,7 +37,7 @@ public class Order {
 	// ManyToOne
 	// private 项目
 	@ManyToOne(optional = false)
-	@JoinColumn(name = "CUST_ID", nullable = false, updatable = false)
+	@JoinColumn(name = "CUST_ID", nullable = false)
 	private Staff handler;// 经手人
 
 	@NotBlank(message = "不能为空")

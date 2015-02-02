@@ -40,4 +40,9 @@ public class PurchaseServiceImpl implements PurchaseService {
 		purchaseRepository.save(purchase);
 	}
 
+	@Override
+	public void delete(Purchase purchase) {
+		// TODO Auto-generated method stub
+		purchaseRepository.delete(purchase);
+	}
 }

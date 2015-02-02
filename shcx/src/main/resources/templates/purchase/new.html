@@ -17,25 +17,30 @@
 </head>
 <body>
 
-<div th:replace="home :: nav ('purchase')"></div>
+	<div th:replace="home :: nav ('purchase')"></div>
 	<div class="container">
 		<h2 align="center">创建采购单</h2>
 		<hr>
-		<form th:action="@{/purchase/new}" th:object="${purchase}" method="post">
+		<form th:action="@{/purchase/new}" th:object="${purchase}"
+			method="post">
 			<div class="row">
 				<div class="col-sm-6 form-group"
-					th:classappend="'col-sm-6 form-group'">
+					th:classappend="'col-sm-6 form-group'"
+					th:class="${#fields.hasErrors('createdTime')}? has-error">
 					<label class="col-sm-3 control-label">采购日期</label>
 					<div class="col-sm-6">
-						<input class="form-control" th:field="*{createdTime}">
+						<input class="form-control" th:field="*{createdTime}"
+							th:title="${#fields.hasErrors('createdTime')}? 格式有问题，应该使用2012-10-12的格式">
 					</div>
 				</div>
 				<div class="col-sm-6 form-group"
-					th:classappend="'col-sm-6 form-group'"
-					>
+					th:classappend="'col-sm-6 form-group'">
 					<label class="col-sm-3 control-label">采购人</label>
 					<div class="col-sm-6">
-						<input class="form-control" id="idcard"	th:field="*{buyer}">
+						<select class="form-control">
+							<option th:each="staff : ${staffs}" th:text="${staff.name}"
+								th:value="${staff.id}"></option>
+						</select>
 					</div>
 				</div>
 
@@ -47,38 +52,40 @@
 			</div>
 			<hr>
 			<div class="row">
-				<div class=" form-horizontal" th:each="row,rowStat : *{purchaseItems}">
+				<div class=" form-horizontal"
+					th:each="row,rowStat : *{purchaseItems}">
 					<div class="col-sm-4 form-horizontal">
-						<div class="form-group" th:classappend="form-group"
-							>
+						<div class="form-group" th:classappend="form-group">
 							<label class="col-sm-2 control-label">类型</label>
 							<div class="col-sm-6">
-								<input class="form-control" type="text"
-									th:field="*{purchaseItems[__${rowStat.index}__].remark}"
-									>
+
+								<select class="form-control"
+									th:field="*{purchaseItems[__${rowStat.index}__].kind}"
+									th:title="${#fields.errors('purchaseItems[__${rowStat.index}__].kind')}">
+									<option th:each="type : ${types}" th:value="${type}"
+										th:text="#{'type.' + ${type}}"></option>
+								</select>
+
 							</div>
 						</div>
 					</div>
 					<div class="col-sm-4 form-horizontal">
-						<div class="form-group" th:classappend="form-group"
-							>
+						<div class="form-group" th:classappend="form-group">
 							<label class="col-sm-2 control-label">规格</label>
 							<div class="col-sm-6">
 								<input class="form-control" type="text"
-									th:field="*{purchaseItems[__${rowStat.index}__].kind}"
-									>
+									th:field="*{purchaseItems[__${rowStat.index}__].remark}">
+
 							</div>
 						</div>
 					</div>
 					<div class="col-sm-4 form-horizontal">
-						<div class="form-group" th:classappend="form-group"
-							>
+						<div class="form-group" th:classappend="form-group">
 							<label class="col-sm-2 control-label">数量</label>
 							<div class="col-sm-6">
 								<input class="form-control" type="text"
 									th:field="*{purchaseItems[__${rowStat.index}__].quantity}"
-									id="quantity"
-									>
+									id="quantity">
 							</div>
 						</div>
 					</div>

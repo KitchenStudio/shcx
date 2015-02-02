@@ -1,46 +1,30 @@
 package org.kitchenstudio.entity;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
 public class StoreItem {
 
 	@Id
-	@GeneratedValue
-	private Long id;
-
-	// 例如钢管、扣件
-	private String type;
-
-	// 例如 1米 1.1米 或者 直角 十字
-	private String kind;
+	private StoreType storeType;
 
 	private int quantity;
 
-	public Long getId() {
-		return id;
+	public StoreItem() { // for Hibernate
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public StoreItem(StoreType storeType, int quantity) {
+		this.storeType = storeType;
+		this.quantity = quantity;
 	}
 
-	public String getType() {
-		return type;
+	public StoreType getStoreType() {
+		return storeType;
 	}
 
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	public String getKind() {
-		return kind;
-	}
-
-	public void setKind(String kind) {
-		this.kind = kind;
+	public void setStoreType(StoreType storeType) {
+		this.storeType = storeType;
 	}
 
 	public int getQuantity() {

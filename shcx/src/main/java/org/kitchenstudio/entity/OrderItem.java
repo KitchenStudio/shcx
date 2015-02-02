@@ -1,6 +1,8 @@
 package org.kitchenstudio.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.Min;
@@ -21,6 +23,7 @@ public class OrderItem {
 		this.id = id;
 	}
 
+	@Enumerated(EnumType.STRING)
 	private Type type;// 钢管还是扣件
 
 	@NotBlank(message = "不能为空")

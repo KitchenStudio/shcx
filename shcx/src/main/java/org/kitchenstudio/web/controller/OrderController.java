@@ -6,11 +6,11 @@ import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
-import org.kitchenstudio.model.Driver;
-import org.kitchenstudio.model.Order;
-import org.kitchenstudio.model.OrderItem;
-import org.kitchenstudio.model.Staff;
-import org.kitchenstudio.model.Type;
+import org.kitchenstudio.entity.Driver;
+import org.kitchenstudio.entity.Order;
+import org.kitchenstudio.entity.OrderItem;
+import org.kitchenstudio.entity.Staff;
+import org.kitchenstudio.entity.Type;
 import org.kitchenstudio.service.OrderService;
 import org.kitchenstudio.service.StaffService;
 import org.slf4j.Logger;

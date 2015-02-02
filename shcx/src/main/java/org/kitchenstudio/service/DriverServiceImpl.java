@@ -2,7 +2,7 @@ package org.kitchenstudio.service;
 
 import java.util.List;
 
-import org.kitchenstudio.model.Driver;
+import org.kitchenstudio.entity.Driver;
 import org.kitchenstudio.repository.DriverRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

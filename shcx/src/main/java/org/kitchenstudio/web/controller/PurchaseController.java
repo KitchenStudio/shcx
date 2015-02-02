@@ -7,9 +7,9 @@ import java.util.Collections;
 import javax.swing.JButton;
 import javax.validation.Valid;
 
-import org.kitchenstudio.model.Purchase;
-import org.kitchenstudio.model.PurchaseItem;
-import org.kitchenstudio.model.Staff;
+import org.kitchenstudio.entity.Purchase;
+import org.kitchenstudio.entity.PurchaseItem;
+import org.kitchenstudio.entity.Staff;
 import org.kitchenstudio.service.PurchaseService;
 import org.kitchenstudio.service.StaffService;
 import org.springframework.beans.factory.annotation.Autowired;

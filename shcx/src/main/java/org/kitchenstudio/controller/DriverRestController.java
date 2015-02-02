@@ -1,6 +1,6 @@
 package org.kitchenstudio.controller;
 
-import org.kitchenstudio.model.Driver;
+import org.kitchenstudio.entity.Driver;
 import org.kitchenstudio.service.DriverService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;

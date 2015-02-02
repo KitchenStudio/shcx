@@ -2,8 +2,8 @@ package org.kitchenstudio.service;
 
 import java.util.List;
 
-import org.kitchenstudio.model.Order;
-import org.kitchenstudio.model.OrderItem;
+import org.kitchenstudio.entity.Order;
+import org.kitchenstudio.entity.OrderItem;
 
 public interface OrderService {
 	List<Order> findAll();

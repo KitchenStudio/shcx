@@ -7,8 +7,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
-import org.kitchenstudio.model.Driver;
-import org.kitchenstudio.model.Staff;
+import org.kitchenstudio.entity.Driver;
+import org.kitchenstudio.entity.Staff;
 import org.kitchenstudio.service.DriverService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

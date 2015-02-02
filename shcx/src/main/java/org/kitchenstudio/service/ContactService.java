@@ -2,8 +2,8 @@ package org.kitchenstudio.service;
 
 import java.util.List;
 
-import org.kitchenstudio.model.Contact;
-import org.kitchenstudio.model.ContactItem;
+import org.kitchenstudio.entity.Contact;
+import org.kitchenstudio.entity.ContactItem;
 
 public interface ContactService {
 

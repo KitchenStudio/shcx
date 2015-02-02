@@ -5,8 +5,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.kitchenstudio.model.Purchase;
-import org.kitchenstudio.model.PurchaseItem;
+import org.kitchenstudio.entity.Purchase;
+import org.kitchenstudio.entity.PurchaseItem;
 import org.kitchenstudio.repository.PurchaseItemRepository;
 import org.kitchenstudio.repository.PurchaseRepository;
 import org.springframework.beans.factory.annotation.Autowired;

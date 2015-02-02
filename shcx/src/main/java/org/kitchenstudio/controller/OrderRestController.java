@@ -1,6 +1,6 @@
 package org.kitchenstudio.controller;
 
-import org.kitchenstudio.model.Order;
+import org.kitchenstudio.entity.Order;
 import org.kitchenstudio.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;

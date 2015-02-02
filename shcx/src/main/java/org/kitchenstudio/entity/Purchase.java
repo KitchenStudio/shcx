@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -35,6 +36,7 @@ public class Purchase {
 
 	@OneToMany(orphanRemoval = true)
 	@JoinColumn(name = "PURCHASE_ID")
+	@Valid
 	private List<PurchaseItem> purchaseItems = new ArrayList<>();
 
 	public Long getId() {

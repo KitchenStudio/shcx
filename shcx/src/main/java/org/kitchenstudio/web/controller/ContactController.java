@@ -6,7 +6,6 @@ import javax.validation.Valid;
 
 import org.kitchenstudio.entity.Contact;
 import org.kitchenstudio.entity.ContactItem;
-import org.kitchenstudio.entity.Order;
 import org.kitchenstudio.service.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

@@ -2,11 +2,9 @@ package org.kitchenstudio.web.controller;
 
 import java.util.List;
 
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
-import org.kitchenstudio.entity.Driver;
 import org.kitchenstudio.entity.Order;
 import org.kitchenstudio.entity.OrderItem;
 import org.kitchenstudio.entity.Staff;
@@ -16,7 +14,6 @@ import org.kitchenstudio.service.StaffService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;

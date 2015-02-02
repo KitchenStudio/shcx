@@ -1,9 +1,7 @@
 package org.kitchenstudio.service;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.kitchenstudio.entity.Purchase;
 import org.kitchenstudio.entity.PurchaseItem;

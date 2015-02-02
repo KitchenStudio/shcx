@@ -61,7 +61,7 @@
 				<tr th:each="order : ${orders}">
 					<td th:text="${order.id}"></td>
 					<td th:text="${order.date}"></td>
-					<td th:text="${order.handler}"></td>
+					<td th:text="${order.handler.name}"></td>
 					<td th:text="${order.renter}"></td>
 					<td th:text="${order.lessee}"></td>
 					<!--  <td th:each="item : ${order.orderItems}" th:text="${item.kind}"></td>-->

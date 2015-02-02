@@ -20,23 +20,24 @@ public class ContextRefreshedEventHandler implements
 
 	@Autowired
 	private StaffRepository staffRepository;
-	
+
 	@Autowired
 	private DriverRepository driverRepository;
-	
+
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
 		logger.info("Context Refreshed!");
-		
-		Staff staff = new Staff();
-		staff.setId(3L);
-		staff.setName("张琳");
-		staff.setIDCard("350322199203140552");
-		staff.setBankNumber("1234123412341234123");
-		
-		staffRepository.save(staff);
-		
-		
+
+		for (int i = 0; i < 10; i++) {
+			Staff staff = new Staff();
+			staff.setName("张琳" + i);
+			staff.setPhoneNumber("18366116016");
+			staff.setIDCard("350322199203140552");
+			staff.setBankNumber("1234123412341234123");
+
+			staffRepository.save(staff);
+		}
+
 		Driver driver = new Driver();
 		driver.setId(2L);
 		driver.setName("Airkid");

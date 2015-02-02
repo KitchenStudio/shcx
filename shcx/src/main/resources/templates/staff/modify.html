@@ -15,48 +15,18 @@
     <![endif]-->
 </head>
 <body>
-<div class="container">
-		<nav class="navbar navbar-default">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed"
-						data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-						aria-controls="navbar">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" th:href="@{/}">钢管租赁管理系统</a>
-				</div>
-				<div id="navbar" class="navbar-collapse collapse">
-					<ul class="nav navbar-nav">
-						<li class="active"><a th:href="@{/}">首页</a></li>
-						<li><a th:href="@{/staff}">员工管理</a></li>
-						<li><a th:href="@{/driver}">司机管理</a></li>
-						<li><a th:href="@{/contact}">合同管理</a></li>
-						<li><a th:href="@{/order}">订单管理</a></li>
-						<li><a th:href="@{/purchase}">采购管理</a></li>
-						<li><a th:href="@{/store}">仓库信息</a></li>
-					</ul>
-				</div>
-			</div>
-		</nav>
-	</div>
+	<div th:replace="home :: nav ('staff')"></div>
+
 	<div class="container">
+		<h2 class="page-header">员工信息修改</h2>
+
 		<form th:action="@{/staff/{id}/modify(id=${staff.id})}" th:object="${staff}" method="post" enctype="multipart/form-data">
-			<h1 style="margin-bottom: 50px;text-align: center;">修改员工信息</h1>
+			<input type="hidden" th:field="*{id}">
+			<input type="hidden" th:field="*{pathFaceimage}">
+
 			<div class="row">
 				<div class="col-sm-6 form-horizontal">
 
-					<div class="form-group" th:classappend="form-group"
-						th:class="${#fields.hasErrors('birthday')}? has-error"
-						th:title="${#fields.hasErrors('birthday')}? 编号应该全是数字">
-						<label class="col-sm-2 control-label">编号</label>
-						<div class="col-sm-3">
-							<input class="form-control" th:field="*{id}">
-						</div>
-					</div>
 					<div class="form-group" th:classappend="form-group"
 						th:class="${#fields.hasErrors('name')}? has-error" title="what?"
 						th:title="${#fields.errors('name')}">
@@ -106,14 +76,14 @@
 				</div>
 				<div class="col-sm-6 form-horizontal">
 					<div class="form-group">
-						<label class="col-sm-2 control-label">上传头像</label>
+						<label class="col-sm-2 control-label">头像</label>
 						<div class="col-sm-3" >
 						
 						<div id="upload-area">
 							<img width="128" height="128" alt=""
 								th:src="*{pathFaceimage}" id="uploadpicture">
 						</div> 
-								<input	name="file" type="file" id="fileupload">
+							<input	name="file" type="file" id="fileupload">
 						</div>
 					</div>
 					<div class="form-group">
@@ -136,8 +106,11 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<div class="col-sm-offset-2 col-sm-12">
-							<button type="submit" class="btn btn-primary" id="uploadinfo">修改</button>
+						<div class="col-sm-offset-2 col-sm-1">
+							<button type="submit" class="btn btn-primary">修改</button>
+						</div>
+						<div class="col-sm-offset-1 col-sm-1">
+							<a th:href="@{/staff/{id}/info(id=${staff.id})}" class="btn btn-default">返回</a>
 						</div>
 					</div>
 				</div>
@@ -147,9 +120,6 @@
 
 	<script th:src="@{/js/jquery.min.js}"></script>
 	<script th:src="@{/js/bootstrap.min.js}"></script>
-	<script th:src="@{/js/jquery.ui.widget.js}"></script>
-	<script th:src="@{/js/jquery.iframe-transport.js}"></script>
-	<script th:src="@{/js/jquery.fileupload.js}"></script>
 	<script th:src="@{/js/load-image.all.min.js}"></script>
 	<script th:src="@{/js/main.js}"></script>
 </body>

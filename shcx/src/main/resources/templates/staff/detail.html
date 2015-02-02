@@ -14,41 +14,19 @@
     <![endif]-->
 </head>
 <body>
+	<div th:replace="home :: nav ('staff')"></div>
 
 	<div class="container">
-		<nav class="navbar navbar-default">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed"
-						data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-						aria-controls="navbar">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" th:href="@{/}">钢管租赁管理系统</a>
-				</div>
-				<div id="navbar" class="navbar-collapse collapse">
-					<ul class="nav navbar-nav">
-						<li class="active"><a th:href="@{/}">首页</a></li>
-						<li><a th:href="@{/staff}">员工管理</a></li>
-						<li><a th:href="@{/driver}">司机管理</a></li>
-						
-						<li><a th:href="@{/contact}">合同管理</a></li>
-						<li><a th:href="@{/order}">订单管理</a></li>
-						<li><a th:href="@{/purchase}">采购管理</a></li>
-						<li><a th:href="@{/store}">仓库信息</a></li>
-					</ul>
-				</div>
-			</div>
-		</nav>
-	</div>
+		<h2 class="page-header">员工详情</h2>
+		
+		<div th:if="${param.success}" class="alert alert-info">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+  				<span aria-hidden="true">&times;</span>
+			</button>
+			<p>修改成功</p>
+		</div>
 
-	<div class="container" style="width: 960px;">
-	
-	<h1 style="text-align: center;">员工详情</h1>
-		<table class="table table-bordered  " style="margin-top: 50px">
+		<table class="table table-bordered">
 			<tr>
 				<td>编号</td>
 				<td th:text="${staff.id}"></td>
@@ -58,7 +36,7 @@
 				<td th:text="${staff.nation}"></td>
 				<td>出生日期</td>
 				<td th:text="${staff.birthday}"></td>
-				<td rowspan="3"><img alt="" th:src="${staff.pathFaceimage}" style="width: 100px;height: 100px;"></td>
+				<td rowspan="3"><img alt="" th:src="@{${!#strings.isEmpty(staff.pathFaceimage)} ? ${staff.pathFaceimage} : '/images/faceimage.jpg'}" style="width: 100px;height: 100px;"></td>
 			</tr>
 			<tr>
 				<td>身份证号</td>
@@ -87,9 +65,6 @@
 
 
 	<script th:src="@{/js/jquery.min.js}"></script>
-	<script th:src="@{/js/jquery.ui.widget.js}"></script>
-	<script th:src="@{/js/jquery.iframe-transport.js}"></script>
-	<script th:src="@{/js/jquery.fileupload.js}"></script>
 	<script th:src="@{/js/bootstrap.min.js}"></script>
 	<script th:src="@{/js/main.js}"></script>
 </body>

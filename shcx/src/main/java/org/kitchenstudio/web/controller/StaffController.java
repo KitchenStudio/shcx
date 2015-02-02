@@ -48,7 +48,10 @@ public class StaffController {
 			return "staff/new";
 		}
 
-		staff.setPathFaceimage(getFaceimagePath(request, file));
+		String pathFaceImage = getFaceimagePath(request, file);
+		if (pathFaceImage != null) {
+			staff.setPathFaceimage(pathFaceImage);
+		}
 
 		staffService.add(staff);
 		return "redirect:/staff";
@@ -66,24 +69,35 @@ public class StaffController {
 		return "staff/detail";
 	}
 
-	@RequestMapping(value = "/{id}/modify", method = RequestMethod.POST)
-	String info(@RequestParam("file") MultipartFile file, @Valid Staff staff,
-			BindingResult result,HttpServletRequest request) {
-		if (result.hasErrors()) {
-			return "staff/modify";
-		}
-		staff.setPathFaceimage(getFaceimagePath(request, file));
-		staffService.save(staff);
-		return "/staff/modifysuccess";
-	}
-
 	@RequestMapping(value = "/{id}/modify", method = RequestMethod.GET)
 	String modify(@PathVariable("id") Staff staff, Model model) {
 		model.addAttribute(staff);
 		return "staff/modify";
 	}
 
-	String getFaceimagePath(HttpServletRequest request, MultipartFile file) {
+	@RequestMapping(value = "/{id}/modify", method = RequestMethod.POST)
+	String info(@RequestParam("file") MultipartFile file, @Valid Staff staff,
+			BindingResult result,HttpServletRequest request, Model model) {
+		if (result.hasErrors()) {
+			return "staff/modify";
+		}
+		
+		String pathFaceImage = getFaceimagePath(request, file);
+		System.out.println(pathFaceImage);
+		if (pathFaceImage != null) {
+			staff.setPathFaceimage(pathFaceImage);
+			System.out.println(pathFaceImage);
+		}
+		
+		staffService.save(staff);
+		return "redirect:/staff/{id}/info?success";
+	}
+
+	private String getFaceimagePath(HttpServletRequest request, MultipartFile file) {
+		// 只有当照片大小大于0才处理
+		if (file.getSize() <= 0)
+			return null;
+
 		String conPath = null;
 		String sysPath = request.getServletContext().getRealPath("/");
 		try {

@@ -9,7 +9,9 @@ import javax.validation.Valid;
 import org.kitchenstudio.model.Driver;
 import org.kitchenstudio.model.Order;
 import org.kitchenstudio.model.OrderItem;
+import org.kitchenstudio.model.Staff;
 import org.kitchenstudio.service.OrderService;
+import org.kitchenstudio.service.StaffService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,7 @@ import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,6 +33,14 @@ public class OrderController {
 
 	@Autowired
 	private OrderService orderService;
+	
+	@Autowired
+	private StaffService staffService;
+	
+	@ModelAttribute("staffs")
+	List<Staff> populateStaffs(){
+		return staffService.findAll();
+	}
 
 	@RequestMapping({ "", "/" })
 	String home(Model model) {
@@ -65,13 +76,17 @@ public class OrderController {
 		return "order/detail";
 	}
 
+	@RequestMapping(value = "/modify/{id}", method = RequestMethod.GET)
+	String modify(@PathVariable("id") Order order, Model model) {
+		model.addAttribute(order);
+		return "order/modify";
+	}
+
 	@RequestMapping(value = "/info", method = RequestMethod.POST)
 	String info(@Valid Order order, BindingResult result) {
 		if (result.hasErrors()) {
 			return "order/modify";
 		}
-		// order.getOrderItems().add(new OrderItem());
-		// orderService.add(order);
 		orderService.save(order, order.getOrderItems());
 		return "/order/modifysuccess";
 	}
@@ -87,12 +102,6 @@ public class OrderController {
 	@RequestMapping(value = "/info", params = { "modifyAddItem" }, method = RequestMethod.POST)
 	String modifyAddItems(@Valid Order order, BindingResult result) {
 		order.getOrderItems().add(new OrderItem());
-		return "order/modify";
-	}
-
-	@RequestMapping(value = "/modify/{id}", method = RequestMethod.GET)
-	String modify(@PathVariable("id") Order order, Model model) {
-		model.addAttribute(order);
 		return "order/modify";
 	}
 

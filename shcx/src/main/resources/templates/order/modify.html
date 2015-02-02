@@ -18,7 +18,7 @@
 	<div th:replace="home :: nav ('order')"></div>
 
 	<div class="container">
-		<form th:action="@{/order/info}" th:object="${order}" method="post">
+		<form th:action="@{/order/{id}/info(id=${order.id})}" th:object="${order}" method="post">
 			<h1 style="margin-bottom: 50px; text-align: center;">修改订单信息</h1>
 			<div class="row">
 				<div class="clo-sm-12 form-group" th:classappend="form-group">

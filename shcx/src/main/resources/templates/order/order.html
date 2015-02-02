@@ -39,7 +39,7 @@
 					<td th:text="${order.renter}"></td>
 					<td th:text="${order.lessee}"></td>
 					<!--  <td th:each="item : ${order.orderItems}" th:text="${item.kind}"></td>-->
-					<td><a th:href="@{/order/info/{id}(id=${order.id})}"> <span
+					<td><a th:href="@{/order/{id}/info(id=${order.id})}"> <span
 							class="glyphicon glyphicon-info-sign"></span>
 					</a> <a th:href="@{/order/delete/{id}(id=${order.id})}"
 						class="delete-link"> <span class="glyphicon glyphicon-trash"></span></a>

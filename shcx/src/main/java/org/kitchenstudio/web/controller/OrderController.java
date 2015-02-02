@@ -76,7 +76,7 @@ public class OrderController {
 		return "order/new";
 	}
 
-	@RequestMapping(value = "/info/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{id}/info", method = RequestMethod.GET)
 	String info(@PathVariable("id") Order order, Model model) {
 		model.addAttribute(order);
 		return "order/detail";
@@ -88,13 +88,13 @@ public class OrderController {
 		return "order/modify";
 	}
 
-	@RequestMapping(value = "/info", method = RequestMethod.POST)
+	@RequestMapping(value = "/{id}/info", method = RequestMethod.POST)
 	String info(@Valid Order order, BindingResult result) {
 		if (result.hasErrors()) {
 			return "order/modify";
 		}
 		orderService.save(order, order.getOrderItems());
-		return "/order/modifysuccess";
+		return "redirect:/order/{id}/info?success";
 	}
 
 	@RequestMapping(value = "/info", params = { "removeItem" }, method = RequestMethod.POST)

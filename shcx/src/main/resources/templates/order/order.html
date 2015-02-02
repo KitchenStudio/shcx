@@ -15,33 +15,7 @@
     <![endif]-->
 </head>
 <body>
-	<div class="container">
-		<nav class="navbar navbar-default">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed"
-						data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-						aria-controls="navbar">
-						<span class="sr-only">Toggle navigation</span> <span
-							class="icon-bar"></span> <span class="icon-bar"></span> <span
-							class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" th:href="@{/}">钢管租赁管理系统</a>
-				</div>
-				<div id="navbar" class="navbar-collapse collapse">
-					<ul class="nav navbar-nav">
-						<li><a th:href="@{/}">首页</a></li>
-						<li><a th:href="@{/staff}">员工管理</a></li>
-						<li><a th:href="@{/driver}">司机管理</a></li>
-						<li><a th:href="@{/contact}">合同管理</a></li>
-						<li class="active"><a th:href="@{/order}">订单管理</a></li>
-						<li><a th:href="@{/purchase}">采购管理</a></li>
-						<li><a th:href="@{/store}">仓库信息</a></li>
-					</ul>
-				</div>
-			</div>
-		</nav>
-	</div>
+	<div th:replace="home :: nav ('order')"></div>
 
 	<div class="container">
 		<a class="btn btn-default" th:href="@{/order/new}">发料</a>
@@ -75,8 +49,8 @@
 		</table>
 	</div>
 	<script th:src="@{/js/jquery.min.js}"></script>
-	<script th:src="@{js/bootstrap.min.js}"></script>
-	<script th:src="@{js/main.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/main.js}"></script>
 
 	<div class="modal fade" id="alert-modal">
 		<div class="modal-dialog">

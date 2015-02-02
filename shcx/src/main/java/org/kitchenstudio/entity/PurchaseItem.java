@@ -17,6 +17,16 @@ public class PurchaseItem {
 
 	private String remark;
 
+	private Type type;
+
+	public Type getType() {
+		return type;
+	}
+
+	public void setType(Type type) {
+		this.type = type;
+	}
+
 	public Long getId() {
 		return id;
 	}

@@ -14,9 +14,16 @@
     <![endif]-->
 </head>
 <body>
-<div th:replace="home :: nav ('purchase')"></div>
+	<div th:replace="home :: nav ('purchase')"></div>
 	<div class="container" style="width: 960px;">
-		<h1 style="text-align: center;">采购详情</h1>
+		<h2 style="text-align: center;">采购详情</h2>
+		<div th:if="${param.success}" class="alert alert-info">
+			<button type="button" class="close" data-dismiss="alert"
+				aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			<p>修改成功</p>
+		</div>
 		<table class="table table-bordered  " style="margin-top: 50px">
 			<tr>
 				<td>采购编号</td>
@@ -28,9 +35,9 @@
 			</tr>
 			<tr>
 				<td>采购者</td>
-				<td th:text="${purchase.buyer}"></td>
+				<td th:text="${purchase.buyer.name}"></td>
 			</tr>
-			
+
 		</table>
 		<h3 style="text-align: center;">采购单详情</h3>
 		<table class="table table-striped">
@@ -53,11 +60,11 @@
 			</tbody>
 		</table>
 		<div>
-			<a class="btn btn-primary btn-lg" id="uploadinfo" th:href="@{/purchase}">返回</a>
-
 			<a class="btn btn-primary btn-lg" id="uploadinfo"
+				th:href="@{/purchase}">返回</a> <a class="btn btn-primary btn-lg"
+				id="uploadinfo"
 				th:href="@{/purchase/{id}/modify(id=${purchase.id})}">修改信息</a>
-		</div>   
+		</div>
 	</div>
 
 

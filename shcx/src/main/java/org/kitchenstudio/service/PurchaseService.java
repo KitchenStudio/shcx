@@ -10,4 +10,5 @@ public interface PurchaseService {
 	List<Purchase> findAll();
 
 	void save(Purchase purchase, List<PurchaseItem> purchaseItems);
+	void delete(Purchase purchase);
 }

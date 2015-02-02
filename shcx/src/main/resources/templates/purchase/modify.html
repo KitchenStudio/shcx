@@ -18,9 +18,10 @@
 	<div th:replace="home :: nav ('purchase')"></div>
 
 	<div class="container">
-	
+
 		<h2 class="page-header">采购详情修改</h2>
-		<form th:action="@{/purchase/{id}/modify(id=${purchase.id})}" th:object="${purchase}" method="post">
+		<form th:action="@{/purchase/{id}/modify(id=${purchase.id})}"
+			th:object="${purchase}" method="post">
 			<div class="row">
 				<div class="col-sm-6 form-group"
 					th:classappend="'col-sm-6 form-group'">
@@ -30,11 +31,13 @@
 					</div>
 				</div>
 				<div class="col-sm-6 form-group"
-					th:classappend="'col-sm-6 form-group'"
-					>
+					th:classappend="'col-sm-6 form-group'">
 					<label class="col-sm-3 control-label">采购人</label>
 					<div class="col-sm-6">
-						<input class="form-control" id="idcard"	th:field="*{buyer}">
+						<select class="form-control" th:field="*{buyer}">
+							<option th:each="staff : ${staffs}" th:text="${staff.name}"
+								th:value="${staff.id}"></option>
+						</select>
 					</div>
 				</div>
 
@@ -46,38 +49,33 @@
 			</div>
 			<hr>
 			<div class="row">
-				<div class=" form-horizontal" th:each="row,rowStat : *{purchaseItems}">
+				<div class=" form-horizontal"
+					th:each="row,rowStat : *{purchaseItems}">
 					<div class="col-sm-4 form-horizontal">
-						<div class="form-group" th:classappend="form-group"
-							>
+						<div class="form-group" th:classappend="form-group">
 							<label class="col-sm-2 control-label">类型</label>
 							<div class="col-sm-6">
 								<input class="form-control" type="text"
-									th:field="*{purchaseItems[__${rowStat.index}__].remark}"
-									>
+									th:field="*{purchaseItems[__${rowStat.index}__].remark}">
 							</div>
 						</div>
 					</div>
 					<div class="col-sm-4 form-horizontal">
-						<div class="form-group" th:classappend="form-group"
-							>
+						<div class="form-group" th:classappend="form-group">
 							<label class="col-sm-2 control-label">规格</label>
 							<div class="col-sm-6">
 								<input class="form-control" type="text"
-									th:field="*{purchaseItems[__${rowStat.index}__].kind}"
-									>
+									th:field="*{purchaseItems[__${rowStat.index}__].kind}">
 							</div>
 						</div>
 					</div>
 					<div class="col-sm-4 form-horizontal">
-						<div class="form-group" th:classappend="form-group"
-							>
+						<div class="form-group" th:classappend="form-group">
 							<label class="col-sm-2 control-label">数量</label>
 							<div class="col-sm-6">
 								<input class="form-control" type="text"
 									th:field="*{purchaseItems[__${rowStat.index}__].quantity}"
-									id="quantity"
-									>
+									id="quantity">
 							</div>
 						</div>
 					</div>

@@ -8,9 +8,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
@@ -22,13 +24,13 @@ public class Purchase {
 	@GeneratedValue
 	private Long id;
 
-	// @ManyToOne(optional = false)
-	// @JoinColumn(name = "STAFF_ID", nullable = true, updatable = false)
-
-	private String buyer;
+	 @ManyToOne(optional = false)
+	 @JoinColumn(name = "STAFF_ID", nullable = false, updatable = true)
+	 private Staff buyer;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(iso = ISO.DATE)
+	@NotNull
 	private Date createdTime;
 
 	@OneToMany(orphanRemoval = true)
@@ -43,11 +45,12 @@ public class Purchase {
 		this.id = id;
 	}
 
-	public String getBuyer() {
+
+	public Staff getBuyer() {
 		return buyer;
 	}
 
-	public void setBuyer(String buyer) {
+	public void setBuyer(Staff buyer) {
 		this.buyer = buyer;
 	}
 

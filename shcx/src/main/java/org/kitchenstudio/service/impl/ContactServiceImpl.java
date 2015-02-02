@@ -1,4 +1,4 @@
-package org.kitchenstudio.service;
+package org.kitchenstudio.service.impl;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -7,6 +7,7 @@ import org.kitchenstudio.entity.Contact;
 import org.kitchenstudio.entity.ContactItem;
 import org.kitchenstudio.repository.ContactItemRepository;
 import org.kitchenstudio.repository.ContactRepository;
+import org.kitchenstudio.service.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

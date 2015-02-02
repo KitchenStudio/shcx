@@ -20,13 +20,13 @@ public class OrderItem {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
+
 	private Type type;// 钢管还是扣件
-	
-	@NotBlank(message="不能为空")
+
+	@NotBlank(message = "不能为空")
 	private String kind;// 钢管的类型和扣件
-	
-	@Min(value = 0, message ="数量不能为负")
+
+	@Min(value = 0, message = "数量不能为负")
 	private int quantity;// 钢管的总长度或者是扣件的总数量
 
 	public Type getType() {

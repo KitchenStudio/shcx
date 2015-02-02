@@ -8,6 +8,6 @@ import org.kitchenstudio.entity.PurchaseItem;
 public interface PurchaseService {
 
 	List<Purchase> findAll();
-	
+
 	void save(Purchase purchase, List<PurchaseItem> purchaseItems);
 }

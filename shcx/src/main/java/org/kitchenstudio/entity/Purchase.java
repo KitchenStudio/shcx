@@ -22,16 +22,14 @@ public class Purchase {
 	@GeneratedValue
 	private Long id;
 
-//	@ManyToOne(optional = false)
-//	@JoinColumn(name = "STAFF_ID", nullable = true, updatable = false)
-	
+	// @ManyToOne(optional = false)
+	// @JoinColumn(name = "STAFF_ID", nullable = true, updatable = false)
+
 	private String buyer;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(iso = ISO.DATE)
-	
 	private Date createdTime;
-	
 
 	@OneToMany(orphanRemoval = true)
 	@JoinColumn(name = "PURCHASE_ID")
@@ -44,8 +42,6 @@ public class Purchase {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-
 
 	public String getBuyer() {
 		return buyer;
@@ -70,7 +66,5 @@ public class Purchase {
 	public void setPurchaseItems(List<PurchaseItem> items) {
 		this.purchaseItems = items;
 	}
-
-	
 
 }

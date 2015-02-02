@@ -77,23 +77,24 @@ public class StaffController {
 
 	@RequestMapping(value = "/{id}/modify", method = RequestMethod.POST)
 	String info(@RequestParam("file") MultipartFile file, @Valid Staff staff,
-			BindingResult result,HttpServletRequest request, Model model) {
+			BindingResult result, HttpServletRequest request, Model model) {
 		if (result.hasErrors()) {
 			return "staff/modify";
 		}
-		
+
 		String pathFaceImage = getFaceimagePath(request, file);
 		System.out.println(pathFaceImage);
 		if (pathFaceImage != null) {
 			staff.setPathFaceimage(pathFaceImage);
 			System.out.println(pathFaceImage);
 		}
-		
+
 		staffService.save(staff);
 		return "redirect:/staff/{id}/info?success";
 	}
 
-	private String getFaceimagePath(HttpServletRequest request, MultipartFile file) {
+	private String getFaceimagePath(HttpServletRequest request,
+			MultipartFile file) {
 		// 只有当照片大小大于0才处理
 		if (file.getSize() <= 0)
 			return null;

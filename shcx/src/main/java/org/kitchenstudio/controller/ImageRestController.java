@@ -20,11 +20,10 @@ public class ImageRestController {
 			String syspath = request.getServletContext().getRealPath("/");
 			File upload = new File(syspath + "/upload");
 
-			
 			if (!upload.isDirectory()) {
 				upload.mkdir();
 			}
-			
+
 			System.out.println(upload.getPath());
 			String[] name = file.getOriginalFilename().split("\\.");
 			String suffix = name[name.length - 1];

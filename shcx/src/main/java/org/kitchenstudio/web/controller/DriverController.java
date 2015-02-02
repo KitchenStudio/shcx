@@ -40,7 +40,7 @@ public class DriverController {
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	String add(Model model) {
-		model.addAttribute("driver",new Driver());
+		model.addAttribute("driver", new Driver());
 		return "driver/new";
 	}
 
@@ -52,13 +52,13 @@ public class DriverController {
 		}
 		return "driver/new";
 	}
-	
 
 	@RequestMapping(value = "/new", method = RequestMethod.POST)
-	String create(@RequestParam("file") MultipartFile file,@Valid Driver driver, BindingResult result,
+	String create(@RequestParam("file") MultipartFile file,
+			@Valid Driver driver, BindingResult result,
 			HttpServletRequest request) {
 		if (result.hasErrors()) {
-			//System.out.println(result.getAllErrors());
+			// System.out.println(result.getAllErrors());
 			return "/driver/new";
 		}
 		driver.setPathFaceimage(getFaceimagePath(request, file));
@@ -71,7 +71,7 @@ public class DriverController {
 		driverService.delete(driver);
 		return "redirect:/driver";
 	}
-	
+
 	@RequestMapping(value = "/{id}/info", method = RequestMethod.GET)
 	String info(@PathVariable("id") Driver driver, Model model) {
 		model.addAttribute(driver);
@@ -80,7 +80,7 @@ public class DriverController {
 
 	@RequestMapping(value = "/{id}/modify", method = RequestMethod.POST)
 	String info(@RequestParam("file") MultipartFile file, @Valid Driver driver,
-			BindingResult result,HttpServletRequest request) {
+			BindingResult result, HttpServletRequest request) {
 		if (result.hasErrors()) {
 			return "driver/modify";
 		}
@@ -94,6 +94,7 @@ public class DriverController {
 		model.addAttribute(driver);
 		return "driver/modify";
 	}
+
 	String getFaceimagePath(HttpServletRequest request, MultipartFile file) {
 		String conPath = null;
 		String sysPath = request.getServletContext().getRealPath("/");

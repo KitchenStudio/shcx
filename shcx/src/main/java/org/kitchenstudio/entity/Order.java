@@ -35,8 +35,8 @@ public class Order {
 
 	// ManyToOne
 	// private 项目
-	@ManyToOne(optional=false)
-	@JoinColumn(name="CUST_ID", nullable=false, updatable=false)
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "CUST_ID", nullable = false, updatable = false)
 	private Staff handler;// 经手人
 
 	@NotBlank(message = "不能为空")

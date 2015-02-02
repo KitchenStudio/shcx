@@ -40,7 +40,7 @@ public class ContactController {
 		model.addAttribute("contact", new Contact());
 		return "/contact/new";
 	}
-	
+
 	@RequestMapping(value = "/new", params = { "save" }, method = RequestMethod.POST)
 	String create(@Valid Contact contact, BindingResult result) {
 		if (result.hasErrors()) {

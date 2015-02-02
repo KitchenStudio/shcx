@@ -7,8 +7,11 @@ import org.kitchenstudio.entity.OrderItem;
 
 public interface OrderService {
 	List<Order> findAll();
+
 	void add(Order order);
+
 	void delete(Order order);
-	void save(Order order,List<OrderItem> orderitems);
-	
+
+	void save(Order order, List<OrderItem> orderitems);
+
 }

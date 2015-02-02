@@ -31,17 +31,17 @@ public class OrderController {
 
 	@Autowired
 	private OrderService orderService;
-	
+
 	@Autowired
 	private StaffService staffService;
-	
+
 	@ModelAttribute("staffs")
-	List<Staff> populateStaffs(){
+	List<Staff> populateStaffs() {
 		return staffService.findAll();
 	}
-	
+
 	@ModelAttribute("types")
-	Type[] populateTypes(){
+	Type[] populateTypes() {
 		return Type.values();
 	}
 

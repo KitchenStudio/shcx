@@ -2,8 +2,12 @@ package org.kitchenstudio;
 
 import org.kitchenstudio.entity.Driver;
 import org.kitchenstudio.entity.Staff;
+import org.kitchenstudio.entity.StoreItem;
+import org.kitchenstudio.entity.StoreType;
+import org.kitchenstudio.entity.Type;
 import org.kitchenstudio.repository.DriverRepository;
 import org.kitchenstudio.repository.StaffRepository;
+import org.kitchenstudio.repository.StoreRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +27,9 @@ public class ContextRefreshedEventHandler implements
 
 	@Autowired
 	private DriverRepository driverRepository;
+	
+	@Autowired
+	private StoreRepository storeRepository;
 
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
@@ -49,5 +56,18 @@ public class ContextRefreshedEventHandler implements
 			
 			driverRepository.save(driver);
 		}
+		
+		StoreItem storeItem = new StoreItem();
+		storeItem.setStoreType(new StoreType(Type.STEEL_PIPE, "1.1"));
+		storeItem.setQuantity(10);
+		storeRepository.save(storeItem);
+		
+		storeItem = new StoreItem();
+		storeItem.setStoreType(new StoreType(Type.STEEL_PIPE, "1.1"));
+		storeItem.setQuantity(21);
+		storeRepository.save(storeItem);
+		
+		storeItem = storeRepository.findOne(new StoreType(Type.STEEL_PIPE, "1.1"));
+		logger.info(String.format("钢管1.1米有 --- %d 米", storeItem.getQuantity()));
 	}
 }

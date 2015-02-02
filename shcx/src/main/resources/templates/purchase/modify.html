@@ -55,8 +55,11 @@
 						<div class="form-group" th:classappend="form-group">
 							<label class="col-sm-2 control-label">类型</label>
 							<div class="col-sm-6">
-								<input class="form-control" type="text"
-									th:field="*{purchaseItems[__${rowStat.index}__].remark}">
+								<select class="form-control"
+									th:field="*{purchaseItems[__${rowStat.index}__].type}">
+									<option th:each="type : ${types}" th:value="${type}"
+										th:text="#{'type.' + ${type}}"></option>
+								</select>
 							</div>
 						</div>
 					</div>
@@ -65,7 +68,7 @@
 							<label class="col-sm-2 control-label">规格</label>
 							<div class="col-sm-6">
 								<input class="form-control" type="text"
-									th:field="*{purchaseItems[__${rowStat.index}__].kind}">
+									th:field="*{purchaseItems[__${rowStat.index}__].remark}">
 							</div>
 						</div>
 					</div>

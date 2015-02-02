@@ -2,7 +2,6 @@ package org.kitchenstudio.web.controller;
 
 import javax.validation.Valid;
 
-import org.junit.runners.Parameterized.Parameters;
 import org.kitchenstudio.entity.Purchase;
 import org.kitchenstudio.entity.PurchaseItem;
 import org.kitchenstudio.service.PurchaseService;

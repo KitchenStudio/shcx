@@ -62,7 +62,6 @@ public class PurchaseController {
 	
 	@RequestMapping(value = "/new",params = { "save" }, method = RequestMethod.POST)
 	String save(@Valid Purchase purchase,BindingResult result){
-		System.out.println(purchase.getPurchaseItems().get(0).getType()+"type");
 		if(result.hasErrors()){
 			for(int i=0;i<result.getAllErrors().size();i++){
 				System.out.println("有错误"+result.getAllErrors().get(i));

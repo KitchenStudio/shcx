@@ -5,6 +5,9 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.Min;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 public class PurchaseItem {
@@ -13,9 +16,10 @@ public class PurchaseItem {
 	@GeneratedValue
 	private Long id;
 
-
+	@Min(value = 0, message = "数量不能为负")
 	private int quantity;
 
+	@NotBlank(message = "不能为空")
 	private String remark;
 	
 	@Enumerated(EnumType.STRING)

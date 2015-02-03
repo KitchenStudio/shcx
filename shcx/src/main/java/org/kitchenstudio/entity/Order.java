@@ -1,7 +1,6 @@
 package org.kitchenstudio.entity;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -12,14 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 @Entity(name = "TABLE_ORDER")
 public class Order {
@@ -45,6 +39,10 @@ public class Order {
 
 	@Enumerated(EnumType.STRING)
 	private OrderType type;
+
+	@ManyToOne
+	@JoinColumn(name = "ORDER_ID")
+	private Driver driver;
 
 	public OrderType getType() {
 		return type;
@@ -92,6 +90,14 @@ public class Order {
 
 	public void setLessee(String lessee) {
 		this.lessee = lessee;
+	}
+
+	public Driver getDriver() {
+		return driver;
+	}
+
+	public void setDriver(Driver driver) {
+		this.driver = driver;
 	}
 
 }

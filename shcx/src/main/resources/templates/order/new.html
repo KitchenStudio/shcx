@@ -54,6 +54,17 @@
 						</select>
 					</div>
 				</div>
+				<div class="col-sm-6 form-group"
+					th:classappend="'col-sm-6 form-group'"
+					th:class="${#fields.hasErrors('driver')}? has-error">
+					<label class="col-sm-3 control-label">司机</label>
+					<div class="col-sm-6">
+						<select class="form-control" th:field="*{driver}"
+							th:title="${#fields.errors('driver')}">
+							<option th:each="driver : ${drivers}" th:text="${driver.name}" th:value="${driver.id}"></option>
+						</select>
+					</div>
+				</div>
 			</div>
 				<div class="row" th:each="row,rowStat : *{orderItems}" style="margin-top: 12px;">
 					<div class="col-sm-4">

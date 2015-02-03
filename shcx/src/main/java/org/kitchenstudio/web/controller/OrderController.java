@@ -5,10 +5,12 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import org.kitchenstudio.entity.Driver;
 import org.kitchenstudio.entity.Order;
 import org.kitchenstudio.entity.OrderItem;
 import org.kitchenstudio.entity.Staff;
 import org.kitchenstudio.entity.Type;
+import org.kitchenstudio.service.DriverService;
 import org.kitchenstudio.service.OrderService;
 import org.kitchenstudio.service.StaffService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,10 +31,18 @@ public class OrderController {
 
 	@Autowired
 	private StaffService staffService;
+	
+	@Autowired
+	private DriverService driverService;
 
 	@ModelAttribute("staffs")
 	public List<Staff> populateStaffs() {
 		return staffService.findAll();
+	}
+	
+	@ModelAttribute("drivers")
+	public List<Driver> populateDrivers() {
+		return driverService.findAll(); 
 	}
 
 	@ModelAttribute("types")

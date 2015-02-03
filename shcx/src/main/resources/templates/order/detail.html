@@ -32,16 +32,20 @@
 				<td th:text="${#numbers.formatInteger(order.id,8)}"></td>
 			</tr>
 			<tr>
-				<td>经办人</td>
-				<td th:text="${order.operator.name}"></td>
-			</tr>
-			<tr>
 				<td>出租方</td>
 				<td th:text="${order.lessor}"></td>
 			</tr>
 			<tr>
 				<td>承租方</td>
 				<td th:text="${order.lessee}"></td>
+			</tr>
+			<tr>
+				<td>经办人</td>
+				<td th:text="${order.operator.name}"></td>
+			</tr>
+			<tr>
+				<td>司机</td>
+				<td th:text="${order.driver.name}"></td>
 			</tr>
 		</table>
 		<table class="table table-striped">

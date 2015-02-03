@@ -27,7 +27,7 @@ public class ContextRefreshedEventHandler implements
 
 	@Autowired
 	private DriverRepository driverRepository;
-	
+
 	@Autowired
 	private StoreRepository storeRepository;
 
@@ -45,29 +45,30 @@ public class ContextRefreshedEventHandler implements
 			staffRepository.save(staff);
 		}
 
-		for(int i=0;i<10;i++){
+		for (int i = 0; i < 10; i++) {
 			Driver driver = new Driver();
-			driver.setName("老司机"+i);
-			driver.setBankNumber("123456789098765432"+i);
-			driver.setIDcard("12345678901234567"+i);
-			driver.setNation(""+i);
-			driver.setPlateNumber("沪A1234"+i);
-			driver.setPhoneNumber(""+i+i+i+i);
-			
+			driver.setName("老司机" + i);
+			driver.setBankNumber("123456789098765432" + i);
+			driver.setIDcard("12345678901234567" + i);
+			driver.setNation("" + i);
+			driver.setPlateNumber("沪A1234" + i);
+			driver.setPhoneNumber("" + i + i + i + i);
+
 			driverRepository.save(driver);
 		}
-		
+
 		StoreItem storeItem = new StoreItem();
 		storeItem.setStoreType(new StoreType(Type.STEEL_PIPE, "1.1"));
 		storeItem.setQuantity(10);
 		storeRepository.save(storeItem);
-		
+
 		storeItem = new StoreItem();
 		storeItem.setStoreType(new StoreType(Type.STEEL_PIPE, "1.1"));
 		storeItem.setQuantity(21);
 		storeRepository.save(storeItem);
-		
-		storeItem = storeRepository.findOne(new StoreType(Type.STEEL_PIPE, "1.1"));
+
+		storeItem = storeRepository.findOne(new StoreType(Type.STEEL_PIPE,
+				"1.1"));
 		logger.info(String.format("钢管1.1米有 --- %d 米", storeItem.getQuantity()));
 	}
 }

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title></title>
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+<link th:href="@{/css/style.css}" rel="stylesheet">
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+	<div class="container">
+		<div th:replace="home :: nav ('company')"></div>
+		<h2 style="text-align: center; margin-bottom: 50px;">新建公司信息</h2>
+		<form th:fragment="new (action, actionName)" th:action="@{${action}}"
+			th:object="${company}" method="post">
+			<div class="row">
+				<div class="col-sm-6 form-group"
+					th:classappend="'col-sm-6 form-group'">
+					<label class="col-sm-3 control-label">公司名称</label>
+					<div class="col-sm-6">
+						<input class="form-control" th:field="*{name}">
+					</div>
+				</div>
+				<div class="col-sm-6 form-group"
+					th:classappend="'col-sm-6 form-group'">
+					<label class="col-sm-3 control-label">负责人</label>
+					<div class="col-sm-6">
+						<input class="form-control" th:field="*{charger}" id="idcard">
+					</div>
+				</div>
+				<div class="col-sm-6 form-group"
+					th:classappend="'col-sm-6 form-group'">
+					<label class="col-sm-3 control-label">公司地址</label>
+					<div class="col-sm-6">
+						<input class="form-control" th:field="*{address}">
+					</div>
+				</div>
+			</div>
+
+			<div class="col-sm-6 form-horizontal">
+				<button type="submit" class="btn btn-primary" name="save">提交</button>
+			</div>
+			<div class="col-sm-offset-1 col-sm-1" th:if="${actionName eq '修改'}">
+				<a th:href="@{/company/{id}/detail(id=${company.id})}"
+					class="btn btn-default">返回</a>
+			</div>
+			<div class="col-sm-offset-1 col-sm-1"
+				th:unless="${actionName eq '修改'}">
+				<a th:href="@{/company}" class="btn btn-default">返回</a>
+			</div>
+		</form>
+
+	</div>
+</body>
+</html>

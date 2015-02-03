@@ -19,9 +19,41 @@
 
 	<div class="container">
 		<h2 class="page-header">公司信息</h2>
+		<div class="container">
+			<a class="btn btn-default" th:href="@{/company/new}">增加</a>
+		</div>
+		<div>
+			<table class="table table-bordered" style="margin-top: 50px;">
+				<thead>
+					<tr>
+						<td>公司编号</td>
+						<td>公司名称</td>
+						<td>公司负责人</td>
+						<td>公司地点</td>
+						<th>&nbsp;</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="company : ${companies}">
+						<td th:text="${company.id}"></td>
+						<td th:text="${company.name}"></td>
+						<td th:text="${company.charger}"></td>
+						<td th:text="${company.address}"></td>
+						<td><a th:href="@{/company/{id}/detail(id=${company.id})}">
+								<span class="glyphicon glyphicon-info-sign"></span>
+						</a> <a th:href="@{/company/delete/{id}(id=${company.id})}"
+							class="delete-link"> <span class="glyphicon glyphicon-trash"></span>
+						</a></td>
+					</tr>
+				</tbody>
+			</table>
+
+
+		</div>
 	</div>
 
 	<script th:src="@{/js/jquery.min.js}"></script>
 	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/main.js}"></script>
 </body>
 </html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title></title>
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+<link th:href="@{/css/style.css}" rel="stylesheet">
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+	<div th:replace="home :: nav ('driver')"></div>
+
+	<div class="container">
+		<h2 class="page-header">公司详情</h2>
+		<div th:if="${param.success}" class="alert alert-info">
+			<button type="button" class="close" data-dismiss="alert"
+				aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			<p>修改成功</p>
+		</div>
+		<table class="table table-bordered">
+			<tr>
+				<td>公司编号</td>
+				<td th:text="${company.id}"></td>
+			</tr>
+			<tr>
+				<td>公司名称</td>
+				<td th:text="${company.name}"></td>
+			</tr>
+			<tr>
+				<td>公司负责人</td>
+				<td th:text="${company.charger}"></td>
+			</tr>
+			<tr>
+				<td>公司地址</td>
+				<td th:text="${company.address}"></td>
+			</tr>
+		</table>
+		<div>
+			<a class="btn btn-primary btn-lg" id="uploadinfo" th:href="@{/company}">返回</a>
+
+			<a class="btn btn-primary btn-lg" id="uploadinfo"
+				th:href="@{/company/{id}/modify(id=${company.id})}">修改信息</a>
+		</div>
+		
+	</div>
+
+
+</body>

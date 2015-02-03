@@ -5,13 +5,13 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
-import org.kitchenstudio.entity.Contact;
+import org.kitchenstudio.entity.Contract;
 import org.kitchenstudio.entity.Driver;
 import org.kitchenstudio.entity.Order;
 import org.kitchenstudio.entity.OrderItem;
 import org.kitchenstudio.entity.Staff;
 import org.kitchenstudio.entity.Type;
-import org.kitchenstudio.service.ContactService;
+import org.kitchenstudio.service.ContractService;
 import org.kitchenstudio.service.DriverService;
 import org.kitchenstudio.service.OrderService;
 import org.kitchenstudio.service.StaffService;
@@ -38,7 +38,7 @@ public class OrderController {
 	private DriverService driverService;
 
 	@Autowired
-	private ContactService contactService;
+	private ContractService contractService;
 
 	@ModelAttribute("staffs")
 	public List<Staff> populateStaffs() {
@@ -50,9 +50,9 @@ public class OrderController {
 		return driverService.findAll();
 	}
 
-	@ModelAttribute("contacts")
-	public List<Contact> populateContacts() {
-		return contactService.findAll();
+	@ModelAttribute("contracts")
+	public List<Contract> populatecontracts() {
+		return contractService.findAll();
 	}
 
 	@ModelAttribute("types")

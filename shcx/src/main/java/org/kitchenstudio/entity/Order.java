@@ -45,15 +45,15 @@ public class Order {
 	private Driver driver;
 	
 	@ManyToOne
-	@JoinColumn(name = "CONTACT_ID")
-	private Contact contact;
+	@JoinColumn(name = "CONTRACT_ID")
+	private Contract contract;
 	
-	public Contact getContact() {
-		return contact;
+	public Contract getcontract() {
+		return contract;
 	}
 	
-	public void setContact(Contact contact) {
-		this.contact = contact;
+	public void setcontract(Contract contract) {
+		this.contract = contract;
 	}
 
 	public OrderType getType() {

@@ -7,7 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class ContactItem {
+public class ContractItem {
 
 	@Id
 	@GeneratedValue

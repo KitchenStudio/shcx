@@ -2,7 +2,10 @@ package org.kitchenstudio.entity;
 
 public enum Type {
 
-	STEEL_PIPE("STEEL_PIPE"), FASTENER("FASTENER");
+	STEEL_PIPE("STEEL_PIPE"), // 钢管
+	FASTENER("FASTENER"), // 扣件
+	SLEEVE("SLEEVE"), // 套筒
+	;
 
 	private final String name;
 
@@ -10,13 +13,17 @@ public enum Type {
 		if (name == null) {
 			throw new IllegalArgumentException("Name cannot be null for type");
 		}
-		if (name.equals("STEEL_PIPE")) {
+		switch (name.toUpperCase()) {
+		case "STEEL_PIPE":
 			return STEEL_PIPE;
-		} else if (name.equals("FASTENER")) {
+		case "FASTENER":
 			return FASTENER;
+		case "SLEEVE":
+			return SLEEVE;
+		default:
+			throw new IllegalArgumentException("Name \"" + name
+					+ "\" does not correspond to any Type");
 		}
-		throw new IllegalArgumentException("Name \"" + name
-				+ "\" does not correspond to any Type");
 	}
 
 	private Type(final String name) {

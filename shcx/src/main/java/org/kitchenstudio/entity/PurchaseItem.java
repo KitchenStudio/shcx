@@ -5,6 +5,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.Valid;
 import javax.validation.constraints.Min;
 
 import org.hibernate.validator.constraints.NotBlank;

@@ -21,7 +21,7 @@
 	<div class="container">
 		<h2 align="center">创建采购单</h2>
 		<hr>
-		<form th:action="@{/purchase/new}" th:object="${purchase}"
+		<form th:fragment="new (action, actionName)" th:action="@{${action}}"  th:object="${purchase}"
 			method="post">
 			<div class="row">
 				<div class="col-sm-6 form-group"
@@ -98,6 +98,13 @@
 					<button type="submit" class="btn btn-primary" name="save"
 						id="uploadinfo">录入</button>
 				</div>
+				
+				<div class="col-sm-offset-1 col-sm-1" th:if="${actionName eq '修改'}">
+							<a th:href="@{/purchase/{id}/detail(id=${purchase.id})}" class="btn btn-default">返回</a>
+						</div>
+						<div class="col-sm-offset-1 col-sm-1" th:unless="${actionName eq '修改'}">
+							<a th:href="@{/purchase}" class="btn btn-default">返回</a>
+						</div>
 			</div>
 		</form>
 	</div>

@@ -42,7 +42,7 @@
 					<td th:text="${order.lessee}"></td>
 					<td><a th:href="@{/order/{id}/info(id=${order.id})}"> <span
 							class="glyphicon glyphicon-info-sign"></span>
-					</a> <a th:href="@{/order/delete/{id}(id=${order.id})}"
+					</a> <a th:href="@{/order/{id}/delete(id=${order.id})}"
 						class="delete-link"> <span class="glyphicon glyphicon-trash"></span></a>
 					</td>
 				</tr>

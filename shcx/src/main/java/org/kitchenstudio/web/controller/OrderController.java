@@ -7,13 +7,10 @@ import javax.validation.Valid;
 
 import org.kitchenstudio.entity.Order;
 import org.kitchenstudio.entity.OrderItem;
-import org.kitchenstudio.entity.OrderType;
 import org.kitchenstudio.entity.Staff;
 import org.kitchenstudio.entity.Type;
 import org.kitchenstudio.service.OrderService;
 import org.kitchenstudio.service.StaffService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,7 +19,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/order")
@@ -107,7 +103,7 @@ public class OrderController {
 		return "order/modify";
 	}
 
-	@RequestMapping("/delete/{id}")
+	@RequestMapping("/{id}/delete")
 	String delete(@PathVariable("id") Order order) {
 		orderService.delete(order);
 		return "redirect:/order";

@@ -28,9 +28,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/order")
 public class OrderController {
 
-	private static final Logger log = LoggerFactory
-			.getLogger(OrderController.class);
-
 	@Autowired
 	private OrderService orderService;
 

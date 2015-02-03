@@ -20,22 +20,23 @@ public class Staff {
 
 	@Id
 	@GeneratedValue
-	private Long id;// 员工的id
+	private Long id; // 员工的id
 
 	@NotBlank(message = "不能为空")
-	private String name;// 员工的姓名
+	private String name; // 员工的姓名
 
 	@Length(min = 18, max = 18, message = "身份证长度不符合")
-	private String IDCard;// 员工的身份证号
+	private String IDCard; // 员工的身份证号
 
 	@Enumerated(EnumType.STRING)
-	private GenderType gender;// 员工的性别
+	private GenderType gender; // 员工的性别
 
-	private String type;// 员工的类型
+	@Enumerated(EnumType.STRING)
+	private StaffType type; // 员工的类型
 
-	private String address;// 员工的地址
+	private String address; // 员工的地址
 
-	private String phoneNumber;// 员工的电话号码
+	private String phoneNumber; // 员工的电话号码
 
 	private String pathFaceimage;
 
@@ -66,13 +67,11 @@ public class Staff {
 
 	private String nation;// 民族
 
-	// private String
-
-	public String getType() {
+	public StaffType getType() {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(StaffType type) {
 		this.type = type;
 	}
 
@@ -148,7 +147,4 @@ public class Staff {
 		this.gender = gender;
 	}
 
-	public enum GenderType {
-		MALE, FEMALE
-	}
 }

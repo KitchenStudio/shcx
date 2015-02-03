@@ -23,9 +23,7 @@
 
 		<div th:replace="::new ('/staff/new', '录入')">
 		<form th:fragment="new (action, actionName)" th:action="@{${action}}" th:object="${staff}" method="post" enctype="multipart/form-data" >
-			<input type="hidden" th:field="*{id}">
 			<input type="hidden" th:field="*{pathFaceimage}">
-
 			<div class="row">
 				<div class="col-sm-6 form-horizontal">
 					<div class="form-group" th:classappend="form-group"
@@ -34,6 +32,16 @@
 						<label class="col-sm-2 control-label">姓名</label>
 						<div class="col-sm-3">
 							<input class="form-control" th:field="*{name}" th:title="${#fields.errors('name')}">
+						</div>
+					</div>
+					<div class="form-group" th:classappend="form-group"
+						th:class="${#fields.hasErrors('gender')}? has-error"
+						>
+						<label class="col-sm-2 control-label">性别</label>
+						<div class="col-sm-3">
+							<select class="form-control" th:field="*{gender}" th:title="${#fields.errors('gender')}">
+								<option th:each="gender : ${genders}" th:value="${gender}" th:text="#{'GenderType.' + ${gender}}"></option>
+							</select>
 						</div>
 					</div>
 					<div class="form-group" th:classappend="form-group"
@@ -102,7 +110,9 @@
 					<div class="form-group">
 						<label class="col-sm-2 control-label">类型</label>
 						<div class="col-sm-3">
-							<input class="form-control" th:field="*{type}">
+							<select class="form-control" th:field="*{type}">
+								<option th:each="type : ${staffTypes}" th:value="${type}" th:text="#{'StaffType.' + ${type}}"></option>
+							</select>
 						</div>
 					</div>
 					<div class="form-group">
@@ -126,7 +136,5 @@
 	<script th:src="@{/js/bootstrap.min.js}"></script>
 	<script th:src="@{/js/load-image.all.min.js}"></script>
 	<script th:src="@{/js/main.js}"></script>
-	
-
 </body>
 </html>

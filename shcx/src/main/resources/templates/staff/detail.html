@@ -29,10 +29,10 @@
 
 		<table class="table table-bordered">
 			<tr>
-				<td>编号</td>
-				<td th:text="${staff.id}"></td>
 				<td>姓名</td>
 				<td th:text="${staff.name}"></td>
+				<td>性别</td>
+				<td th:text="#{'GenderType.' + ${staff.gender}}"></td>
 				<td>民族</td>
 				<td th:text="${staff.nation}"></td>
 				<td>出生日期</td>
@@ -47,7 +47,7 @@
 				<td>银行卡号</td>
 				<td th:text="${staff.bankNumber}"></td>
 				<td>类型</td>
-				<td th:text="${staff.type}"></td>
+				<td th:text="#{'StaffType.' + ${staff.type}}"></td>
 				<td>学历</td>
 				<td th:text="${staff.education}"></td>
 			</tr>

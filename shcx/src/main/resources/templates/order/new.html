@@ -66,6 +66,19 @@
 					</div>
 				</div>
 			</div>
+			<div class="row">
+				<div class="col-sm-6 form-group"
+					th:classappend="'col-sm-6 form-group'"
+					th:class="${#fields.hasErrors('contact')}? has-error">
+					<label class="col-sm-3 control-label">司机</label>
+					<div class="col-sm-6">
+						<select class="form-control" th:field="*{contact}"
+							th:title="${#fields.errors('contact')}">
+							<option th:each="contact : ${contacts}" th:text="${contact.id}" th:value="${contact.id}"></option>
+						</select>
+					</div>
+				</div>
+			</div>
 				<div class="row" th:each="row,rowStat : *{orderItems}" style="margin-top: 12px;">
 					<div class="col-sm-4">
 						<div class="form-group" th:classappend="form-group"

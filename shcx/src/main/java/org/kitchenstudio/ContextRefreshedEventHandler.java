@@ -1,10 +1,12 @@
 package org.kitchenstudio;
 
+import org.kitchenstudio.entity.Contact;
 import org.kitchenstudio.entity.Driver;
 import org.kitchenstudio.entity.Staff;
 import org.kitchenstudio.entity.StoreItem;
 import org.kitchenstudio.entity.StoreType;
 import org.kitchenstudio.entity.Type;
+import org.kitchenstudio.repository.ContactRepository;
 import org.kitchenstudio.repository.DriverRepository;
 import org.kitchenstudio.repository.StaffRepository;
 import org.kitchenstudio.repository.StoreRepository;
@@ -30,6 +32,9 @@ public class ContextRefreshedEventHandler implements
 
 	@Autowired
 	private StoreRepository storeRepository;
+	
+	@Autowired
+	private ContactRepository contactRepository;
 
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
@@ -56,6 +61,8 @@ public class ContextRefreshedEventHandler implements
 
 			driverRepository.save(driver);
 		}
+		
+		contactRepository.save(new Contact());
 
 		StoreItem storeItem = new StoreItem();
 		storeItem.setStoreType(new StoreType(Type.STEEL_PIPE, "1.1"));

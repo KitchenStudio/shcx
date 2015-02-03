@@ -41,8 +41,20 @@ public class Order {
 	private OrderType type;
 
 	@ManyToOne
-	@JoinColumn(name = "ORDER_ID")
+	@JoinColumn(name = "DRIVER_ID")
 	private Driver driver;
+	
+	@ManyToOne
+	@JoinColumn(name = "CONTACT_ID")
+	private Contact contact;
+	
+	public Contact getContact() {
+		return contact;
+	}
+	
+	public void setContact(Contact contact) {
+		this.contact = contact;
+	}
 
 	public OrderType getType() {
 		return type;

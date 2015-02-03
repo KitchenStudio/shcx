@@ -81,13 +81,13 @@ public class OrderController {
 		return "order/detail";
 	}
 
-	@RequestMapping(value = "/modify/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{id}/modify", method = RequestMethod.GET)
 	String modify(@PathVariable("id") Order order, Model model) {
 		model.addAttribute(order);
 		return "order/modify";
 	}
 
-	@RequestMapping(value = "/{id}/info", method = RequestMethod.POST)
+	@RequestMapping(value = "/{id}/modify", method = RequestMethod.POST)
 	String info(@Valid Order order, BindingResult result) {
 		if (result.hasErrors()) {
 			return "order/modify";
@@ -96,7 +96,7 @@ public class OrderController {
 		return "redirect:/order/{id}/info?success";
 	}
 
-	@RequestMapping(value = "/info", params = { "removeItem" }, method = RequestMethod.POST)
+	@RequestMapping(value = "/{id}/modify", params = { "removeItem" }, method = RequestMethod.POST)
 	String modifyRemoveItems(@Valid Order order, BindingResult result,
 			HttpServletRequest req) {
 		Integer rowId = Integer.valueOf(req.getParameter("removeItem"));
@@ -104,7 +104,7 @@ public class OrderController {
 		return "order/modify";
 	}
 
-	@RequestMapping(value = "/info", params = { "modifyAddItem" }, method = RequestMethod.POST)
+	@RequestMapping(value = "/{id}/modify", params = { "addItem" }, method = RequestMethod.POST)
 	String modifyAddItems(@Valid Order order, BindingResult result) {
 		order.getOrderItems().add(new OrderItem());
 		return "order/modify";

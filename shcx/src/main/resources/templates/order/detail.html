@@ -32,16 +32,12 @@
 				<td th:text="${order.id}"></td>
 			</tr>
 			<tr>
-				<td>日期</td>
-				<td th:text="${order.date}"></td>
-			</tr>
-			<tr>
-				<td>经手人</td>
-				<td th:text="${order.handler.name}"></td>
+				<td>经办人</td>
+				<td th:text="${order.operator.name}"></td>
 			</tr>
 			<tr>
 				<td>出租方</td>
-				<td th:text="${order.renter}"></td>
+				<td th:text="${order.lessor}"></td>
 			</tr>
 			<tr>
 				<td>承租方</td>
@@ -72,7 +68,7 @@
 			<a class="btn btn-primary btn-lg" id="uploadinfo" th:href="@{/order}">返回</a>
 
 			<a class="btn btn-primary btn-lg" id="uploadinfo"
-				th:href="@{/order/modify/{id}(id=${order.id})}">修改信息</a>
+				th:href="@{/order/{id}/modify(id=${order.id})}">修改信息</a>
 		</div>
 	</div>
 

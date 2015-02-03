@@ -16,12 +16,11 @@
 </head>
 <body>
 	<div th:replace="home :: nav ('order')"></div>
-
-	<div class="container">
- 
-		<h2 th:text="|创建#{'OrderType.' + ${order.type}}|" class="page-header">创建发料单</h2>
-
-		<form th:action="@{/order/new}" th:object="${order}" method="post">
+	
+	<div th:replace=":: new (@{/order/new}, '创建')">
+	<div th:fragment="new (action, actionName)" class="container">
+		<h2 th:text="|${actionName}#{'OrderType.' + ${order.type}}|" class="page-header">创建发料单</h2>
+		<form th:action="${action}" th:object="${order}" method="post">
 			<input type="hidden" th:field="*{type}">
 			<div class="row">
 				<div class="col-sm-6 form-group"
@@ -102,6 +101,7 @@
 				</div>
 			</div>
 		</form>
+	</div>
 	</div>
 	<script th:src="@{/js/jquery.min.js}"></script>
 	<script th:src="@{/js/bootstrap.min.js}"></script>

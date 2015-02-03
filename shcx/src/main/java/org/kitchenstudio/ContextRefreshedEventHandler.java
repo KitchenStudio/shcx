@@ -37,9 +37,9 @@ public class ContextRefreshedEventHandler implements
 
 		for (int i = 0; i < 10; i++) {
 			Staff staff = new Staff();
-			staff.setName("张琳" + i);
-			staff.setPhoneNumber("18366116016");
-			staff.setIDCard("350322199203140552");
+			staff.setName("王小欣" + i);
+			staff.setPhoneNumber("18366110000");
+			staff.setIDCard("328333922232323224");
 			staff.setBankNumber("1234123412341234123");
 
 			staffRepository.save(staff);

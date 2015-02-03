@@ -29,7 +29,7 @@
 		<table class="table table-bordered">
 			<tr>
 				<td>编号</td>
-				<td th:text="${order.id}"></td>
+				<td th:text="${#numbers.formatInteger(order.id,8)}"></td>
 			</tr>
 			<tr>
 				<td>经办人</td>
@@ -44,11 +44,9 @@
 				<td th:text="${order.lessee}"></td>
 			</tr>
 		</table>
-		<h3 style="text-align: center;">订单项目详情</h3>
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th>编号</th>
 					<th>种类</th>
 					<th>规格</th>
 					<th>数量</th>
@@ -57,7 +55,6 @@
 			</thead>
 			<tbody>
 				<tr th:each="item : ${order.orderItems}">
-					<td th:text="${item.id}"></td>
 					<td th:text="#{'type.' + ${item.type}}"></td>
 					<td th:text="${item.kind}"></td>
 					<td th:text="${item.quantity}"></td>
@@ -65,9 +62,9 @@
 			</tbody>
 		</table>
 		<div>
-			<a class="btn btn-primary btn-lg" id="uploadinfo" th:href="@{/order}">返回</a>
+			<a class="btn btn-primary" id="uploadinfo" th:href="@{/order}">返回</a>
 
-			<a class="btn btn-primary btn-lg" id="uploadinfo"
+			<a class="btn btn-primary" id="uploadinfo"
 				th:href="@{/order/{id}/modify(id=${order.id})}">修改信息</a>
 		</div>
 	</div>

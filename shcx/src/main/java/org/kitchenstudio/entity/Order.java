@@ -38,7 +38,7 @@ public class Order {
 	@NotBlank(message = "不能为空")
 	private String lessee;// 承租方
 
-	@OneToMany
+	@OneToMany(orphanRemoval = true)
 	@JoinColumn(name = "ORDER_ID")
 	@Valid
 	private List<OrderItem> orderItems = new ArrayList<OrderItem>();// 多个订单项
@@ -49,7 +49,7 @@ public class Order {
 	public OrderType getType() {
 		return type;
 	}
-	
+
 	public void setType(OrderType type) {
 		this.type = type;
 	}

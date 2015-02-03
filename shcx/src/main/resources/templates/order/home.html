@@ -36,7 +36,7 @@
 			</thead>
 			<tbody>
 				<tr th:each="order : ${orders}">
-					<td th:text="${order.id}"></td>
+					<td th:text="${#numbers.formatInteger(order.id,8)}"></td>
 					<td th:text="${order.operator.name}"></td>
 					<td th:text="${order.lessor}"></td>
 					<td th:text="${order.lessee}"></td>

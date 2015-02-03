@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.kitchenstudio.entity.Order;
 import org.kitchenstudio.entity.OrderItem;
+import org.kitchenstudio.entity.OrderType;
 import org.kitchenstudio.entity.Staff;
 import org.kitchenstudio.entity.Type;
 import org.kitchenstudio.service.OrderService;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/order")
@@ -36,12 +38,12 @@ public class OrderController {
 	private StaffService staffService;
 
 	@ModelAttribute("staffs")
-	List<Staff> populateStaffs() {
+	public List<Staff> populateStaffs() {
 		return staffService.findAll();
 	}
 
 	@ModelAttribute("types")
-	Type[] populateTypes() {
+	public Type[] populateTypes() {
 		return Type.values();
 	}
 
@@ -50,7 +52,7 @@ public class OrderController {
 		List<Order> orders = orderService.findAll();
 		model.addAttribute("orders", orders);
 
-		return "order/order";
+		return "order/home";
 	}
 
 	@RequestMapping(value = "/new", method = RequestMethod.GET)

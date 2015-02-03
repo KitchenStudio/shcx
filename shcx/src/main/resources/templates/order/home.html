@@ -21,14 +21,14 @@
 	
 		<h2 class="page-header">订单列表</h2>
 
-		<a class="btn btn-default" th:href="@{/order/new}">发料</a>
-		<a class="btn btn-default" th:href="@{/order/new}">归料</a>
+		<a class="btn btn-default" th:href="@{/order/new?type=OUT}">发料</a>
+		<a class="btn btn-default" th:href="@{/order/new?type=IN}">归料</a>
+		<a class="btn btn-default" th:href="@{/order/new?type=PLAN}">计划</a>
 		<table class="table table-striped">
 			<thead>
 				<tr>
 					<th>编号</th>
-					<th>日期</th>
-					<th>经手人</th>
+					<th>经办人</th>
 					<th>出租方</th>
 					<th>承租方</th>
 					<th>&nbsp;</th>
@@ -37,11 +37,9 @@
 			<tbody>
 				<tr th:each="order : ${orders}">
 					<td th:text="${order.id}"></td>
-					<td th:text="${order.date}"></td>
-					<td th:text="${order.handler.name}"></td>
-					<td th:text="${order.renter}"></td>
+					<td th:text="${order.operator.name}"></td>
+					<td th:text="${order.lessor}"></td>
 					<td th:text="${order.lessee}"></td>
-					<!--  <td th:each="item : ${order.orderItems}" th:text="${item.kind}"></td>-->
 					<td><a th:href="@{/order/{id}/info(id=${order.id})}"> <span
 							class="glyphicon glyphicon-info-sign"></span>
 					</a> <a th:href="@{/order/delete/{id}(id=${order.id})}"

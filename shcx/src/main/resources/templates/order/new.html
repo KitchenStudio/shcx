@@ -19,37 +19,18 @@
 
 	<div class="container">
  
-		<h2 class="page-header">创建订单</h2>
+		<h2 th:text="|创建#{'OrderType.' + ${order.type}}|" class="page-header">创建发料单</h2>
 
 		<form th:action="@{/order/new}" th:object="${order}" method="post">
+			<input type="hidden" th:field="*{type}">
 			<div class="row">
 				<div class="col-sm-6 form-group"
 					th:classappend="'col-sm-6 form-group'"
-					th:class="${#fields.hasErrors('date')}? has-error">
-					<label class="col-sm-3 control-label">日期</label>
-					<div class="col-sm-6">
-						<input class="form-control" th:field="*{date}"
-							th:title="${#fields.hasErrors('date')}? 格式有问题，应该使用2012-10-12的格式">
-					</div>
-				</div>
-				<div class="col-sm-6 form-group"
-					th:classappend="'col-sm-6 form-group'"
-					th:class="${#fields.hasErrors('handler')}? has-error">
-					<label class="col-sm-3 control-label">经手人</label>
-					<div class="col-sm-6">
-						<select class="form-control" th:field="*{handler}"
-							th:title="${#fields.errors('handler')}">
-							<option th:each="staff : ${staffs}" th:text="${staff.name}" th:value="${staff.id}"></option>
-						</select>
-					</div>
-				</div>
-				<div class="col-sm-6 form-group"
-					th:classappend="'col-sm-6 form-group'"
-					th:class="${#fields.hasErrors('renter')}? has-error">
+					th:class="${#fields.hasErrors('lessor')}? has-error">
 					<label class="col-sm-3 control-label">出租方</label>
 					<div class="col-sm-6">
-						<input class="form-control" th:field="*{renter}" id="idcard"
-							th:title="${#fields.errors('renter')}">
+						<input class="form-control" th:field="*{lessor}" id="idcard"
+							th:title="${#fields.errors('lessor')}">
 					</div>
 				</div>
 				<div class="col-sm-6 form-group"
@@ -62,7 +43,19 @@
 					</div>
 				</div>
 			</div>
-			<hr>
+			<div class="row">
+				<div class="col-sm-6 form-group"
+					th:classappend="'col-sm-6 form-group'"
+					th:class="${#fields.hasErrors('operator')}? has-error">
+					<label class="col-sm-3 control-label">经办人</label>
+					<div class="col-sm-6">
+						<select class="form-control" th:field="*{operator}"
+							th:title="${#fields.errors('operator')}">
+							<option th:each="staff : ${staffs}" th:text="${staff.name}" th:value="${staff.id}"></option>
+						</select>
+					</div>
+				</div>
+			</div>
 			<div class="row">
 				<div class=" form-horizontal" th:each="row,rowStat : *{orderItems}">
 					<div class="col-sm-4 form-horizontal">

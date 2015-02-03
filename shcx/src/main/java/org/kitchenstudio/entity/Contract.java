@@ -33,7 +33,7 @@ public class Contract {
 
 	@OneToMany(orphanRemoval = true)
 	@JoinColumn(name = "CONTRACT_ID")
-	private List<ContractItem> contractItems = new ArrayList<ContractItem>(); //暂时被迫修改为public需要修正
+	private List<ContractItem> contractItems = new ArrayList<ContractItem>(); 
 
 	public Long getId() {
 		return id;

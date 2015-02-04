@@ -7,7 +7,6 @@ import org.kitchenstudio.entity.Product;
 import org.kitchenstudio.entity.ProductCategory;
 import org.kitchenstudio.entity.ProductSpecification;
 import org.kitchenstudio.entity.Staff;
-import org.kitchenstudio.entity.StoreItem;
 import org.kitchenstudio.entity.StoreType;
 import org.kitchenstudio.entity.Type;
 import org.kitchenstudio.repository.CompanyRepository;
@@ -120,19 +119,19 @@ public class ContextRefreshedEventHandler implements
 		contractRepository.save(new Contract());
 
 		// 仓库初始化
-		StoreItem storeItem = new StoreItem();
-		storeItem.setStoreType(new StoreType(Type.STEEL_PIPE, "1.1"));
-		storeItem.setQuantity(10);
-		storeRepository.save(storeItem);
-
-		storeItem = new StoreItem();
-		storeItem.setStoreType(new StoreType(Type.STEEL_PIPE, "1.1"));
-		storeItem.setQuantity(21);
-		storeRepository.save(storeItem);
-
-		storeItem = storeRepository.findOne(new StoreType(Type.STEEL_PIPE,
-				"1.1"));
-		logger.info(String.format("钢管1.1米有 --- %d 米", storeItem.getQuantity()));
+//		StoreItem storeItem = new StoreItem();
+//		storeItem.setStoreType(new StoreType(Type.STEEL_PIPE, "1.1"));
+//		storeItem.setQuantity(10);
+//		storeRepository.save(storeItem);
+//
+//		storeItem = new StoreItem();
+//		storeItem.setStoreType(new StoreType(Type.STEEL_PIPE, "1.1"));
+//		storeItem.setQuantity(21);
+//		storeRepository.save(storeItem);
+//
+//		storeItem = storeRepository.findOne(new StoreType(Type.STEEL_PIPE,
+//				"1.1"));
+//		logger.info(String.format("钢管1.1米有 --- %d 米", storeItem.getQuantity()));
 
 	}
 }

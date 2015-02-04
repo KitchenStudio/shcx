@@ -23,4 +23,15 @@ public class SiteServiceImpl implements SiteService{
 		// TODO Auto-generated method stub
 		return siteRepository.findAll();
 	}
+	@Override
+	public void add(Site site) {
+		// TODO Auto-generated method stub
+		siteRepository.save(site);
+	}
+	
+	@Override
+	public void delete(Site site) {
+		// TODO Auto-generated method stub
+		siteRepository.delete(site);
+	}
 }

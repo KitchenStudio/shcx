@@ -17,13 +17,12 @@
 </head>
 <body>
 
-	<div th:replace="home :: nav ('purchase')"></div>
+	<div th:replace="home :: nav ('site')"></div>
 	<div class="container">
 		<h2 align="center">创建项目</h2>
-		<hr>
-		<form th:fragment="new (action, actionName)" th:action="@{${action}}"
-			th:object="${site}" method="post">
-			<div class="row">
+		<div th:replace="::new ('/site/new', '录入')">
+			<form th:fragment="new (action, actionName)" th:action="@{${action}}"
+				th:object="${site}" method="post">
 				<div class="col-sm-6 form-group"
 					th:classappend="'col-sm-6 form-group'">
 					<label class="col-sm-3 control-label">项目名称</label>
@@ -36,56 +35,68 @@
 					<label class="col-sm-3 control-label">公司</label>
 					<div class="col-sm-6">
 						<select class="form-control" th:field="*{company}">
+							<!-- <option value="volvo">Volvo</option>
+							<option value="saab">Saab</option>
+							<option value="opel">Opel</option>
+							<option value="audi">Audi</option> -->
 							<option th:each="company : ${companies}"
 								th:text="${company.name}" th:value="${company.id}"></option>
 						</select>
 					</div>
+				</div>
+				<div class="col-sm-6 form-group"
+					th:classappend="'col-sm-6 form-group'">
+					<label class="col-sm-3 control-label">类型</label>
 					<div class="col-sm-6">
-						<select class="form-control" th:field="*{company}">
-							<option th:each="gender : ${genders}" th:value="${gender}"
-								th:text="#{'GenderType.' + ${gender}}"></option>
+						<select class="form-control" th:field="*{type}">
+							<option th:each="type : ${siteTypes}" th:value="${type}"
+								th:text="#{'SiteType.' + ${type}}"></option>
 						</select>
 					</div>
 				</div>
 
-			
-			</div>
-			<hr>
-			<div class="row">
-				<div class=" form-horizontal"
-					th:each="row,rowStat : *{purchaseItems}">
-					<div class="col-sm-4 form-horizontal">
-						<div class="form-group" th:classappend="form-group">
-							<label class="col-sm-2 control-label">类型</label>
-							<div class="col-sm-6">
-								<select class="form-control" th:field="*{type}">
-									<option th:each="type : ${types}" th:value="${type}"
-										th:text="#{'SiteType.' + ${type}}"></option>
-								</select>
+				<div class="col-sm-6 form-group"
+					th:classappend="'col-sm-6 form-group'">
+					<label class="col-sm-3 control-label">地址</label>
+					<div class="col-sm-6">
+						<input class="form-control" th:field="*{address}">
+					</div>
+				</div>
 
-							</div>
-						</div>
+
+				<!-- 	<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-12">
+						<button type="submit" class="btn btn-primary" name="save"
+							id="uploadinfo">录入</button>
 					</div>
 
-				
-				</div>
-			</div>
-			<div class="form-group">
-				<div class="col-sm-offset-2 col-sm-12">
-					<button type="submit" class="btn btn-primary" name="save"
-						id="uploadinfo">录入</button>
-				</div>
+					<div class="col-sm-offset-1 col-sm-1" th:if="${actionName eq '修改'}">
+						<a th:href="@{/site/{id}/detail(id=${site.id})}"
+							class="btn btn-default">返回</a>
+					</div>
+					<div class="col-sm-offset-1 col-sm-1"
+						th:unless="${actionName eq '修改'}">
+						<a th:href="@{/site}" class="btn btn-default">返回</a>
+					</div>
+				</div> -->
 
-				<div class="col-sm-offset-1 col-sm-1" th:if="${actionName eq '修改'}">
-					<a th:href="@{/purchase/{id}/detail(id=${purchase.id})}"
-						class="btn btn-default">返回</a>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-12">
+						<button type="submit" class="btn btn-primary" name="save"
+							id="uploadinfo">录入</button>
+					</div>
+
+					<div class="col-sm-offset-1 col-sm-1" th:if="${actionName eq '修改'}">
+						<a th:href="@{/site/{id}/detail(id=${site.id})}"
+							class="btn btn-default">返回</a>
+					</div>
+					<div class="col-sm-offset-1 col-sm-1"
+						th:unless="${actionName eq '修改'}">
+						<a th:href="@{/site}" class="btn btn-default">返回</a>
+					</div>
 				</div>
-				<div class="col-sm-offset-1 col-sm-1"
-					th:unless="${actionName eq '修改'}">
-					<a th:href="@{/purchase}" class="btn btn-default">返回</a>
-				</div>
-			</div>
-		</form>
+			</form>
+		</div>
 	</div>
 	<script th:src="@{/js/jquery.min.js}"></script>
 	<script th:src="@{/js/bootstrap.min.js}"></script>

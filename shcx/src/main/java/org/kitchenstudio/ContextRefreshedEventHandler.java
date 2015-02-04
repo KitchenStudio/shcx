@@ -1,5 +1,6 @@
 package org.kitchenstudio;
 
+import org.kitchenstudio.entity.Company;
 import org.kitchenstudio.entity.Contract;
 import org.kitchenstudio.entity.Driver;
 import org.kitchenstudio.entity.Product;
@@ -9,6 +10,7 @@ import org.kitchenstudio.entity.Staff;
 import org.kitchenstudio.entity.StoreItem;
 import org.kitchenstudio.entity.StoreType;
 import org.kitchenstudio.entity.Type;
+import org.kitchenstudio.repository.CompanyRepository;
 import org.kitchenstudio.repository.ContractRepository;
 import org.kitchenstudio.repository.DriverRepository;
 import org.kitchenstudio.repository.ProductCategoryRepository;
@@ -51,6 +53,11 @@ public class ContextRefreshedEventHandler implements
 	@Autowired
 	private ProductSpecificationRepository specificationRepository;
 
+	
+	@Autowired
+	private CompanyRepository companyRepository;
+	
+	
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
 		logger.info("Context Refreshed!");
@@ -98,6 +105,15 @@ public class ContextRefreshedEventHandler implements
 			driver.setPhoneNumber("" + i + i + i + i);
 
 			driverRepository.save(driver);
+		}
+		
+		//公司初始化
+		for(int i=0;i<10;i++){
+			Company company = new Company();
+			company.setAddress("地址"+i);
+			company.setCharger("changer"+i);
+			company.setName("name"+i);
+			companyRepository.save(company);
 		}
 
 		// 合同初始化

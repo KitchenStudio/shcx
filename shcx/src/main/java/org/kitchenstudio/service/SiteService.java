@@ -7,5 +7,7 @@ import org.kitchenstudio.entity.Site;
 public interface SiteService {
 	
 	List<Site>findAll();
+	void add(Site site);
+	void delete(Site site);
 
 }

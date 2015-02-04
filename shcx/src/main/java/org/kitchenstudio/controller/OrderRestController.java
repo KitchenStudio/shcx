@@ -15,7 +15,7 @@ public class OrderRestController {
 	@Autowired
 	private OrderService orderService;
 
-	@RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
+	@RequestMapping(value = "/{id}/delete", method = RequestMethod.POST)
 	void delete(@PathVariable("id") Order order) {
 		orderService.delete(order);
 	}

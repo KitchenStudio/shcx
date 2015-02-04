@@ -16,40 +16,20 @@
 </head>
 <body>
 	<div th:replace="home :: nav ('order')"></div>
-
-	<div class="container">
- 
-		<h2 class="page-header">创建订单</h2>
-
-		<form th:action="@{/order/new}" th:object="${order}" method="post">
+	
+	<div th:replace=":: new (@{/order/new}, '创建')">
+	<div th:fragment="new (action, actionName)" class="container">
+		<h2 th:text="|${actionName}#{'OrderType.' + ${order.type}}|" class="page-header">创建发料单</h2>
+		<form th:action="${action}" th:object="${order}" method="post">
+			<input type="hidden" th:field="*{type}">
 			<div class="row">
 				<div class="col-sm-6 form-group"
 					th:classappend="'col-sm-6 form-group'"
-					th:class="${#fields.hasErrors('date')}? has-error">
-					<label class="col-sm-3 control-label">日期</label>
-					<div class="col-sm-6">
-						<input class="form-control" th:field="*{date}"
-							th:title="${#fields.hasErrors('date')}? 格式有问题，应该使用2012-10-12的格式">
-					</div>
-				</div>
-				<div class="col-sm-6 form-group"
-					th:classappend="'col-sm-6 form-group'"
-					th:class="${#fields.hasErrors('handler')}? has-error">
-					<label class="col-sm-3 control-label">经手人</label>
-					<div class="col-sm-6">
-						<select class="form-control" th:field="*{handler}"
-							th:title="${#fields.errors('handler')}">
-							<option th:each="staff : ${staffs}" th:text="${staff.name}" th:value="${staff.id}"></option>
-						</select>
-					</div>
-				</div>
-				<div class="col-sm-6 form-group"
-					th:classappend="'col-sm-6 form-group'"
-					th:class="${#fields.hasErrors('renter')}? has-error">
+					th:class="${#fields.hasErrors('lessor')}? has-error">
 					<label class="col-sm-3 control-label">出租方</label>
 					<div class="col-sm-6">
-						<input class="form-control" th:field="*{renter}" id="idcard"
-							th:title="${#fields.errors('renter')}">
+						<input class="form-control" th:field="*{lessor}" id="idcard"
+							th:title="${#fields.errors('lessor')}">
 					</div>
 				</div>
 				<div class="col-sm-6 form-group"
@@ -62,10 +42,45 @@
 					</div>
 				</div>
 			</div>
-			<hr>
 			<div class="row">
-				<div class=" form-horizontal" th:each="row,rowStat : *{orderItems}">
-					<div class="col-sm-4 form-horizontal">
+				<div class="col-sm-6 form-group"
+					th:classappend="'col-sm-6 form-group'"
+					th:class="${#fields.hasErrors('operator')}? has-error">
+					<label class="col-sm-3 control-label">经办人</label>
+					<div class="col-sm-6">
+						<select class="form-control" th:field="*{operator}"
+							th:title="${#fields.errors('operator')}">
+							<option th:each="staff : ${staffs}" th:text="${staff.name}" th:value="${staff.id}"></option>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-6 form-group"
+					th:classappend="'col-sm-6 form-group'"
+					th:class="${#fields.hasErrors('driver')}? has-error">
+					<label class="col-sm-3 control-label">司机</label>
+					<div class="col-sm-6">
+						<select class="form-control" th:field="*{driver}"
+							th:title="${#fields.errors('driver')}">
+							<option th:each="driver : ${drivers}" th:text="${driver.name}" th:value="${driver.id}"></option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-6 form-group"
+					th:classappend="'col-sm-6 form-group'"
+					th:class="${#fields.hasErrors('contract')}? has-error">
+					<label class="col-sm-3 control-label">所属合同</label>
+					<div class="col-sm-6">
+						<select class="form-control" th:field="*{contract}"
+							th:title="${#fields.errors('contract')}">
+							<option th:each="contract : ${contracts}" th:text="${contract.id}" th:value="${contract.id}"></option>
+						</select>
+					</div>
+				</div>
+			</div>
+				<div class="row" th:each="row,rowStat : *{orderItems}" style="margin-top: 12px;">
+					<div class="col-sm-4">
 						<div class="form-group" th:classappend="form-group"
 							th:class="${#fields.hasErrors('orderItems[__${rowStat.index}__].type')}? has-error">
 							<label class="col-sm-2 control-label">类型</label>
@@ -78,7 +93,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-sm-4 form-horizontal">
+					<div class="col-sm-4">
 						<div class="form-group" th:classappend="form-group"
 							th:class="${#fields.hasErrors('orderItems[__${rowStat.index}__].kind')}? has-error">
 							<label class="col-sm-2 control-label">规格</label>
@@ -89,7 +104,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-sm-4 form-horizontal">
+					<div class="col-sm-4">
 						<div class="form-group" th:classappend="form-group"
 							th:class="${#fields.hasErrors('orderItems[__${rowStat.index}__].quantity')}? has-error">
 							<label class="col-sm-2 control-label">数量</label>
@@ -101,8 +116,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="row">
+			<div class="row" style="margin-top: 24px;">
 				<div class="col-sm-6 form-horizontal">
 					<button type="submit" class="btn btn-primary" name="addItem">添加项目</button>
 				</div>
@@ -111,6 +125,7 @@
 				</div>
 			</div>
 		</form>
+	</div>
 	</div>
 	<script th:src="@{/js/jquery.min.js}"></script>
 	<script th:src="@{/js/bootstrap.min.js}"></script>

@@ -14,7 +14,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-public class Contact {
+public class Contract {
 
 	@Id
 	@GeneratedValue
@@ -32,8 +32,8 @@ public class Contact {
 	private Date createdTime;
 
 	@OneToMany(orphanRemoval = true)
-	@JoinColumn(name = "CONTACT_ID")
-	private List<ContactItem> contactItems = new ArrayList<ContactItem>();
+	@JoinColumn(name = "CONTRACT_ID")
+	private List<ContractItem> contractItems = new ArrayList<ContractItem>(); 
 
 	public Long getId() {
 		return id;
@@ -75,12 +75,12 @@ public class Contact {
 		this.createdTime = createdTime;
 	}
 
-	public List<ContactItem> getContactItems() {
-		return contactItems;
+	public List<ContractItem> getContractItems() {
+		return contractItems;
 	}
 
-	public void setContactItems(List<ContactItem> contactItems) {
-		this.contactItems = contactItems;
+	public void setContractItems(List<ContractItem> contractItems) {
+		this.contractItems = contractItems;
 	}
 
 	@PrePersist

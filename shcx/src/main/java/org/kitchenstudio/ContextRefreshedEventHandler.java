@@ -1,11 +1,19 @@
 package org.kitchenstudio;
 
+import org.kitchenstudio.entity.Contract;
 import org.kitchenstudio.entity.Driver;
+import org.kitchenstudio.entity.Product;
+import org.kitchenstudio.entity.ProductCategory;
+import org.kitchenstudio.entity.ProductSpecification;
 import org.kitchenstudio.entity.Staff;
 import org.kitchenstudio.entity.StoreItem;
 import org.kitchenstudio.entity.StoreType;
 import org.kitchenstudio.entity.Type;
+import org.kitchenstudio.repository.ContractRepository;
 import org.kitchenstudio.repository.DriverRepository;
+import org.kitchenstudio.repository.ProductCategoryRepository;
+import org.kitchenstudio.repository.ProductRepository;
+import org.kitchenstudio.repository.ProductSpecificationRepository;
 import org.kitchenstudio.repository.StaffRepository;
 import org.kitchenstudio.repository.StoreRepository;
 import org.slf4j.Logger;
@@ -27,14 +35,48 @@ public class ContextRefreshedEventHandler implements
 
 	@Autowired
 	private DriverRepository driverRepository;
-	
+
 	@Autowired
 	private StoreRepository storeRepository;
+
+	@Autowired
+	private ContractRepository contractRepository;
+
+	@Autowired
+	private ProductRepository productRepository;
+
+	@Autowired
+	private ProductCategoryRepository categoryRepository;
+
+	@Autowired
+	private ProductSpecificationRepository specificationRepository;
 
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
 		logger.info("Context Refreshed!");
 
+		// 产品初始化
+		// 存储分类
+		ProductCategory category = new ProductCategory();
+		category.setName("租赁");
+
+		categoryRepository.save(category);
+
+		// 存储规格
+		ProductSpecification specification = new ProductSpecification();
+		specification.setName("1.1米");
+
+		specificationRepository.save(specification);
+
+		// 存储产品
+		Product product = new Product();
+		product.setName("钢管");
+		product.setCategory(category);
+		product.getSpecifications().add(specification);
+
+		productRepository.save(product);
+
+		// 员工初始化
 		for (int i = 0; i < 10; i++) {
 			Staff staff = new Staff();
 			staff.setName("王小欣" + i);
@@ -45,29 +87,36 @@ public class ContextRefreshedEventHandler implements
 			staffRepository.save(staff);
 		}
 
-		for(int i=0;i<10;i++){
+		// 司机初始化
+		for (int i = 0; i < 10; i++) {
 			Driver driver = new Driver();
-			driver.setName("老司机"+i);
-			driver.setBankNumber("123456789098765432"+i);
-			driver.setIDcard("12345678901234567"+i);
-			driver.setNation(""+i);
-			driver.setPlateNumber("沪A1234"+i);
-			driver.setPhoneNumber(""+i+i+i+i);
-			
+			driver.setName("老司机" + i);
+			driver.setBankNumber("123456789098765432" + i);
+			driver.setIDcard("12345678901234567" + i);
+			driver.setNation("" + i);
+			driver.setPlateNumber("沪A1234" + i);
+			driver.setPhoneNumber("" + i + i + i + i);
+
 			driverRepository.save(driver);
 		}
-		
+
+		// 合同初始化
+		contractRepository.save(new Contract());
+
+		// 仓库初始化
 		StoreItem storeItem = new StoreItem();
 		storeItem.setStoreType(new StoreType(Type.STEEL_PIPE, "1.1"));
 		storeItem.setQuantity(10);
 		storeRepository.save(storeItem);
-		
+
 		storeItem = new StoreItem();
 		storeItem.setStoreType(new StoreType(Type.STEEL_PIPE, "1.1"));
 		storeItem.setQuantity(21);
 		storeRepository.save(storeItem);
-		
-		storeItem = storeRepository.findOne(new StoreType(Type.STEEL_PIPE, "1.1"));
+
+		storeItem = storeRepository.findOne(new StoreType(Type.STEEL_PIPE,
+				"1.1"));
 		logger.info(String.format("钢管1.1米有 --- %d 米", storeItem.getQuantity()));
+
 	}
 }

@@ -4,9 +4,9 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import org.kitchenstudio.entity.Contact;
-import org.kitchenstudio.entity.ContactItem;
-import org.kitchenstudio.service.ContactService;
+import org.kitchenstudio.entity.Contract;
+import org.kitchenstudio.entity.ContractItem;
+import org.kitchenstudio.service.ContractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,45 +16,45 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/contact")
-public class ContactController {
+@RequestMapping("/contract")
+public class ContractController {
 
 	@Autowired
-	private ContactService contactService;
+	private ContractService contractService;
 
 	@RequestMapping({ "", "/" })
 	String home(Model model) {
-		List<Contact> contacts = contactService.findAll();
-		model.addAttribute("contacts", contacts);
-		return "contact/home";
+		List<Contract> contracts = contractService.findAll();
+		model.addAttribute("contracts", contracts);
+		return "contract/home";
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	String detail(@PathVariable("id") Contact contact, Model model) {
-		model.addAttribute(contact);
-		return "contact/detail";
+	String detail(@PathVariable("id") Contract contract, Model model) {
+		model.addAttribute("contract",contract);
+		return "contract/detail";
 	}
 
 	@RequestMapping(value = "/new", method = RequestMethod.GET)
 	String add(Model model) {
-		model.addAttribute("contact", new Contact());
-		return "/contact/new";
+		model.addAttribute("contract", new Contract());
+		return "/contract/new";
 	}
 
 	@RequestMapping(value = "/new", params = { "save" }, method = RequestMethod.POST)
-	String create(@Valid Contact contact, BindingResult result) {
+	String create(@Valid Contract contract, BindingResult result) {
 		if (result.hasErrors()) {
-			return "contact/new";
+			return "contract/new";
 		}
-		contactService.save(contact, contact.getContactItems());
-		return "redirect:/contact";
+		contractService.save(contract, contract.getContractItems());
+		return "redirect:/contract";
 	}
 
 	@RequestMapping(value = "/new", params = { "addItems" }, method = RequestMethod.POST)
-	String addItems(@Valid Contact contact, BindingResult result) {
+	String addItems(@Valid Contract contract, BindingResult result) {
 
-		contact.getContactItems().add(new ContactItem());
-		return "contact/new";
+		contract.getContractItems().add(new ContractItem());
+		return "contract/new";
 	}
 
 }

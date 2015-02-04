@@ -5,14 +5,16 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import org.kitchenstudio.entity.Contract;
+import org.kitchenstudio.entity.Driver;
 import org.kitchenstudio.entity.Order;
 import org.kitchenstudio.entity.OrderItem;
 import org.kitchenstudio.entity.Staff;
 import org.kitchenstudio.entity.Type;
+import org.kitchenstudio.service.ContractService;
+import org.kitchenstudio.service.DriverService;
 import org.kitchenstudio.service.OrderService;
 import org.kitchenstudio.service.StaffService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,22 +28,35 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/order")
 public class OrderController {
 
-	private static final Logger log = LoggerFactory
-			.getLogger(OrderController.class);
-
 	@Autowired
 	private OrderService orderService;
 
 	@Autowired
 	private StaffService staffService;
 
+	@Autowired
+	private DriverService driverService;
+
+	@Autowired
+	private ContractService contractService;
+
 	@ModelAttribute("staffs")
-	List<Staff> populateStaffs() {
+	public List<Staff> populateStaffs() {
 		return staffService.findAll();
 	}
 
+	@ModelAttribute("drivers")
+	public List<Driver> populateDrivers() {
+		return driverService.findAll();
+	}
+
+	@ModelAttribute("contracts")
+	public List<Contract> populatecontracts() {
+		return contractService.findAll();
+	}
+
 	@ModelAttribute("types")
-	Type[] populateTypes() {
+	public Type[] populateTypes() {
 		return Type.values();
 	}
 
@@ -50,7 +65,7 @@ public class OrderController {
 		List<Order> orders = orderService.findAll();
 		model.addAttribute("orders", orders);
 
-		return "order/order";
+		return "order/home";
 	}
 
 	@RequestMapping(value = "/new", method = RequestMethod.GET)
@@ -79,13 +94,13 @@ public class OrderController {
 		return "order/detail";
 	}
 
-	@RequestMapping(value = "/modify/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{id}/modify", method = RequestMethod.GET)
 	String modify(@PathVariable("id") Order order, Model model) {
 		model.addAttribute(order);
 		return "order/modify";
 	}
 
-	@RequestMapping(value = "/{id}/info", method = RequestMethod.POST)
+	@RequestMapping(value = "/{id}/modify", method = RequestMethod.POST)
 	String info(@Valid Order order, BindingResult result) {
 		if (result.hasErrors()) {
 			return "order/modify";
@@ -94,7 +109,7 @@ public class OrderController {
 		return "redirect:/order/{id}/info?success";
 	}
 
-	@RequestMapping(value = "/info", params = { "removeItem" }, method = RequestMethod.POST)
+	@RequestMapping(value = "/{id}/modify", params = { "removeItem" }, method = RequestMethod.POST)
 	String modifyRemoveItems(@Valid Order order, BindingResult result,
 			HttpServletRequest req) {
 		Integer rowId = Integer.valueOf(req.getParameter("removeItem"));
@@ -102,13 +117,13 @@ public class OrderController {
 		return "order/modify";
 	}
 
-	@RequestMapping(value = "/info", params = { "modifyAddItem" }, method = RequestMethod.POST)
+	@RequestMapping(value = "/{id}/modify", params = { "addItem" }, method = RequestMethod.POST)
 	String modifyAddItems(@Valid Order order, BindingResult result) {
 		order.getOrderItems().add(new OrderItem());
 		return "order/modify";
 	}
 
-	@RequestMapping("/delete/{id}")
+	@RequestMapping("/{id}/delete")
 	String delete(@PathVariable("id") Order order) {
 		orderService.delete(order);
 		return "redirect:/order";

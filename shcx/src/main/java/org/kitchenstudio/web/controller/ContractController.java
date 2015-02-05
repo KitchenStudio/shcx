@@ -8,6 +8,7 @@ import org.kitchenstudio.entity.Company;
 import org.kitchenstudio.entity.Contract;
 import org.kitchenstudio.entity.ContractItem;
 import org.kitchenstudio.entity.Product;
+import org.kitchenstudio.entity.ProductCategory;
 import org.kitchenstudio.service.CompanyService;
 import org.kitchenstudio.service.ContractService;
 import org.kitchenstudio.service.ProductService;
@@ -42,6 +43,12 @@ public class ContractController {
 	List<Product> populateProducts(){
 		return productService.findAll();
 	}
+	
+	@ModelAttribute("categories")
+	List<ProductCategory> populateCategories() {
+		return productService.allCategories();
+	}
+
 
 	@RequestMapping({ "", "/" })
 	String home(Model model) {

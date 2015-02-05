@@ -25,22 +25,18 @@
 				<div class="col-sm-6 form-group" th:classappend="form-group">
 					<label class="col-sm-3 control-label">租借方</label>
 					<div class="col-sm-6">
-						<input class="form-control" th:field="*{lessor}">
+						<select class="form-control" th:field="*{lessor}">
+							<option th:each="company : ${companies}"
+								th:text="${company.name}" th:value="${company.id}"></option>
+						</select>
 					</div>
 				</div>
 				<div class="col-sm-6 form-group" th:classappend="form-group">
 					<label class="col-sm-3 control-label">承租方</label>
 					<div class="col-sm-6">
-						<input class="form-control" th:field="*{lessee}">
-					</div>
-				</div>
-				<div class="col-sm-6 form-group" th:classappend="form-group">
-					<label class="col-sm-3 control-label">公司</label>
-					<div class="col-sm-6">
-						<select class="form-control" th:field="*{company}">
+						<select class="form-control" th:field="*{lessee}">
 							<option th:each="company : ${companies}"
 								th:text="${company.name}" th:value="${company.id}"></option>
-
 						</select>
 					</div>
 				</div>

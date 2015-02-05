@@ -21,33 +21,20 @@ public class Contract {
 	@GeneratedValue
 	private Long id;
 
-	private String lessor;
-
-	private String lessee;
-	
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "LESSOR_ID")
+	private Company lessor;
 
 	@ManyToOne(optional = false)
-	@JoinColumn(name = "COMPANY_ID")
-	private Company company;
-	
-	
-	public Company getCompany() {
-		return company;
-	}
-
-	public void setCompany(Company company) {
-		this.company = company;
-	}
-
-
+	@JoinColumn(name = "LESSEE_ID")
+	private Company lessee;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createdTime;
 
 	@OneToMany(orphanRemoval = true)
 	@JoinColumn(name = "CONTRACT_ID")
-//	@Valid
-	private List<ContractItem> contractItems = new ArrayList<ContractItem>(); 
+	private List<ContractItem> contractItems = new ArrayList<ContractItem>();
 
 	public Long getId() {
 		return id;
@@ -57,29 +44,21 @@ public class Contract {
 		this.id = id;
 	}
 
-	public String getLessor() {
+	public Company getLessor() {
 		return lessor;
 	}
 
-	public void setLessor(String lessor) {
+	public void setLessor(Company lessor) {
 		this.lessor = lessor;
 	}
 
-	public String getLessee() {
+	public Company getLessee() {
 		return lessee;
 	}
 
-	public void setLessee(String lessee) {
+	public void setLessee(Company lessee) {
 		this.lessee = lessee;
 	}
-
-	// public Staff getHandler() {
-	// return handler;
-	// }
-	//
-	// public void setHandler(Staff handler) {
-	// this.handler = handler;
-	// }
 
 	public Date getCreatedTime() {
 		return createdTime;

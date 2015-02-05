@@ -103,7 +103,7 @@ public class DatabaseInit {
 			Company company = new Company();
 			company.setAddress("地址" + i);
 			company.setCharger("changer" + i);
-			company.setName("name" + i);
+			company.setName("公司" + i);
 			companyRepository.save(company);
 		}
 

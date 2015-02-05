@@ -27,28 +27,27 @@ public class ContractController {
 
 	@Autowired
 	private ContractService contractService;
-	
+
 	@Autowired
 	private CompanyService companyService;
-	
+
 	@Autowired
 	private ProductService productService;
-	
+
 	@ModelAttribute("companies")
-	List<Company>  populateCompanies(){
+	List<Company> populateCompanies() {
 		return companyService.findAll();
 	}
-	
+
 	@ModelAttribute("products")
-	List<Product> populateProducts(){
+	List<Product> populateProducts() {
 		return productService.findAll();
 	}
-	
+
 	@ModelAttribute("categories")
 	List<ProductCategory> populateCategories() {
 		return productService.allCategories();
 	}
-
 
 	@RequestMapping({ "", "/" })
 	String home(Model model) {
@@ -59,7 +58,7 @@ public class ContractController {
 
 	@RequestMapping(value = "/{id}/detail", method = RequestMethod.GET)
 	String detail(@PathVariable("id") Contract contract, Model model) {
-		model.addAttribute("contract",contract);
+		model.addAttribute("contract", contract);
 		return "contract/detail";
 	}
 
@@ -84,20 +83,26 @@ public class ContractController {
 		contract.getContractItems().add(new ContractItem());
 		return "contract/new";
 	}
-	
-	@RequestMapping(value="/{id}/modify",method=RequestMethod.GET)
-	String modify(@PathVariable("id") Contract contract,Model model){
+
+	@RequestMapping(value = "/{id}/modify", method = RequestMethod.GET)
+	String modify(@PathVariable("id") Contract contract, Model model) {
 		model.addAttribute(contract);
 		return "contract/modify";
 	}
-	
-	@RequestMapping(value="/{id}/modify",method=RequestMethod.POST)
-	String modify(@Valid Contract contract,BindingResult result){
-		if(result.hasErrors()){
+
+	@RequestMapping(value = "/{id}/modify", params = "save", method = RequestMethod.POST)
+	String modify(@Valid Contract contract, BindingResult result) {
+		if (result.hasErrors()) {
 			return "contract/modify";
 		}
 		contractService.save(contract, contract.getContractItems());
 		return "redirect:/contract/{id}/detail?success";
 	}
 
+	@RequestMapping(value = "/{id}/modify", params = "addItems", method = RequestMethod.POST)
+	String modifyAddItems(@Valid Contract contract, BindingResult result) {
+
+		contract.getContractItems().add(new ContractItem());
+		return "contract/modify";
+	}
 }

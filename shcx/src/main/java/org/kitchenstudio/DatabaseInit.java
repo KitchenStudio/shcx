@@ -48,13 +48,17 @@ public class DatabaseInit {
 		// 虚拟数据
 		for (int i = 0; i < 6; i++) {
 			category = categoryRepository.save(new ProductCategory("分类" + i));
-			specifications = new ArrayList<>();
-			for (int j = 1; j < 10; j++) {
-				specifications.add(specificationRepository
-						.save(new ProductSpecification("规格" + j, 1)));
+
+			for (int j = 0; j < 6; j++) {
+
+				specifications = new ArrayList<>();
+				for (int k = 1; k < 10; k++) {
+					specifications.add(specificationRepository
+							.save(new ProductSpecification("规格" + k, 1)));
+				}
+				productRepository.save(new Product("产品" + i + j, category,
+						specifications));
 			}
-			productRepository.save(new Product("产品" + i, category,
-					specifications));
 
 		}
 

@@ -10,5 +10,7 @@ public interface ProductService {
 	List<Product> findAll();
 
 	List<ProductCategory> allCategories();
+	
+	List<Product> findByCategory(ProductCategory category);
 
 }

@@ -48,14 +48,17 @@
 				</div>
 			</div>
 			<hr>
-			<div class="row">
-				<div th:each="row,rowStat : *{contractItems}">
+				<div class="row" th:each="row,rowStat : *{contractItems}">
 					<div class="col-sm-4">
 						<div class="form-group" th:classappend="form-group">
 							<label class="col-sm-2 control-label">类型</label>
 							<div class="col-sm-6">
-								<input class="form-control" type="text"
-									th:field="*{contractItems[__${rowStat.index}__].kind}">
+								<select class="form-control category"
+									th:field="*{contractItems[__${rowStat.index}__].product.category}">
+									<option th:each="category : ${categories}"
+										th:text="${category.name}" th:value="${category.id}"></option>
+
+								</select>
 							</div>
 						</div>
 					</div>
@@ -63,7 +66,7 @@
 						<div class="form-group" th:classappend="form-group">
 							<label class="col-sm-2 control-label">产品</label>
 							<div class="col-sm-6">
-								<select class="form-control"
+								<select class="form-control product"
 									th:field="*{contractItems[__${rowStat.index}__].product}">
 									<option th:each="product : ${products}"
 										th:text="${product.name}" th:value="${product.id}"></option>
@@ -83,7 +86,6 @@
 					</div>
 
 				</div>
-			</div>
 
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-12">
@@ -115,5 +117,6 @@
 	</div>
 	<script th:src="@{/js/jquery.min.js}"></script>
 	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/contract.js}"></script>
 </body>
 </html>

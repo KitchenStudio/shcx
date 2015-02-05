@@ -25,16 +25,15 @@
 				<tr>
 					<th>编号</th>
 					<th>租借方</th>
-					<th>承接方
-					<th>
+					<th>承租方</th>
 					<th>&nbsp;</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="contract : ${contracts}">
 					<td th:text="${contract.id}"></td>
-					<td th:text="${contract.lessor}"></td>
-					<td th:text="${contract.lessee}"></td>
+					<td th:text="${contract.lessor.name}"></td>
+					<td th:text="${contract.lessee.name}"></td>
 					<td><a th:href="@{/contract/{id}/detail(id=${contract.id})}"><span
 							class="glyphicon glyphicon-info-sign"></span></a> <a
 						th:href="@{/contract/{id}/delete(id=${contract.id})}"

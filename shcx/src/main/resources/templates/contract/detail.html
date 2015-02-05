@@ -30,17 +30,12 @@
 			<tbody>
 				<tr>
 					<td>租借方</td>
-					<td th:text="${contract.lessor}"></td>
+					<td th:text="${contract.lessor.name}"></td>
 				</tr>
 				<tr>
 					<td>承租方</td>
-					<td th:text="${contract.lessee}"></td>
+					<td th:text="${contract.lessee.name}"></td>
 				</tr>
-				<tr>
-					<td>公司</td>
-					<td th:text="${contract.company.name}"></td>
-				</tr>
-
 
 			</tbody>
 		</table>
@@ -49,9 +44,9 @@
 			<h3 class="page-header" style="text-align: center;">详细条目</h3>
 			<table class="table table-striped">
 				<tr th:each="item : ${contract.contractItems}">
-					<td th:text="${item.kind}"></td>
-					<td th:text="${item.price}"></td>
+					<td th:text="${item.product.category.name}"></td>
 					<td th:text="${item.product.name}"></td>
+					<td th:text="${item.price}"></td>
 				</tr>
 			</table>
 
@@ -67,6 +62,6 @@
 
 	<script th:src="@{/js/jquery.min.js}"></script>
 	<script th:src="@{/js/bootstrap.min.js}"></script>
-	<script th:src="@{/js/main.min.js}"></script>
+	<script th:src="@{/js/main.js}"></script>
 </body>
 </html>

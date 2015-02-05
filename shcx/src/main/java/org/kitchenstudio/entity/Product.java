@@ -27,7 +27,8 @@ public class Product {
 	@JoinColumn(name = "PRODUCT_ID")
 	private List<ProductSpecification> specifications = new ArrayList<>();
 
-	protected Product() {
+	public Product() {
+		
 	}
 
 	public Product(String name, ProductCategory category,

@@ -15,7 +15,7 @@ public class ProductSpecification {
 
 	private double dim; // 量纲，比如 1.1米钢管量纲为1.1，只是借物理里面的词一用，不知道有没有更准确的词
 
-	protected ProductSpecification() {
+	public ProductSpecification() {
 	}
 
 	public ProductSpecification(String name, double dim) {

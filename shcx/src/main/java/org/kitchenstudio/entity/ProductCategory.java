@@ -13,7 +13,7 @@ public class ProductCategory {
 
 	private String name;
 
-	protected ProductCategory() {
+	public ProductCategory() {
 	}
 
 	public ProductCategory(String name) {

@@ -13,6 +13,13 @@ public class ProductCategory {
 
 	private String name;
 
+	protected ProductCategory() {
+	}
+
+	public ProductCategory(String name) {
+		this.name = name;
+	}
+
 	public Long getId() {
 		return id;
 	}

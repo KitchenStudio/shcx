@@ -27,6 +27,16 @@ public class Product {
 	@JoinColumn(name = "PRODUCT_ID")
 	private List<ProductSpecification> specifications = new ArrayList<>();
 
+	protected Product() {
+	}
+
+	public Product(String name, ProductCategory category,
+			List<ProductSpecification> specifications) {
+		this.name = name;
+		this.category = category;
+		this.specifications = specifications;
+	}
+
 	public Long getId() {
 		return id;
 	}

@@ -19,7 +19,8 @@
 
 	<div class="container">
 		<h2 class="page-header">合同</h2>
-		<form th:action="@{/contract/new}" th:object="${contract}" method="post">
+		<form th:fragment="new (action, actionName)" th:action="@{${action}}"
+			th:object="${contract}" method="post">
 			<div class="row">
 				<div class="col-sm-6 form-group" th:classappend="form-group">
 					<label class="col-sm-3 control-label">租借方</label>
@@ -33,12 +34,27 @@
 						<input class="form-control" th:field="*{lessee}">
 					</div>
 				</div>
+				<div class="col-sm-6 form-group" th:classappend="form-group">
+					<label class="col-sm-3 control-label">公司</label>
+					<div class="col-sm-6">
+						<select class="form-control" th:field="*{company}">
+							<option th:each="company : ${companies}"
+								th:text="${company.name}" th:value="${company.id}"></option>
+
+						</select>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-12">
+						<button type="submit" class="btn btn-primary" name="addItems">add</button>
+					</div>
+				</div>
 			</div>
 			<hr>
 			<div class="row">
-				<div class=" form-horizontal"
-					th:each="row,rowStat : *{contractItems}">
-					<div class="col-sm-4 form-horizontal">
+				<div th:each="row,rowStat : *{contractItems}">
+					<div class="col-sm-4">
 						<div class="form-group" th:classappend="form-group">
 							<label class="col-sm-2 control-label">类型</label>
 							<div class="col-sm-6">
@@ -47,7 +63,20 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-sm-4 form-horizontal">
+					<div class="col-sm-4">
+						<div class="form-group" th:classappend="form-group">
+							<label class="col-sm-2 control-label">产品</label>
+							<div class="col-sm-6">
+								<select class="form-control"
+									th:field="*{contractItems[__${rowStat.index}__].product}">
+									<option th:each="product : ${products}"
+										th:text="${product.name}" th:value="${product.id}"></option>
+
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-4">
 						<div class="form-group" th:classappend="form-group">
 							<label class="col-sm-2 control-label">价格</label>
 							<div class="col-sm-6">
@@ -56,9 +85,26 @@
 							</div>
 						</div>
 					</div>
+
 				</div>
 			</div>
+
 			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-12">
+					<button type="submit" class="btn btn-primary" name="save"
+						id="uploadinfo">录入</button>
+				</div>
+
+				<div class="col-sm-offset-1 col-sm-1" th:if="${actionName eq '修改'}">
+					<a th:href="@{/contract/{id}/detail(id=${contract.id})}"
+						class="btn btn-default">返回</a>
+				</div>
+				<div class="col-sm-offset-1 col-sm-1"
+					th:unless="${actionName eq '修改'}">
+					<a th:href="@{/contract}" class="btn btn-default">返回</a>
+				</div>
+			</div>
+			<!-- 	<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-12">
 					<button type="submit" class="btn btn-primary" name="addItems">add</button>
 				</div>
@@ -68,7 +114,7 @@
 					<button type="submit" class="btn btn-primary" name="save"
 						id="uploadinfo">录入</button>
 				</div>
-			</div>
+			</div> -->
 		</form>
 	</div>
 	<script th:src="@{/js/jquery.min.js}"></script>

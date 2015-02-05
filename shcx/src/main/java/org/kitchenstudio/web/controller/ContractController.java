@@ -4,13 +4,18 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.kitchenstudio.entity.Company;
 import org.kitchenstudio.entity.Contract;
 import org.kitchenstudio.entity.ContractItem;
+import org.kitchenstudio.entity.Product;
+import org.kitchenstudio.service.CompanyService;
 import org.kitchenstudio.service.ContractService;
+import org.kitchenstudio.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,6 +26,22 @@ public class ContractController {
 
 	@Autowired
 	private ContractService contractService;
+	
+	@Autowired
+	private CompanyService companyService;
+	
+	@Autowired
+	private ProductService productService;
+	
+	@ModelAttribute("companies")
+	List<Company>  populateCompanies(){
+		return companyService.findAll();
+	}
+	
+	@ModelAttribute("products")
+	List<Product> populateProducts(){
+		return productService.findAll();
+	}
 
 	@RequestMapping({ "", "/" })
 	String home(Model model) {
@@ -29,7 +50,7 @@ public class ContractController {
 		return "contract/home";
 	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{id}/detail", method = RequestMethod.GET)
 	String detail(@PathVariable("id") Contract contract, Model model) {
 		model.addAttribute("contract",contract);
 		return "contract/detail";
@@ -55,6 +76,21 @@ public class ContractController {
 
 		contract.getContractItems().add(new ContractItem());
 		return "contract/new";
+	}
+	
+	@RequestMapping(value="/{id}/modify",method=RequestMethod.GET)
+	String modify(@PathVariable("id") Contract contract,Model model){
+		model.addAttribute(contract);
+		return "contract/modify";
+	}
+	
+	@RequestMapping(value="/{id}/modify",method=RequestMethod.POST)
+	String modify(@Valid Contract contract,BindingResult result){
+		if(result.hasErrors()){
+			return "contract/modify";
+		}
+		contractService.save(contract, contract.getContractItems());
+		return "redirect:/contract/{id}/detail?success";
 	}
 
 }

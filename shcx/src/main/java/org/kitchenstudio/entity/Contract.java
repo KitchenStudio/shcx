@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.Temporal;
@@ -23,16 +24,29 @@ public class Contract {
 	private String lessor;
 
 	private String lessee;
+	
 
-	// @ManyToOne(optional=false)
-	// @JoinColumn(name="STAFF_ID", nullable=true, updatable=false)
-	// private Staff handler;
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "COMPANY_ID")
+	private Company company;
+	
+	
+	public Company getCompany() {
+		return company;
+	}
+
+	public void setCompany(Company company) {
+		this.company = company;
+	}
+
+
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createdTime;
 
 	@OneToMany(orphanRemoval = true)
 	@JoinColumn(name = "CONTRACT_ID")
+//	@Valid
 	private List<ContractItem> contractItems = new ArrayList<ContractItem>(); 
 
 	public Long getId() {

@@ -15,12 +15,12 @@ public class Store {
 	@GeneratedValue
 	Long id;
 	
-	@OneToMany(orphanRemoval = true)
-	@JoinColumn(name = "STORE_ID", nullable = false, updatable = true)
-	@Valid
-	private Purchase purchase;
+//	@OneToMany(orphanRemoval = true)
+//	@JoinColumn(name = "STORE_ID", nullable = false, updatable = true)
+//	@Valid
+//	private Purchase purchase;
 	
-	private Site site;
+//	private Site site;
 	
 	private int quantity;
 	

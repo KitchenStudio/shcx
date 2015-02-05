@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title></title>
+<title>修改订单</title>
 <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
 <link th:href="@{/css/style.css}" rel="stylesheet">
 
@@ -16,34 +16,13 @@
 </head>
 <body>
 	<div th:replace="home :: nav ('contract')"></div>
-	
-	<div class="container">
-		<h2 class="page-header">合同</h2>
-		<a class="btn btn-primary" th:href="@{/contract/new}">新增</a>
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th>编号</th>
-					<th>租借方</th>
-					<th>承接方
-					<th>
-					<th>&nbsp;</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="contract : ${contracts}">
-					<td th:text="${contract.id}"></td>
-					<td th:text="${contract.lessor}"></td>
-					<td th:text="${contract.lessee}"></td>
-					<td><a th:href="@{/contract/{id}/detail(id=${contract.id})}"><span
-							class="glyphicon glyphicon-info-sign"></span></a> <a
-						th:href="@{/contract/{id}/delete(id=${contract.id})}"
-						class="delete-link"><span class="glyphicon glyphicon-trash"></span></a></td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
 
+	<h1 align="center" style="margin-bottom: 50px;">修改合同</h1>
+
+	<div class="container">
+		<div
+			th:replace="contract/new :: new (@{/contract/{id}/modify(id=${contract.id})},'修改')"></div>
+	</div>
 	<script th:src="@{/js/jquery.min.js}"></script>
 	<script th:src="@{/js/bootstrap.min.js}"></script>
 	<script th:src="@{/js/main.js}"></script>

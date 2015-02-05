@@ -18,22 +18,51 @@
 	<div th:replace="home :: nav ('contract')"></div>
 
 	<div class="container">
-		<h2 class="page-header">合同</h2>
+		<h2 class="page-header" style="text-align: center;">合同详情</h2>
+		<div th:if="${param.success}" class="alert alert-info">
+			<button type="button" class="close" data-dismiss="alert"
+				aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			<p>修改成功</p>
+		</div>
 		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th>类型</th>
-					<th>单价</th>
-					<th>&nbsp;</th>
-				</tr>
-			</thead>
 			<tbody>
+				<tr>
+					<td>租借方</td>
+					<td th:text="${contract.lessor}"></td>
+				</tr>
+				<tr>
+					<td>承租方</td>
+					<td th:text="${contract.lessee}"></td>
+				</tr>
+				<tr>
+					<td>公司</td>
+					<td th:text="${contract.company.name}"></td>
+				</tr>
+
+
+			</tbody>
+		</table>
+
+		<div>
+			<h3 class="page-header" style="text-align: center;">详细条目</h3>
+			<table class="table table-striped">
 				<tr th:each="item : ${contract.contractItems}">
 					<td th:text="${item.kind}"></td>
 					<td th:text="${item.price}"></td>
+					<td th:text="${item.product.name}"></td>
 				</tr>
-			</tbody>
-		</table>
+			</table>
+
+		</div>
+
+		<div>
+			<a class="btn btn-primary btn-lg" id="uploadinfo"
+				th:href="@{/contract}">返回</a> <a class="btn btn-primary btn-lg"
+				id="uploadinfo"
+				th:href="@{/contract/{id}/modify(id=${contract.id})}">修改信息</a>
+		</div>
 	</div>
 
 	<script th:src="@{/js/jquery.min.js}"></script>

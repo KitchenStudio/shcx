@@ -96,7 +96,6 @@ public class PurchaseController {
 	
 	@RequestMapping(value="/{id}/modify",method=RequestMethod.GET)
 	String modify(@PathVariable("id")Purchase purchase,Model model){
-		System.out.println("modefy");
 		model.addAttribute(purchase);
 		return "purchase/modify";
 	}

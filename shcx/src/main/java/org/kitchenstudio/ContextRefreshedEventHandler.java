@@ -35,7 +35,6 @@ public class ContextRefreshedEventHandler implements
 	@Autowired
 	private DriverRepository driverRepository;
 
-
 	@Autowired
 	private ContractRepository contractRepository;
 
@@ -48,11 +47,9 @@ public class ContextRefreshedEventHandler implements
 	@Autowired
 	private ProductSpecificationRepository specificationRepository;
 
-	
 	@Autowired
 	private CompanyRepository companyRepository;
-	
-	
+
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
 		logger.info("Context Refreshed!");
@@ -71,12 +68,14 @@ public class ContextRefreshedEventHandler implements
 		specificationRepository.save(specification);
 
 		// 存储产品
-		Product product = new Product();
-		product.setName("钢管");
-		product.setCategory(category);
-		product.getSpecifications().add(specification);
+		for (int i = 0; i < 10; i++) {
+			Product product = new Product();
+			product.setName("钢管"+i);
+			product.setCategory(category);
+			product.getSpecifications().add(specification);
 
-		productRepository.save(product);
+			productRepository.save(product);
+		}
 
 		// 员工初始化
 		for (int i = 0; i < 10; i++) {
@@ -101,18 +100,22 @@ public class ContextRefreshedEventHandler implements
 
 			driverRepository.save(driver);
 		}
-		
-		//公司初始化
-		for(int i=0;i<10;i++){
+
+		// 公司初始化
+		for (int i = 0; i < 10; i++) {
 			Company company = new Company();
-			company.setAddress("地址"+i);
-			company.setCharger("changer"+i);
-			company.setName("name"+i);
+			company.setAddress("地址" + i);
+			company.setCharger("changer" + i);
+			company.setName("name" + i);
 			companyRepository.save(company);
 		}
 
+		// for(int i=0;i<10;i++){
+		// Contract contract = new Contract();
+		// contract.set
+		// }
 		// 合同初始化
-		contractRepository.save(new Contract());
+		// contractRepository.save(new Contract());
 
 	}
 }

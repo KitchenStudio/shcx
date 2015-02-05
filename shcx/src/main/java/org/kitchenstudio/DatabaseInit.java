@@ -29,8 +29,8 @@ public class DatabaseInit {
 	public String initProducts() {
 		logger.info("init products");
 
-		ProductCategory category = new ProductCategory("租赁");
-		categoryRepository.save(category);
+		ProductCategory category = categoryRepository.save(new ProductCategory(
+				"租赁"));
 
 		List<ProductSpecification> specifications = new ArrayList<>();
 		for (int i = 1; i < 6; i++) {
@@ -43,8 +43,20 @@ public class DatabaseInit {
 		specifications.add(specificationRepository
 				.save(new ProductSpecification("6.0米", 6.0)));
 
-		Product product = new Product("钢管", category, specifications);
-		productRepository.save(product);
+		productRepository.save(new Product("钢管", category, specifications));
+
+		// 虚拟数据
+		for (int i = 0; i < 6; i++) {
+			category = categoryRepository.save(new ProductCategory("分类" + i));
+			specifications = new ArrayList<>();
+			for (int j = 1; j < 10; j++) {
+				specifications.add(specificationRepository
+						.save(new ProductSpecification("规格" + j, 1)));
+			}
+			productRepository.save(new Product("产品" + i, category,
+					specifications));
+
+		}
 
 		return SUCCESS;
 	}

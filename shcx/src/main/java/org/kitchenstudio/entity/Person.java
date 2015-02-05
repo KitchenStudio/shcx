@@ -1,7 +1,6 @@
 package org.kitchenstudio.entity;
 
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,8 +19,7 @@ public class Person {
 
 	@OneToMany(orphanRemoval = true)
 	@JoinColumn(name = "PERSON_ID")
-	// join column is in table for Order
-	private List<Number> numbers;
+	private List<Phone> phones;
 
 	public Long getId() {
 		return id;
@@ -39,11 +37,12 @@ public class Person {
 		this.name = name;
 	}
 
-	public List<Number> getNumbers() {
-		return numbers;
+	public List<Phone> getPhones() {
+		return phones;
 	}
 
-	public void setNumbers(List<Number> numbers) {
-		this.numbers = numbers;
+	public void setPhones(List<Phone> phones) {
+		this.phones = phones;
 	}
+
 }

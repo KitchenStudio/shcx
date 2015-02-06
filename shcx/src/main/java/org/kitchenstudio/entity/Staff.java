@@ -2,11 +2,13 @@ package org.kitchenstudio.entity;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -145,6 +147,14 @@ public class Staff {
 
 	public void setGender(GenderType gender) {
 		this.gender = gender;
+	}
+
+	@PrePersist
+	public void onCreated() {
+		if (gender == null)
+			gender = GenderType.UNKOWN;
+		if (type == null)
+			type = StaffType.UNKOWN;
 	}
 
 }

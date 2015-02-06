@@ -89,7 +89,7 @@
 						<div class="col-sm-3">
 							<div id="upload-area">
 							<img width="128" height="128" alt=""
-								th:src="@{/images/faceimage.jpg}" id="uploadpicture">
+								th:src="@{${!#strings.isEmpty(staff.pathFaceimage)} ? ${staff.pathFaceimage} : '/images/faceimage.jpg'}" id="uploadpicture">
 							</div>
 								 <input	name="file" type="file" id="fileupload" >
 						</div>

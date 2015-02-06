@@ -98,7 +98,7 @@ public class PurchaseController {
 		return "purchase/modify";
 	}
 
-	@RequestMapping(value = "/{id}/modify", method = RequestMethod.POST)
+	@RequestMapping(value = "/{id}/modify", params = { "save" }, method = RequestMethod.POST)
 	String modify(@Valid Purchase purchase, BindingResult result) {
 
 		if (result.hasErrors()) {
@@ -106,6 +106,13 @@ public class PurchaseController {
 		}
 		purchaseService.save(purchase, purchase.getPurchaseItems());
 		return "redirect:/purchase/{id}/detail?success";
+
+	}
+
+	@RequestMapping(value = "/{id}/modify", params = { "addItems" }, method = RequestMethod.POST)
+	String modifyItems(@Valid Purchase purchase, BindingResult result) {
+		purchase.getPurchaseItems().add(new PurchaseItem());
+		return "purchase/modify";
 
 	}
 

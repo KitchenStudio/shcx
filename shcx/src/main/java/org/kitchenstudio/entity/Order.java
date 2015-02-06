@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -26,12 +27,6 @@ public class Order {
 	@JoinColumn(name = "CUST_ID", nullable = false)
 	private Staff operator;// 经手人
 
-	@NotBlank(message = "不能为空")
-	private String lessor;// 出租方
-
-	@NotBlank(message = "不能为空")
-	private String lessee;// 承租方
-
 	@OneToMany(orphanRemoval = true)
 	@JoinColumn(name = "ORDER_ID")
 	@Valid
@@ -43,15 +38,16 @@ public class Order {
 	@ManyToOne
 	@JoinColumn(name = "DRIVER_ID")
 	private Driver driver;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "CONTRACT_ID")
+	@NotNull
 	private Contract contract;
-	
+
 	public Contract getContract() {
 		return contract;
 	}
-	
+
 	public void setContract(Contract contract) {
 		this.contract = contract;
 	}
@@ -86,22 +82,6 @@ public class Order {
 
 	public void setOperator(Staff operator) {
 		this.operator = operator;
-	}
-
-	public String getLessor() {
-		return lessor;
-	}
-
-	public void setLessor(String lessor) {
-		this.lessor = lessor;
-	}
-
-	public String getLessee() {
-		return lessee;
-	}
-
-	public void setLessee(String lessee) {
-		this.lessee = lessee;
 	}
 
 	public Driver getDriver() {

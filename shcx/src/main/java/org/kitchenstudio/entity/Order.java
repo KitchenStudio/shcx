@@ -48,11 +48,11 @@ public class Order {
 	@JoinColumn(name = "CONTRACT_ID")
 	private Contract contract;
 	
-	public Contract getcontract() {
+	public Contract getContract() {
 		return contract;
 	}
 	
-	public void setcontract(Contract contract) {
+	public void setContract(Contract contract) {
 		this.contract = contract;
 	}
 

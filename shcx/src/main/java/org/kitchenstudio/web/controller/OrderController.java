@@ -9,11 +9,13 @@ import org.kitchenstudio.entity.Contract;
 import org.kitchenstudio.entity.Driver;
 import org.kitchenstudio.entity.Order;
 import org.kitchenstudio.entity.OrderItem;
+import org.kitchenstudio.entity.Product;
+import org.kitchenstudio.entity.ProductCategory;
 import org.kitchenstudio.entity.Staff;
-import org.kitchenstudio.entity.Type;
 import org.kitchenstudio.service.ContractService;
 import org.kitchenstudio.service.DriverService;
 import org.kitchenstudio.service.OrderService;
+import org.kitchenstudio.service.ProductService;
 import org.kitchenstudio.service.StaffService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,6 +41,9 @@ public class OrderController {
 
 	@Autowired
 	private ContractService contractService;
+	
+	@Autowired
+	private ProductService productService;
 
 	@ModelAttribute("staffs")
 	public List<Staff> populateStaffs() {
@@ -55,9 +60,14 @@ public class OrderController {
 		return contractService.findAll();
 	}
 
-	@ModelAttribute("types")
-	public Type[] populateTypes() {
-		return Type.values();
+	@ModelAttribute("categories")
+	List<ProductCategory> populateCategoris() {
+		return productService.allCategories();
+	}
+
+	@ModelAttribute("products")
+	List<Product> populateProducts() {
+		return productService.findAll();
 	}
 
 	@RequestMapping({ "", "/" })

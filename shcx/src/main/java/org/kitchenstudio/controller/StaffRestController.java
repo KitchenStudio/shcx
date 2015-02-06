@@ -15,7 +15,7 @@ public class StaffRestController {
 	@Autowired
 	private StaffService staffService;
 
-	@RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
+	@RequestMapping(value = "/{id}/delete", method = RequestMethod.POST)
 	void delete(@PathVariable("id") Staff staff) {
 		staffService.delete(staff);
 	}

@@ -1,6 +1,6 @@
 $(function() {
 	$(".delete-link").click(function() {
-		var href = '/api/v1' + $(this).attr('href');
+		var href = 'api/v1' + $(this).attr('href');
 		$('#alert-modal #confirm').click(function() {
 			$.post(href, function() {
 				// 刷新页面
@@ -29,7 +29,7 @@ $(function() {
 		var product = $(this).val();
 		var specification = $(this).parents(".row").find(".specification");
 		var oldVal = specification.val();
-		$.get("/api/v1/product/" + product + "/specifications", function(
+		$.get("api/v1/product/" + product + "/specifications", function(
 				specifications) {
 			var newVal = 0;
 			if (specifications[0]) {
@@ -52,7 +52,7 @@ $(function() {
 		var category = $(this).val();
 		var product = $(this).parents(".row").find(".product");
 		var oldVal = product.val();
-		$.get("/api/v1/product", {
+		$.get("api/v1/product", {
 			category : category
 		}, function(products) {
 			var newVal = 0;

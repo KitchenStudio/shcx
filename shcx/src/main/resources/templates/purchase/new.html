@@ -51,38 +51,49 @@
 				</div>
 			</div>
 			<hr>
-			<div class="row">
-				<div class=" form-horizontal"
+				<div class="row form-horizontal"
 					th:each="row,rowStat : *{purchaseItems}">
-					<div class="col-sm-4 form-horizontal">
+					<div class="col-sm-3">
 						<div class="form-group" th:classappend="form-group">
-							<label class="col-sm-2 control-label">类型</label>
+							<label class="col-sm-3 control-label">类型</label>
 							<div class="col-sm-6">
-								<select class="form-control"
-									th:field="*{purchaseItems[__${rowStat.index}__].type}">
-									<option th:each="type : ${types}" th:value="${type}"
-										th:text="#{'type.' + ${type}}"></option>
-								</select>
+								<select class="form-control category"
+									th:field="*{purchaseItems[__${rowStat.index}__].product.category}">
+									<option th:each="category : ${categories}"
+										th:text="${category.name}" th:value="${category.id}"></option>
 
+								</select>
 							</div>
 						</div>
 					</div>
-					<div class="col-sm-4 form-horizontal">
+					<div class="col-sm-3">
+						<div class="form-group" th:classappend="form-group">
+							<label class="col-sm-3 control-label">产品</label>
+							<div class="col-sm-6">
+								<select class="form-control product"
+									th:field="*{purchaseItems[__${rowStat.index}__].product}">
+									<option th:each="product : ${products}"
+										th:text="${product.name}" th:value="${product.id}"></option>
+
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3">
 						<div class="form-group" th:classappend="form-group" 
 						th:class="${#fields.hasErrors('purchaseItems[__${rowStat.index}__].remark')}? has-error">
-							<label class="col-sm-2 control-label">规格</label>
+							<label class="col-sm-3 control-label">规格</label>
 							<div class="col-sm-6">
-								<input class="form-control" type="text"
-									th:field="*{purchaseItems[__${rowStat.index}__].remark}" 
-									th:title="${#fields.errors('purchaseItems[__${rowStat.index}__].remark')}"
-									id="remark">
+								<select class="form-control specification"
+									th:field="*{purchaseItems[__${rowStat.index}__].specification}">
+								</select>
 							</div>
 						</div>
 					</div>
-					<div class="col-sm-4 form-horizontal">
+					<div class="col-sm-3">
 						<div class="form-group" th:classappend="form-group"
 							th:class="${#fields.hasErrors('purchaseItems[__${rowStat.index}__].quantity')}? has-error">
-							<label class="col-sm-2 control-label">数量</label>
+							<label class="col-sm-3 control-label">数量</label>
 							<div class="col-sm-6">
 								<input class="form-control" type="text"
 									th:field="*{purchaseItems[__${rowStat.index}__].quantity}"
@@ -92,7 +103,6 @@
 						</div>
 					</div>
 				</div>
-			</div>
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-12">
 					<button type="submit" class="btn btn-primary" name="save"

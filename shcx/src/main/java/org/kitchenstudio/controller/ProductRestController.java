@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.kitchenstudio.entity.Product;
 import org.kitchenstudio.entity.ProductCategory;
+import org.kitchenstudio.entity.ProductSpecification;
 import org.kitchenstudio.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,5 +30,10 @@ public class ProductRestController {
 			return productService.findByCategory(category);
 		}
 
+	}
+
+	@RequestMapping(value = "/{id}/specifications", method = RequestMethod.GET)
+	List<ProductSpecification> getSepcs(@PathVariable("id") Product product) {
+		return product.getSpecifications();
 	}
 }

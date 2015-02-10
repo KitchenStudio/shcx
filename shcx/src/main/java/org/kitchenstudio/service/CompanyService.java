@@ -9,4 +9,5 @@ public interface CompanyService {
 	void save(Company company);
 	
 	List<Company> findAll();
+
 }

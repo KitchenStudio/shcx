@@ -72,8 +72,34 @@ $(function() {
 		}, 'json');
 	};
 
+	var refreshSites = function() {
+		var company = $(this).val();
+		var site = $(this).parents(".row").find(".site");
+		var oldVal = site.val();
+		$.get("/api/v1/company/" + company + "/sites", function(
+				sites) {
+			var newVal = 0;
+			if (sites[0]) {
+				newVal = sites[0].id;
+			}
+			site.find("option").remove();
+			for (var i = 0; i < sites.length; i++) {
+				// 如果选项中存在原来的值
+				if (sites[i].id == oldVal) {
+					newVal = oldVal;
+				}
+				site.append(new Option(sites[i].name,
+						sites[i].id));
+			}
+			site.val(newVal);
+		}, 'json');
+	};
+
 	$(".category").each(refreshProduct);
 	$(".product").each(refreshSpecification);
+	$(".company").each(refreshSites);
 	$(".category").change(refreshProduct);
 	$(".product").change(refreshSpecification);
+	$(".company").change(refreshSites);
+
 });

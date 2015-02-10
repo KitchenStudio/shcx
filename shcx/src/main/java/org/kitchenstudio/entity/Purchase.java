@@ -25,9 +25,9 @@ public class Purchase {
 	@GeneratedValue
 	private Long id;
 
-	 @ManyToOne(optional = false)
-	 @JoinColumn(name = "STAFF_ID", nullable = false, updatable = true)
-	 private Staff buyer;
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "STAFF_ID", nullable = false, updatable = true)
+	private Staff buyer;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(iso = ISO.DATE)
@@ -39,6 +39,10 @@ public class Purchase {
 	@Valid
 	private List<PurchaseItem> purchaseItems = new ArrayList<>();
 
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "SITE_ID", nullable = false, updatable = true)
+	private Site site;
+
 	public Long getId() {
 		return id;
 	}
@@ -46,7 +50,6 @@ public class Purchase {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 
 	public Staff getBuyer() {
 		return buyer;
@@ -72,4 +75,11 @@ public class Purchase {
 		this.purchaseItems = items;
 	}
 
+	public Site getSite() {
+		return site;
+	}
+
+	public void setSite(Site site) {
+		this.site = site;
+	}
 }

@@ -2,6 +2,7 @@ package org.kitchenstudio.service.impl;
 
 import java.util.List;
 
+import org.kitchenstudio.entity.Company;
 import org.kitchenstudio.entity.Site;
 import org.kitchenstudio.repository.SiteRepository;
 import org.kitchenstudio.service.SiteService;
@@ -15,23 +16,24 @@ public class SiteServiceImpl implements SiteService{
 	
 	@Autowired
 	 public SiteServiceImpl(SiteRepository siteRepository) {
-		// TODO Auto-generated constructor stub
 		 this.siteRepository=siteRepository;
 	}
 	@Override
 	public List<Site> findAll() {
-		// TODO Auto-generated method stub
 		return siteRepository.findAll();
 	}
 	@Override
 	public void add(Site site) {
-		// TODO Auto-generated method stub
 		siteRepository.save(site);
 	}
 	
 	@Override
 	public void delete(Site site) {
-		// TODO Auto-generated method stub
 		siteRepository.delete(site);
+	}
+	
+	@Override
+	public List<Site> findByCompany(Company company) {
+		return siteRepository.findByCompany(company);
 	}
 }

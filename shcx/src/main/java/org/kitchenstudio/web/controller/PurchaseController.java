@@ -4,12 +4,13 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.kitchenstudio.entity.Company;
 import org.kitchenstudio.entity.Product;
 import org.kitchenstudio.entity.ProductCategory;
-import org.kitchenstudio.entity.ProductSpecification;
 import org.kitchenstudio.entity.Purchase;
 import org.kitchenstudio.entity.PurchaseItem;
 import org.kitchenstudio.entity.Staff;
+import org.kitchenstudio.service.CompanyService;
 import org.kitchenstudio.service.ProductService;
 import org.kitchenstudio.service.PurchaseService;
 import org.kitchenstudio.service.StaffService;
@@ -35,6 +36,9 @@ public class PurchaseController {
 	@Autowired
 	private ProductService productService;
 
+	@Autowired
+	private CompanyService companyService;
+
 	@ModelAttribute("staffs")
 	List<Staff> populateStaffs() {
 		return staffService.findAll();
@@ -48,6 +52,11 @@ public class PurchaseController {
 	@ModelAttribute("products")
 	List<Product> populateProducts() {
 		return productService.findAll();
+	}
+
+	@ModelAttribute("companies")
+	List<Company> populateCompanies() {
+		return companyService.findAll();
 	}
 
 	@RequestMapping({ "", "/" })

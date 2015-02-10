@@ -8,6 +8,8 @@ import org.kitchenstudio.entity.Driver;
 import org.kitchenstudio.entity.Product;
 import org.kitchenstudio.entity.ProductCategory;
 import org.kitchenstudio.entity.ProductSpecification;
+import org.kitchenstudio.entity.Site;
+import org.kitchenstudio.entity.SiteType;
 import org.kitchenstudio.entity.Staff;
 import org.kitchenstudio.repository.CompanyRepository;
 import org.kitchenstudio.repository.ContractRepository;
@@ -15,6 +17,7 @@ import org.kitchenstudio.repository.DriverRepository;
 import org.kitchenstudio.repository.ProductCategoryRepository;
 import org.kitchenstudio.repository.ProductRepository;
 import org.kitchenstudio.repository.ProductSpecificationRepository;
+import org.kitchenstudio.repository.SiteRepository;
 import org.kitchenstudio.repository.StaffRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -109,6 +112,13 @@ public class DatabaseInit {
 			company.setCharger("changer" + i);
 			company.setName("公司" + i);
 			companyRepository.save(company);
+			
+			Site site = new Site();
+			site.setType(SiteType.FIELD);
+			site.setName("上海场地" + i);
+			site.setCompany(company);
+			site.setAddress("上海松江");
+			siteRepository.save(site);
 		}
 
 		return SUCCESS;
@@ -134,6 +144,9 @@ public class DatabaseInit {
 
 	@Autowired
 	private CompanyRepository companyRepository;
+	
+	@Autowired
+	private SiteRepository siteRepository;
 
 	private static final String SUCCESS = "INIT_OK";
 	private static final Logger logger = LoggerFactory

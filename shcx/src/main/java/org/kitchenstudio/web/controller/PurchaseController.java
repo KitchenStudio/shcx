@@ -1,5 +1,6 @@
 package org.kitchenstudio.web.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -67,6 +68,13 @@ public class PurchaseController {
 		return "purchase/home";
 	}
 
+	@RequestMapping(value = "/new", method = RequestMethod.GET)
+	String create(Purchase purchase) {
+		purchase.setCreatedTime(new Date());
+		return "purchase/new";
+
+	}
+
 	@RequestMapping(value = "/new", params = { "save" }, method = RequestMethod.POST)
 	String save(@Valid Purchase purchase, BindingResult result) {
 		if (result.hasErrors()) {
@@ -84,12 +92,6 @@ public class PurchaseController {
 	@RequestMapping(value = "/new", params = { "addItems" }, method = RequestMethod.POST)
 	String createItems(@Valid Purchase purchase, BindingResult result) {
 		purchase.getPurchaseItems().add(new PurchaseItem());
-		return "purchase/new";
-
-	}
-
-	@RequestMapping(value = "/new", method = RequestMethod.GET)
-	String create(@Valid Purchase purchase, BindingResult result) {
 		return "purchase/new";
 
 	}

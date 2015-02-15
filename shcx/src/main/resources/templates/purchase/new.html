@@ -29,7 +29,7 @@
 					th:class="${#fields.hasErrors('createdTime')}? has-error">
 					<label class="col-sm-3 control-label">采购日期</label>
 					<div class="col-sm-6">
-						<input class="form-control" th:field="*{createdTime}"
+						<input class="form-control" th:field="*{createdTime}" type="date"
 							th:title="${#fields.hasErrors('createdTime')}? 格式有问题，应该使用2012-10-12的格式">
 					</div>
 				</div>

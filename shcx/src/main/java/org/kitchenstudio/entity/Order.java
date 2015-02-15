@@ -3,6 +3,7 @@ package org.kitchenstudio.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -13,8 +14,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-
-import org.hibernate.validator.constraints.NotBlank;
 
 @Entity(name = "TABLE_ORDER")
 public class Order {
@@ -51,6 +50,9 @@ public class Order {
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "TO_ID", nullable = false)
 	private Site toSite;
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
+	private List<OrderStatus> orderStatus = new ArrayList<>();
 
 	public Contract getContract() {
 		return contract;
@@ -114,6 +116,14 @@ public class Order {
 
 	public void setToSite(Site toSite) {
 		this.toSite = toSite;
+	}
+
+	public List<OrderStatus> getOrderStatus() {
+		return orderStatus;
+	}
+
+	public void setOrderStatus(List<OrderStatus> orderStatus) {
+		this.orderStatus = orderStatus;
 	}
 
 }

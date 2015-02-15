@@ -50,7 +50,7 @@
 				<div class="col-sm-6 form-group"
 					th:classappend="'col-sm-6 form-group'"
 					th:class="${#fields.hasErrors('contract')}? has-error">
-					<label class="col-sm-3 control-label">所属合同</label>
+					<label class="col-sm-3 control-label">合同</label>
 					<div class="col-sm-6">
 						<select class="form-control" th:field="*{contract}"
 							th:title="${#fields.errors('contract')}">

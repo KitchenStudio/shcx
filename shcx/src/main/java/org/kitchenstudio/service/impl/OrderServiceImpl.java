@@ -51,16 +51,14 @@ public class OrderServiceImpl implements OrderService {
 		orderItemRepository.save(orderitems);
 		orderRepository.save(order);
 
-		if (!order.getType().equals(OrderType.PLAN)) {
-			// 存到仓库
-			orderitems.forEach(item -> {
-				storeService.addItem(order.getToSite(), item);
-			});
+		// 存到仓库
+		orderitems.forEach(item -> {
+			storeService.addItem(order.getToSite(), item);
+		});
 
-			orderitems.forEach(item -> {
-				storeService.subItem(order.getFromSite(), item);
-			});
-		}
+		orderitems.forEach(item -> {
+			storeService.subItem(order.getFromSite(), item);
+		});
 	}
 
 }

@@ -1,5 +1,6 @@
 package org.kitchenstudio;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +12,7 @@ import org.kitchenstudio.entity.ProductSpecification;
 import org.kitchenstudio.entity.Site;
 import org.kitchenstudio.entity.SiteType;
 import org.kitchenstudio.entity.Staff;
+import org.kitchenstudio.entity.Store;
 import org.kitchenstudio.repository.CompanyRepository;
 import org.kitchenstudio.repository.ContractRepository;
 import org.kitchenstudio.repository.DriverRepository;
@@ -19,6 +21,7 @@ import org.kitchenstudio.repository.ProductRepository;
 import org.kitchenstudio.repository.ProductSpecificationRepository;
 import org.kitchenstudio.repository.SiteRepository;
 import org.kitchenstudio.repository.StaffRepository;
+import org.kitchenstudio.repository.StoreRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -103,8 +106,9 @@ public class DatabaseInit {
 	}
 
 	@Bean
-	public String initCompanies() {
+	public List<Site> initCompanies() {
 		logger.info("init companies");
+		List<Site> sites = new ArrayList<>();
 
 		for (int i = 0; i < 10; i++) {
 			Company company = new Company();
@@ -118,10 +122,20 @@ public class DatabaseInit {
 			site.setName("上海场地" + i);
 			site.setCompany(company);
 			site.setAddress("上海松江");
-			siteRepository.save(site);
+			sites.add(siteRepository.save(site));
+		}
+		
+		for (Site site : sites) {
+			for (Product product: productRepository.findAll()) {
+				Store store = new Store();
+				store.setSite(site);
+				store.setProduct(product);
+				store.setQuantity(new BigDecimal(0));
+				storeRepository.save(store);
+			}
 		}
 
-		return SUCCESS;
+		return sites;
 	}
 
 	@Autowired
@@ -147,6 +161,9 @@ public class DatabaseInit {
 	
 	@Autowired
 	private SiteRepository siteRepository;
+	
+	@Autowired
+	private StoreRepository storeRepository;
 
 	private static final String SUCCESS = "INIT_OK";
 	private static final Logger logger = LoggerFactory

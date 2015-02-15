@@ -9,7 +9,7 @@ import javax.validation.constraints.Min;
 
 
 @Entity
-public class PurchaseItem {
+public class PurchaseItem implements StoreItem {
 
 	@Id
 	@GeneratedValue

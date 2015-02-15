@@ -59,6 +59,24 @@
 					</div>
 				</div>
 			</div>
+			<div class="row">
+				<div class="col-sm-6 form-group">
+					<label class="col-sm-3 control-label">出发工地</label>
+					<div class="col-sm-6">
+						<select class="form-control" th:field="*{fromSite}">
+							<option th:each="site : ${sites}" th:text="${site.id}" th:value="${site.id}"></option>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-6 form-group">
+					<label class="col-sm-3 control-label">目标工地</label>
+					<div class="col-sm-6">
+						<select class="form-control" th:field="*{toSite}">
+							<option th:each="site : ${sites}" th:text="${site.id}" th:value="${site.id}"></option>
+						</select>
+					</div>
+				</div>
+			</div>
 				<div class="row form-horizontal" th:each="row,rowStat : *{orderItems}" style="margin-top: 12px;">
 					<div class="col-sm-3">
 						<div class="form-group">

@@ -24,7 +24,7 @@ public class Order {
 	private Long id;
 
 	@ManyToOne(optional = false)
-	@JoinColumn(name = "CUST_ID", nullable = false)
+	@JoinColumn(name = "OPERATOR_ID", nullable = false)
 	private Staff operator;// 经手人
 
 	@OneToMany(orphanRemoval = true)
@@ -43,6 +43,14 @@ public class Order {
 	@JoinColumn(name = "CONTRACT_ID")
 	@NotNull
 	private Contract contract;
+
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "FROM_ID", nullable = false)
+	private Site fromSite;
+
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "TO_ID", nullable = false)
+	private Site toSite;
 
 	public Contract getContract() {
 		return contract;
@@ -90,6 +98,22 @@ public class Order {
 
 	public void setDriver(Driver driver) {
 		this.driver = driver;
+	}
+
+	public Site getFromSite() {
+		return fromSite;
+	}
+
+	public void setFromSite(Site fromSite) {
+		this.fromSite = fromSite;
+	}
+
+	public Site getToSite() {
+		return toSite;
+	}
+
+	public void setToSite(Site toSite) {
+		this.toSite = toSite;
 	}
 
 }

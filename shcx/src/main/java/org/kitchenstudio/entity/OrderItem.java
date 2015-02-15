@@ -8,7 +8,7 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.Min;
 
 @Entity
-public class OrderItem {
+public class OrderItem implements StoreItem {
 
 	@Id
 	@GeneratedValue

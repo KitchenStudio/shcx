@@ -8,6 +8,7 @@ import org.kitchenstudio.entity.PurchaseItem;
 import org.kitchenstudio.repository.PurchaseItemRepository;
 import org.kitchenstudio.repository.PurchaseRepository;
 import org.kitchenstudio.service.PurchaseService;
+import org.kitchenstudio.service.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,9 @@ public class PurchaseServiceImpl implements PurchaseService {
 
 	private final PurchaseRepository purchaseRepository;
 	private final PurchaseItemRepository purchaseItemRepository;
+
+	@Autowired
+	private StoreService storeService;
 
 	@Autowired
 	public PurchaseServiceImpl(PurchaseRepository purchaseRepository,
@@ -31,18 +35,19 @@ public class PurchaseServiceImpl implements PurchaseService {
 
 	@Override
 	public void save(Purchase purchase, List<PurchaseItem> purchaseItems) {
-		List<PurchaseItem> items = new ArrayList<>();
-		for (PurchaseItem item : purchaseItems) {
-			items.add(purchaseItemRepository.save(item));
-		}
 
-		purchase.setPurchaseItems(items);
+		purchaseItemRepository.save(purchaseItems);
 		purchaseRepository.save(purchase);
+
+		// 仓库增加
+		purchaseItems.forEach((item) -> {
+			storeService.addItem(purchase.getSite(), item);
+		});
+
 	}
 
 	@Override
 	public void delete(Purchase purchase) {
-		// TODO Auto-generated method stub
 		purchaseRepository.delete(purchase);
 	}
 }

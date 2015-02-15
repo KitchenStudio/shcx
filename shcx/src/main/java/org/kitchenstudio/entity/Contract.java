@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -35,6 +37,9 @@ public class Contract {
 	@OneToMany(orphanRemoval = true)
 	@JoinColumn(name = "CONTRACT_ID")
 	private List<ContractItem> contractItems = new ArrayList<ContractItem>();
+
+	@Enumerated(EnumType.STRING)
+	private ContractStatus status;
 
 	public Long getId() {
 		return id;
@@ -79,5 +84,14 @@ public class Contract {
 	@PrePersist
 	void onInserted() {
 		createdTime = new Date();
+		status = ContractStatus.CREATED;
+	}
+
+	public ContractStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(ContractStatus status) {
+		this.status = status;
 	}
 }

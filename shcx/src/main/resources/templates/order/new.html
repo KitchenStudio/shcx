@@ -64,7 +64,7 @@
 					<label class="col-sm-3 control-label">出发工地</label>
 					<div class="col-sm-6">
 						<select class="form-control" th:field="*{fromSite}">
-							<option th:each="site : ${sites}" th:text="${site.id}" th:value="${site.id}"></option>
+							<option th:each="site : ${sites}" th:text="${site.name}" th:value="${site.id}"></option>
 						</select>
 					</div>
 				</div>
@@ -72,7 +72,7 @@
 					<label class="col-sm-3 control-label">目标工地</label>
 					<div class="col-sm-6">
 						<select class="form-control" th:field="*{toSite}">
-							<option th:each="site : ${sites}" th:text="${site.id}" th:value="${site.id}"></option>
+							<option th:each="site : ${sites}" th:text="${site.name}" th:value="${site.id}"></option>
 						</select>
 					</div>
 				</div>

@@ -42,6 +42,9 @@
 						<li th:class="${page eq 'company'} ? active"><a th:href="@{/company}">公司信息</a></li>
 						<li th:class="${page eq 'site'} ? active"><a th:href="@{/site}">项目</a></li>
 					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a th:href="@{/logout}">注销</a></li>
+					</ul>
 				</div>
 			</div>
 		</nav>

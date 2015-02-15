@@ -10,4 +10,9 @@ public class HomeController {
 	String home() {
 		return "home";
 	}
+	
+	@RequestMapping("/login")
+	String login() {
+		return "login";
+	}
 }

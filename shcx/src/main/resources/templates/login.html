@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>请登陆</title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+<link rel="stylesheet" th:href="@{/css/style.css} " />
+</head>
+<body>
+	<div th:replace="home :: nav ('')">
+	</div>
+	<div class="container">
+		<div class="panel panel-default" style="width: 300px; margin: 0 auto;">
+			<div class="panel-heading">
+				<h2 class="panel-title">请登录</h2>
+			</div>
+			<div class="panel-body">
+				<form th:action="@{/login}" method="post">
+					<div th:if="${param.error}" class="alert alert-danger">无效的用户名或密码！</div>
+					<div th:if="${param.logout}" class="alert alert-success">你已经成功注销！</div>
+					<label class="control-label" for="username">用户名</label> <input class="form-control" type="text" id="username"
+						name="username" /> <label class="control-label" for="password">密码</label> <input
+						type="password" id="password" name="password" class="form-control" />
+					<div class="form-actions">
+						<button type="submit" class="btn btn-primary">登陆</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" th:src="@{js/jquery-1.11.1.min.js}"></script>
+	<script type="text/javascript" th:src="@{js/bootstrap.min.js}"></script>
+
+</body>
+</html>

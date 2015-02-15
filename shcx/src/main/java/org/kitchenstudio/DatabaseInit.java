@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.kitchenstudio.entity.Account;
+import org.kitchenstudio.entity.Authority;
 import org.kitchenstudio.entity.Company;
 import org.kitchenstudio.entity.Driver;
 import org.kitchenstudio.entity.Product;
@@ -13,6 +15,8 @@ import org.kitchenstudio.entity.Site;
 import org.kitchenstudio.entity.SiteType;
 import org.kitchenstudio.entity.Staff;
 import org.kitchenstudio.entity.Store;
+import org.kitchenstudio.repository.AccountRepository;
+import org.kitchenstudio.repository.AuthorityRepository;
 import org.kitchenstudio.repository.CompanyRepository;
 import org.kitchenstudio.repository.ContractRepository;
 import org.kitchenstudio.repository.DriverRepository;
@@ -106,7 +110,7 @@ public class DatabaseInit {
 	}
 
 	@Bean
-	public List<Site> initCompanies() {
+	public String initCompanies() {
 		logger.info("init companies");
 		List<Site> sites = new ArrayList<>();
 
@@ -135,7 +139,24 @@ public class DatabaseInit {
 			}
 		}
 
-		return sites;
+		return SUCCESS;
+	}
+	
+	@Bean
+	public String initAccount() {
+		logger.info("init accounts");
+		Authority userAuthority= authorityRepository.save(new Authority("USER"));
+		Authority adminAuthority= authorityRepository.save(new Authority("ADMIN"));
+		
+		Account sealAccount = new Account();
+		sealAccount.setUsername("seal");
+		sealAccount.setPassword("..xiao");
+		sealAccount.getAuthorities().add(adminAuthority);
+		sealAccount.getAuthorities().add(userAuthority);
+		accountRepository.save(sealAccount);
+
+
+		return SUCCESS;
 	}
 
 	@Autowired
@@ -164,6 +185,13 @@ public class DatabaseInit {
 	
 	@Autowired
 	private StoreRepository storeRepository;
+	
+	@Autowired
+	private AccountRepository accountRepository;
+	
+	@Autowired
+	private AuthorityRepository authorityRepository;
+	
 
 	private static final String SUCCESS = "INIT_OK";
 	private static final Logger logger = LoggerFactory

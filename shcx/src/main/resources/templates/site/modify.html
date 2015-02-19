@@ -15,13 +15,21 @@
     <![endif]-->
 </head>
 <body>
-	<div th:replace="home :: nav ('site')"></div>
+	<div th:replace="home :: nav"></div>
 
-	<div class="container">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-3 col-md-2 sidebar">
+				<div th:replace="home :: sidebar ('site')">
+				</div>
+			</div>
+			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
 		<h2 class="page-header">项目详情修改</h2>
 		
 		<div th:replace="site/new :: new (@{/site/{id}/modify(id=${site.id})}, '修改')"></div>
+	</div>
+	</div>
 	</div>
 
 	<script th:src="@{/js/jquery.min.js}"></script>

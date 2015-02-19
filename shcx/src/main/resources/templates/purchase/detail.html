@@ -14,9 +14,15 @@
     <![endif]-->
 </head>
 <body>
-	<div th:replace="home :: nav ('purchase')"></div>
-	<div class="container" style="width: 960px;">
-		<h2 style="text-align: center;">采购详情</h2>
+	<div th:replace="home :: nav "></div>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-3 col-md-2 sidebar">
+				<div th:replace="home :: sidebar ('purchase')">
+				</div>
+			</div>
+			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+		<h2 class="page-header">采购详情</h2>
 		<div th:if="${param.success}" class="alert alert-info">
 			<button type="button" class="close" data-dismiss="alert"
 				aria-label="Close">
@@ -65,6 +71,8 @@
 				id="uploadinfo"
 				th:href="@{/purchase/{id}/modify(id=${purchase.id})}">修改信息</a>
 		</div>
+	</div>
+	</div>
 	</div>
 
 

@@ -14,9 +14,15 @@
     <![endif]-->
 </head>
 <body>
-	<div th:replace="home :: nav ('order')"></div>
+	<div th:replace="home :: nav"></div>
 
-	<div class="container">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-3 col-md-2 sidebar">
+				<div th:replace="home :: sidebar ('order')">
+				</div>
+			</div>
+			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 		<h2 class="page-header">订单详情</h2>
 		
 		<div th:if="${param.success}" class="alert alert-info">
@@ -76,6 +82,8 @@
 			<a class="btn btn-primary" id="uploadinfo"
 				th:href="@{/order/{id}/modify(id=${order.id})}">修改信息</a>
 		</div>
+	</div>
+	</div>
 	</div>
 
 

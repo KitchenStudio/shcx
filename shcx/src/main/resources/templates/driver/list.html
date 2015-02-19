@@ -15,8 +15,14 @@
     <![endif]-->
 </head>
 <body>
-<div th:replace="home :: nav ('driver')"></div>
-	<div class="container">
+<div th:replace="home :: nav"></div>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-3 col-md-2 sidebar">
+				<div th:replace="home :: sidebar ('driver')">
+				</div>
+			</div>
+			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 		<h2 class="page-header">司机列表</h2>
 		<!-- 搜索还未完成 -->
 		<form class="form-inline" role="search" th:action="@{/}" method="post">  
@@ -52,6 +58,8 @@
 				</tr>
 			</tbody>
 		</table>
+	</div>
+	</div>
 	</div>
 	<script th:src="@{/js/jquery.min.js}"></script>
 	<script th:src="@{/js/bootstrap.min.js}"></script>

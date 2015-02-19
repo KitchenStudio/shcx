@@ -17,8 +17,14 @@
 </head>
 <body>
 
-	<div th:replace="home :: nav ('site')"></div>
-	<div class="container">
+	<div th:replace="home :: nav"></div>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-3 col-md-2 sidebar">
+				<div th:replace="home :: sidebar ('site')">
+				</div>
+			</div>
+			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 		<h2 align="center">创建项目</h2>
 		<div th:replace="::new ('/site/new', '录入')">
 			<form th:fragment="new (action, actionName)" th:action="@{${action}}"
@@ -97,6 +103,8 @@
 				</div>
 			</form>
 		</div>
+	</div>
+	</div>
 	</div>
 	<script th:src="@{/js/jquery.min.js}"></script>
 	<script th:src="@{/js/bootstrap.min.js}"></script>
